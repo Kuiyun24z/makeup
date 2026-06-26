@@ -76,6 +76,7 @@ desktop.ini
 
 # Large model/checkpoint artifacts
 models/
+VoxCPM-Demo/
 *.onnx
 *.bin
 *.safetensors
