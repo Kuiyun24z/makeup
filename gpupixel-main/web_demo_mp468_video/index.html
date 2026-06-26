@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GPUPixel MP468 Video Demo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>GPUPixel MP468 Video Demo</h1>
+        <p id="status">正在加载 MediaPipe 本地模型...</p>
+      </div>
+      <div class="actions">
+        <button id="startBtn">开启摄像头</button>
+        <button id="stopBtn" disabled>停止</button>
+        <label class="auto-toggle">
+          <input id="autoPreview" type="checkbox" checked />
+          自动处理
+        </label>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="preview-grid">
+        <figure>
+          <figcaption>输入</figcaption>
+          <canvas id="inputCanvas" width="960" height="720"></canvas>
+        </figure>
+        <figure>
+          <figcaption>输出</figcaption>
+          <img id="resultImage" alt="" />
+        </figure>
+      </section>
+
+      <aside class="controls">
+        <div class="control-group">
+          <label>
+            <span>处理 FPS</span>
+            <input data-setting="fps" type="range" min="1" max="15" value="8" step="1" />
+            <output>8</output>
+          </label>
+          <label>
+            <span>磨皮</span>
+            <input data-param="smoothing" type="range" min="0" max="10" value="0" step="0.1" />
+            <output>0.0</output>
+          </label>
+          <label>
+            <span>美白</span>
+            <input data-param="whitening" type="range" min="0" max="10" value="0" step="0.1" />
+            <output>0.0</output>
+          </label>
+          <label>
+            <span>瘦脸</span>
+            <input data-param="slim" type="range" min="0" max="10" value="0" step="0.1" />
+            <output>0.0</output>
+          </label>
+          <label>
+            <span>大眼</span>
+            <input data-param="eye" type="range" min="0" max="10" value="0" step="0.1" />
+            <output>0.0</output>
+          </label>
+          <label>
+            <span>口红</span>
+            <input data-param="lipstick" type="range" min="0" max="10" value="0" step="0.1" />
+            <output>0.0</output>
+          </label>
+          <label>
+            <span>腮红</span>
+            <input data-param="blusher" type="range" min="0" max="10" value="0" step="0.1" />
+            <output>0.0</output>
+          </label>
+          <h2>面部瑕疵</h2>
+          <label>
+            <span>痘印</span>
+            <input data-param="acne" type="range" min="0" max="10" value="0" step="0.1" />
+            <output>0.0</output>
+          </label>
+          <label>
+            <span>眼袋/黑眼圈</span>
+            <input data-param="eyeBag" type="range" min="0" max="10" value="0" step="0.1" />
+            <output>0.0</output>
+          </label>
+          <label>
+            <span>法令纹</span>
+            <input data-param="nasolabial" type="range" min="0" max="10" value="0" step="0.1" />
+            <output>0.0</output>
+          </label>
+          <label>
+            <span>泛红</span>
+            <input data-param="redness" type="range" min="0" max="10" value="0" step="0.1" />
+            <output>0.0</output>
+          </label>
+          <label>
+            <span>暗沉提亮</span>
+            <input data-param="dullness" type="range" min="0" max="10" value="0" step="0.1" />
+            <output>0.0</output>
+          </label>
+          <label>
+            <span>毛孔细化</span>
+            <input data-param="pores" type="range" min="0" max="10" value="0" step="0.1" />
+            <output>0.0</output>
+          </label>
+          <h2>五官轮廓</h2>
+          <label>
+            <span>缩鼻翼</span>
+            <input data-param="nose" type="range" min="0" max="10" value="0" step="0.1" />
+            <output>0.0</output>
+          </label>
+          <label>
+            <span>双眼皮</span>
+            <input data-param="eyelid" type="range" min="0" max="10" value="0" step="0.1" />
+            <output>0.0</output>
+          </label>
+          <label>
+            <span>眉毛加深</span>
+            <input data-param="brow" type="range" min="0" max="10" value="0" step="0.1" />
+            <output>0.0</output>
+          </label>
+          <label>
+            <span>嘴巴大小</span>
+            <input data-param="mouth" type="range" min="-10" max="10" value="0" step="0.1" />
+            <output>0.0</output>
+          </label>
+          <h2>体态细节</h2>
+          <label>
+            <span>双下巴</span>
+            <input data-param="doubleChin" type="range" min="0" max="10" value="0" step="0.1" />
+            <output>0.0</output>
+          </label>
+          <label>
+            <span>颈纹淡化</span>
+            <input data-param="neck" type="range" min="0" max="10" value="0" step="0.1" />
+            <output>0.0</output>
+          </label>
+        </div>
+        <details>
+          <summary>运行日志</summary>
+          <pre id="logBox"></pre>
+        </details>
+      </aside>
+    </main>
+
+    <video id="cameraVideo" playsinline muted></video>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

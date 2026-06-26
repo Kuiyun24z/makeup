@@ -1,0 +1,15 @@
+.git
+.logs
+.superpowers
+.uv-cache
+.pytest_cache
+__pycache__
+deprecated-old-beauty-modules
+gpupixel-main.before-merge
+jhx
+VoxCPM-Demo
+dist
+mediapipe_bridge_browser_profile
+.tmp-start-funasr.ps1
+.tmp-start-gpupixel.ps1
+.tmp-start-site.ps1

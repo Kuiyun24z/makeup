@@ -1,0 +1,694 @@
+[
+  {
+    "id": "lip-true-red",
+    "name": "正红",
+    "aliases": [
+      "正红色",
+      "大红",
+      "红唇"
+    ],
+    "category": "lip",
+    "rgb": [
+      190,
+      35,
+      45
+    ],
+    "finish": "satin",
+    "defaultIntensity": 0.68,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "lip-rose-bean",
+    "name": "豆沙",
+    "aliases": [
+      "豆沙色",
+      "玫瑰豆沙",
+      "日常豆沙",
+      "温柔豆沙"
+    ],
+    "category": "lip",
+    "rgb": [
+      176,
+      82,
+      92
+    ],
+    "finish": "cream",
+    "defaultIntensity": 0.58,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "lip-maple",
+    "name": "枫叶红",
+    "aliases": [
+      "枫叶",
+      "枫叶色",
+      "烂番茄",
+      "番茄红"
+    ],
+    "category": "lip",
+    "rgb": [
+      190,
+      72,
+      42
+    ],
+    "finish": "satin",
+    "defaultIntensity": 0.64,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "lip-honey-peach",
+    "name": "蜜桃",
+    "aliases": [
+      "蜜桃色",
+      "水蜜桃",
+      "桃粉",
+      "甜桃"
+    ],
+    "category": "lip",
+    "rgb": [
+      222,
+      104,
+      102
+    ],
+    "finish": "gloss",
+    "defaultIntensity": 0.52,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "lip-berry",
+    "name": "浆果",
+    "aliases": [
+      "浆果色",
+      "莓果",
+      "姨妈色",
+      "深浆果"
+    ],
+    "category": "lip",
+    "rgb": [
+      126,
+      35,
+      72
+    ],
+    "finish": "velvet",
+    "defaultIntensity": 0.62,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "lip-milk-tea",
+    "name": "奶茶",
+    "aliases": [
+      "奶茶色",
+      "裸茶",
+      "杏仁奶茶",
+      "拿铁"
+    ],
+    "category": "lip",
+    "rgb": [
+      166,
+      104,
+      82
+    ],
+    "finish": "matte",
+    "defaultIntensity": 0.5,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "lip-brick",
+    "name": "砖红",
+    "aliases": [
+      "砖红色",
+      "铁锈红",
+      "红棕",
+      "复古红棕"
+    ],
+    "category": "lip",
+    "rgb": [
+      154,
+      57,
+      43
+    ],
+    "finish": "matte",
+    "defaultIntensity": 0.65,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "lip-coral",
+    "name": "珊瑚",
+    "aliases": [
+      "珊瑚色",
+      "珊瑚粉",
+      "珊瑚橘"
+    ],
+    "category": "lip",
+    "rgb": [
+      214,
+      89,
+      76
+    ],
+    "finish": "cream",
+    "defaultIntensity": 0.55,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "lip-rose",
+    "name": "玫瑰",
+    "aliases": [
+      "玫瑰色",
+      "玫瑰粉",
+      "蔷薇",
+      "蔷薇粉"
+    ],
+    "category": "lip",
+    "rgb": [
+      178,
+      64,
+      94
+    ],
+    "finish": "satin",
+    "defaultIntensity": 0.58,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "lip-cinnamon",
+    "name": "肉桂",
+    "aliases": [
+      "肉桂色",
+      "焦糖肉桂",
+      "暖棕"
+    ],
+    "category": "lip",
+    "rgb": [
+      160,
+      86,
+      56
+    ],
+    "finish": "matte",
+    "defaultIntensity": 0.56,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "blush-rose-bean",
+    "name": "豆沙腮红",
+    "aliases": [
+      "豆沙腮",
+      "玫瑰豆沙腮红",
+      "低饱和腮红"
+    ],
+    "category": "blush",
+    "rgb": [
+      205,
+      102,
+      128
+    ],
+    "finish": "soft-matte",
+    "defaultIntensity": 0.34,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "blush-peach",
+    "name": "蜜桃腮红",
+    "aliases": [
+      "蜜桃腮",
+      "桃粉腮红",
+      "水蜜桃腮红"
+    ],
+    "category": "blush",
+    "rgb": [
+      239,
+      145,
+      130
+    ],
+    "finish": "soft-matte",
+    "defaultIntensity": 0.36,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "blush-apricot",
+    "name": "杏子腮红",
+    "aliases": [
+      "杏子",
+      "杏色腮红",
+      "杏桃腮红"
+    ],
+    "category": "blush",
+    "rgb": [
+      229,
+      132,
+      94
+    ],
+    "finish": "satin",
+    "defaultIntensity": 0.32,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "blush-rose",
+    "name": "玫瑰腮红",
+    "aliases": [
+      "玫瑰腮",
+      "蔷薇腮红",
+      "玫瑰粉腮红"
+    ],
+    "category": "blush",
+    "rgb": [
+      218,
+      112,
+      140
+    ],
+    "finish": "soft-matte",
+    "defaultIntensity": 0.34,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "blush-milk-tea",
+    "name": "奶茶腮红",
+    "aliases": [
+      "奶茶腮",
+      "裸茶腮红",
+      "低调腮红"
+    ],
+    "category": "blush",
+    "rgb": [
+      198,
+      134,
+      112
+    ],
+    "finish": "soft-matte",
+    "defaultIntensity": 0.3,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "blush-berry",
+    "name": "浆果腮红",
+    "aliases": [
+      "莓果腮红",
+      "浆果腮",
+      "冷调腮红"
+    ],
+    "category": "blush",
+    "rgb": [
+      181,
+      82,
+      118
+    ],
+    "finish": "satin",
+    "defaultIntensity": 0.31,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "lip-mlbb",
+    "name": "MLBB",
+    "aliases": [
+      "mlbb",
+      "我嘴唇但更好",
+      "裸粉棕",
+      "本命裸色"
+    ],
+    "category": "lip",
+    "rgb": [
+      165,
+      98,
+      102
+    ],
+    "finish": "cream",
+    "defaultIntensity": 0.5,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "lip-cool-rose",
+    "name": "冷玫瑰",
+    "aliases": [
+      "冷玫瑰色",
+      "冷调玫瑰",
+      "灰玫瑰"
+    ],
+    "category": "lip",
+    "rgb": [
+      186,
+      84,
+      118
+    ],
+    "finish": "satin",
+    "defaultIntensity": 0.6,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "lip-warm-orange",
+    "name": "暖橘",
+    "aliases": [
+      "暖橘色",
+      "橘色",
+      "活力橘",
+      "元气橘"
+    ],
+    "category": "lip",
+    "rgb": [
+      226,
+      110,
+      70
+    ],
+    "finish": "gloss",
+    "defaultIntensity": 0.62,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "lip-deep-bean",
+    "name": "深豆沙",
+    "aliases": [
+      "深豆沙色",
+      "浓豆沙",
+      "脏豆沙"
+    ],
+    "category": "lip",
+    "rgb": [
+      150,
+      68,
+      80
+    ],
+    "finish": "velvet",
+    "defaultIntensity": 0.62,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "lip-fuchsia",
+    "name": "玫红",
+    "aliases": [
+      "玫红色",
+      "桃红",
+      "梅子玫红"
+    ],
+    "category": "lip",
+    "rgb": [
+      212,
+      62,
+      110
+    ],
+    "finish": "satin",
+    "defaultIntensity": 0.64,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "lip-cool-pink",
+    "name": "蓝粉",
+    "aliases": [
+      "蓝粉色",
+      "冷粉",
+      "冰粉色"
+    ],
+    "category": "lip",
+    "rgb": [
+      228,
+      120,
+      150
+    ],
+    "finish": "gloss",
+    "defaultIntensity": 0.55,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "lip-blue-red",
+    "name": "蓝调正红",
+    "aliases": [
+      "蓝调红",
+      "冷调正红",
+      "蓝红"
+    ],
+    "category": "lip",
+    "rgb": [
+      196,
+      30,
+      58
+    ],
+    "finish": "satin",
+    "defaultIntensity": 0.68,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "lip-wine",
+    "name": "酒红",
+    "aliases": [
+      "酒红色",
+      "红酒色",
+      "勃艮第"
+    ],
+    "category": "lip",
+    "rgb": [
+      128,
+      32,
+      52
+    ],
+    "finish": "velvet",
+    "defaultIntensity": 0.66,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "lip-terracotta",
+    "name": "陶土",
+    "aliases": [
+      "陶土色",
+      "土橘",
+      "南瓜色"
+    ],
+    "category": "lip",
+    "rgb": [
+      184,
+      98,
+      72
+    ],
+    "finish": "matte",
+    "defaultIntensity": 0.6,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "blush-coral",
+    "name": "珊瑚腮红",
+    "aliases": [
+      "珊瑚腮",
+      "珊瑚橘腮红"
+    ],
+    "category": "blush",
+    "rgb": [
+      240,
+      128,
+      100
+    ],
+    "finish": "satin",
+    "defaultIntensity": 0.4,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "blush-cool-pink",
+    "name": "冷粉腮红",
+    "aliases": [
+      "冷粉腮",
+      "冰粉腮红",
+      "蓝粉腮红"
+    ],
+    "category": "blush",
+    "rgb": [
+      236,
+      140,
+      165
+    ],
+    "finish": "soft-matte",
+    "defaultIntensity": 0.38,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "brow-natural-black",
+    "name": "自然黑",
+    "aliases": [
+      "黑色眉笔",
+      "自然黑眉",
+      "黑灰眉"
+    ],
+    "category": "brow",
+    "rgb": [
+      44,
+      40,
+      42
+    ],
+    "finish": "matte",
+    "defaultIntensity": 0.45,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "brow-dark-brown",
+    "name": "深棕",
+    "aliases": [
+      "深棕眉笔",
+      "深棕色眉毛",
+      "深咖眉"
+    ],
+    "category": "brow",
+    "rgb": [
+      72,
+      50,
+      40
+    ],
+    "finish": "matte",
+    "defaultIntensity": 0.45,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "brow-light-brown",
+    "name": "浅棕",
+    "aliases": [
+      "浅棕眉笔",
+      "浅咖眉",
+      "奶茶眉"
+    ],
+    "category": "brow",
+    "rgb": [
+      122,
+      90,
+      64
+    ],
+    "finish": "matte",
+    "defaultIntensity": 0.42,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "brow-grey-brown",
+    "name": "灰棕",
+    "aliases": [
+      "灰棕眉笔",
+      "雾灰眉",
+      "冷棕眉"
+    ],
+    "category": "brow",
+    "rgb": [
+      98,
+      84,
+      74
+    ],
+    "finish": "matte",
+    "defaultIntensity": 0.42,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "shadow-earth",
+    "name": "大地色",
+    "aliases": [
+      "大地色眼影",
+      "大地眼影",
+      "日常大地"
+    ],
+    "category": "eyeshadow",
+    "rgb": [
+      152,
+      102,
+      72
+    ],
+    "finish": "satin",
+    "defaultIntensity": 0.45,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "shadow-milk-apricot",
+    "name": "奶杏",
+    "aliases": [
+      "奶杏眼影",
+      "杏色眼影",
+      "奶杏色"
+    ],
+    "category": "eyeshadow",
+    "rgb": [
+      216,
+      172,
+      142
+    ],
+    "finish": "satin",
+    "defaultIntensity": 0.4,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "shadow-rose-smoke",
+    "name": "玫瑰烟粉",
+    "aliases": [
+      "烟粉眼影",
+      "玫瑰烟粉眼影",
+      "干玫瑰眼影"
+    ],
+    "category": "eyeshadow",
+    "rgb": [
+      182,
+      112,
+      122
+    ],
+    "finish": "satin",
+    "defaultIntensity": 0.42,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "shadow-orange-brown",
+    "name": "橘棕",
+    "aliases": [
+      "橘棕眼影",
+      "南瓜眼影",
+      "落日橘棕"
+    ],
+    "category": "eyeshadow",
+    "rgb": [
+      192,
+      112,
+      80
+    ],
+    "finish": "satin",
+    "defaultIntensity": 0.45,
+    "brand": null,
+    "sku": null
+  },
+  {
+    "id": "shadow-grey-purple",
+    "name": "灰紫",
+    "aliases": [
+      "灰紫眼影",
+      "烟熏紫",
+      "香芋烟熏"
+    ],
+    "category": "eyeshadow",
+    "rgb": [
+      132,
+      112,
+      134
+    ],
+    "finish": "satin",
+    "defaultIntensity": 0.4,
+    "brand": null,
+    "sku": null
+  }
+]

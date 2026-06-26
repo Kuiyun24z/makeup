@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>智能美妆顾问 · Beauty Agent</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="stage" aria-label="camera stage">
+        <header class="topbar">
+          <div class="brand">
+            <span class="brand-mark">BEAUTY&nbsp;AGENT</span>
+            <h1>智能美妆顾问</h1>
+            <div class="status-line">
+              <span id="runtimeStatus" class="pill">Ollama 检查中</span>
+              <span id="landmarkStatus" class="pill status-warn">关键点模型加载中</span>
+            </div>
+          </div>
+          <div class="actions">
+            <button id="startBtn" class="btn primary" type="button">开启摄像头</button>
+            <button id="stopBtn" class="btn ghost" type="button">停止</button>
+            <button id="uploadBtn" class="btn ghost" type="button">上传照片</button>
+            <input id="fileInput" type="file" accept="image/*" hidden />
+          </div>
+        </header>
+
+        <div class="viewer" id="viewer">
+          <video id="video" autoplay playsinline muted></video>
+          <img id="photo" class="photo" alt="上传的照片" />
+          <canvas id="overlay"></canvas>
+
+          <div class="readout camera-readout">
+            <div class="chip">
+              <span>面部</span>
+              <strong id="faceMetric">未检测</strong>
+            </div>
+            <div class="chip">
+              <span>光线</span>
+              <strong id="lightMetric">-</strong>
+            </div>
+            <div class="chip">
+              <span>位置</span>
+              <strong id="poseMetric">-</strong>
+            </div>
+            <div class="chip">
+              <span>姿态</span>
+              <strong id="headPoseMetric">-</strong>
+            </div>
+          </div>
+
+          <div id="cameraState" class="camera-state">等待摄像头</div>
+        </div>
+      </section>
+
+      <aside class="panel" aria-label="analysis panel">
+        <section class="card">
+          <h2>实时画面</h2>
+          <dl>
+            <div>
+              <dt>画面亮度</dt>
+              <dd id="brightnessValue">-</dd>
+            </div>
+            <div>
+              <dt>清晰度</dt>
+              <dd id="sharpnessValue">-</dd>
+            </div>
+            <div>
+              <dt>脸部占比</dt>
+              <dd id="faceSizeValue">-</dd>
+            </div>
+            <div>
+              <dt>中心偏移</dt>
+              <dd id="offsetValue">-</dd>
+            </div>
+            <div>
+              <dt>关键点</dt>
+              <dd id="landmarkCountValue">0</dd>
+            </div>
+            <div>
+              <dt>画面稳定</dt>
+              <dd id="stableMetric">-</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="card">
+          <h2>面部特征</h2>
+          <dl>
+            <div>
+              <dt>脸型比例</dt>
+              <dd id="faceShapeValue">-</dd>
+            </div>
+            <div>
+              <dt>眉眼状态</dt>
+              <dd id="eyeBalanceValue">-</dd>
+            </div>
+            <div>
+              <dt>眉眼距离</dt>
+              <dd id="browEyeValue">-</dd>
+            </div>
+            <div>
+              <dt>唇部特征</dt>
+              <dd id="lipShapeValue">-</dd>
+            </div>
+            <div class="feature-focus">
+              <dt>妆容重点</dt>
+              <dd id="makeupFocusValue">-</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="card">
+          <h2>色彩分析</h2>
+          <dl>
+            <div>
+              <dt>肤色倾向</dt>
+              <dd class="color-dd"><i id="skinSwatch" class="swatch"></i><span id="skinToneValue">-</span></dd>
+            </div>
+            <div>
+              <dt>唇色倾向</dt>
+              <dd class="color-dd"><i id="lipSwatch" class="swatch"></i><span id="lipColorValue">-</span></dd>
+            </div>
+          </dl>
+          <p id="colorConfidence" class="color-note" hidden></p>
+        </section>
+
+        <section class="card">
+          <h2>试妆工具</h2>
+          <div class="engine-status">
+            <span>PixelFree</span>
+            <strong id="pixelFreeStatus">检查中</strong>
+          </div>
+          <div class="current-look">
+            <span>当前试妆</span>
+            <strong id="currentCosmeticName">日常豆沙</strong>
+          </div>
+          <div class="tool-row">
+            <label class="toggle">
+              <input id="makeupEnabled" type="checkbox" checked />
+              <span>开启试妆</span>
+            </label>
+            <select id="makeupPreset" aria-label="妆容预设">
+              <option value="daily">日常豆沙</option>
+              <option value="commute">通勤玫瑰</option>
+              <option value="sweet">清透蜜桃</option>
+            </select>
+          </div>
+          <label class="slider-row">
+            <span>柔肤</span>
+            <input id="smoothLevel" type="range" min="0" max="100" value="28" />
+          </label>
+          <label class="slider-row">
+            <span>口红</span>
+            <input id="lipLevel" type="range" min="0" max="100" value="58" />
+          </label>
+          <label class="slider-row">
+            <span>腮红</span>
+            <input id="blushLevel" type="range" min="0" max="100" value="36" />
+          </label>
+          <label class="slider-row">
+            <span>眉色</span>
+            <input id="browLevel" type="range" min="0" max="100" value="45" />
+          </label>
+          <label class="slider-row">
+            <span>眼影</span>
+            <input id="eyeshadowLevel" type="range" min="0" max="100" value="45" />
+          </label>
+          <button id="pixelFreeSnapshotBtn" class="btn ghost full" type="button" disabled>
+            PixelFree 快照
+          </button>
+        </section>
+
+        <section class="card advisor-card">
+          <h2>向顾问提问</h2>
+          <form id="adviceForm" class="advisor">
+            <textarea id="question" rows="3">我现在适合什么日常妆？</textarea>
+            <div class="advisor-actions">
+              <button id="voiceBtn" class="btn ghost voice-btn" type="button" aria-pressed="false">按住说话</button>
+              <button id="adviceBtn" class="btn primary" type="submit">生成建议</button>
+            </div>
+            <p id="voiceStatus" class="voice-status">语音输入检测中</p>
+            <label class="wake-toggle">
+              <input id="wakeToggle" type="checkbox" />
+              <span>魔镜待机</span>
+              <strong id="wakeStatus">默认关闭</strong>
+            </label>
+          </form>
+        </section>
+
+        <section class="card advice">
+          <h2>今日妆容处方<button id="expandBtn" class="expand-btn" type="button">展开</button></h2>
+          <div id="adviceOutput">打开摄像头或上传照片后生成建议。</div>
+        </section>
+      </aside>
+    </main>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

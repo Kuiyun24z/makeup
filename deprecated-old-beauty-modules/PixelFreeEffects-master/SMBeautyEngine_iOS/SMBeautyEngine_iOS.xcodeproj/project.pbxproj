@@ -1,0 +1,1078 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C90C3CC82DB883B300A1C13B /* sunflower_glasses.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CC72DB883B300A1C13B /* sunflower_glasses.bundle */; };
+		C90C3D092DB8B31600A1C13B /* bear_headgear.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CCA2DB8B31600A1C13B /* bear_headgear.bundle */; };
+		C90C3D0A2DB8B31600A1C13B /* fannao.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CDA2DB8B31600A1C13B /* fannao.bundle */; };
+		C90C3D0B2DB8B31600A1C13B /* little_bear.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CF02DB8B31600A1C13B /* little_bear.bundle */; };
+		C90C3D0C2DB8B31600A1C13B /* feidie.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CDC2DB8B31600A1C13B /* feidie.bundle */; };
+		C90C3D0D2DB8B31600A1C13B /* big_eyes.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CCB2DB8B31600A1C13B /* big_eyes.bundle */; };
+		C90C3D0E2DB8B31600A1C13B /* birthday.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CCC2DB8B31600A1C13B /* birthday.bundle */; };
+		C90C3D0F2DB8B31600A1C13B /* jiandanxiaomaomi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CE92DB8B31600A1C13B /* jiandanxiaomaomi.bundle */; };
+		C90C3D102DB8B31600A1C13B /* love_gestures.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CF42DB8B31600A1C13B /* love_gestures.bundle */; };
+		C90C3D112DB8B31600A1C13B /* long_ear_dog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CF12DB8B31600A1C13B /* long_ear_dog.bundle */; };
+		C90C3D122DB8B31600A1C13B /* pop_glasses.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CF82DB8B31600A1C13B /* pop_glasses.bundle */; };
+		C90C3D132DB8B31600A1C13B /* jiandanzhuangshi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CEA2DB8B31600A1C13B /* jiandanzhuangshi.bundle */; };
+		C90C3D142DB8B31600A1C13B /* goux.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CE12DB8B31600A1C13B /* goux.bundle */; };
+		C90C3D152DB8B31600A1C13B /* laser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CEC2DB8B31600A1C13B /* laser.bundle */; };
+		C90C3D162DB8B31600A1C13B /* duboji.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CD92DB8B31600A1C13B /* duboji.bundle */; };
+		C90C3D172DB8B31600A1C13B /* fengying.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CDD2DB8B31600A1C13B /* fengying.bundle */; };
+		C90C3D182DB8B31600A1C13B /* jianbixiaoheimao.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CE82DB8B31600A1C13B /* jianbixiaoheimao.bundle */; };
+		C90C3D192DB8B31600A1C13B /* baixiaomaohuxu.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CC92DB8B31600A1C13B /* baixiaomaohuxu.bundle */; };
+		C90C3D1A2DB8B31600A1C13B /* xianzi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3D072DB8B31600A1C13B /* xianzi.bundle */; };
+		C90C3D1B2DB8B31600A1C13B /* hdj.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CE22DB8B31600A1C13B /* hdj.bundle */; };
+		C90C3D1C2DB8B31600A1C13B /* hongtoushi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CE62DB8B31600A1C13B /* hongtoushi.bundle */; };
+		C90C3D1D2DB8B31600A1C13B /* maogou.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CF52DB8B31600A1C13B /* maogou.bundle */; };
+		C90C3D1E2DB8B31600A1C13B /* cut_hair.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CD32DB8B31600A1C13B /* cut_hair.bundle */; };
+		C90C3D1F2DB8B31600A1C13B /* buliaoxiaomao.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CCD2DB8B31600A1C13B /* buliaoxiaomao.bundle */; };
+		C90C3D202DB8B31600A1C13B /* hello_glasses.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CE52DB8B31600A1C13B /* hello_glasses.bundle */; };
+		C90C3D212DB8B31600A1C13B /* huangm.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CE72DB8B31600A1C13B /* huangm.bundle */; };
+		C90C3D222DB8B31600A1C13B /* hello_baby.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CE42DB8B31600A1C13B /* hello_baby.bundle */; };
+		C90C3D232DB8B31600A1C13B /* sunflower_glasses 2.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3D002DB8B31600A1C13B /* sunflower_glasses 2.bundle */; };
+		C90C3D242DB8B31600A1C13B /* uniform2.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3D062DB8B31600A1C13B /* uniform2.bundle */; };
+		C90C3D252DB8B31600A1C13B /* xingxing.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3D082DB8B31600A1C13B /* xingxing.bundle */; };
+		C90C3D262DB8B31600A1C13B /* Gentleman_hat.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CDF2DB8B31600A1C13B /* Gentleman_hat.bundle */; };
+		C90C3D272DB8B31600A1C13B /* glasses_space.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CE02DB8B31600A1C13B /* glasses_space.bundle */; };
+		C90C3D282DB8B31600A1C13B /* rabbit_holding_face.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CFC2DB8B31600A1C13B /* rabbit_holding_face.bundle */; };
+		C90C3D292DB8B31600A1C13B /* toy_rabbit_ear_tie.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3D042DB8B31600A1C13B /* toy_rabbit_ear_tie.bundle */; };
+		C90C3D2A2DB8B31600A1C13B /* prison.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CF92DB8B31600A1C13B /* prison.bundle */; };
+		C90C3D2B2DB8B31600A1C13B /* touhua.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3D022DB8B31600A1C13B /* touhua.bundle */; };
+		C90C3D2C2DB8B31600A1C13B /* red_glasses.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CFD2DB8B31600A1C13B /* red_glasses.bundle */; };
+		C90C3D2D2DB8B31600A1C13B /* noodles.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CF72DB8B31600A1C13B /* noodles.bundle */; };
+		C90C3D2E2DB8B31600A1C13B /* shizitou.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CFF2DB8B31600A1C13B /* shizitou.bundle */; };
+		C90C3D2F2DB8B31600A1C13B /* flower.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CDE2DB8B31600A1C13B /* flower.bundle */; };
+		C90C3D302DB8B31600A1C13B /* fashion_laddy.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CDB2DB8B31600A1C13B /* fashion_laddy.bundle */; };
+		C90C3D312DB8B31600A1C13B /* cat_on_the_head.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CD02DB8B31600A1C13B /* cat_on_the_head.bundle */; };
+		C90C3D322DB8B31600A1C13B /* tears.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3D012DB8B31600A1C13B /* tears.bundle */; };
+		C90C3D332DB8B31600A1C13B /* under_water_glasses.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3D052DB8B31600A1C13B /* under_water_glasses.bundle */; };
+		C90C3D342DB8B31600A1C13B /* heart_explode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CE32DB8B31600A1C13B /* heart_explode.bundle */; };
+		C90C3D352DB8B31600A1C13B /* cute_cat.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CD42DB8B31600A1C13B /* cute_cat.bundle */; };
+		C90C3D362DB8B31600A1C13B /* dayuanerduo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CD72DB8B31600A1C13B /* dayuanerduo.bundle */; };
+		C90C3D372DB8B31600A1C13B /* cat_fa_qia.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CCF2DB8B31600A1C13B /* cat_fa_qia.bundle */; };
+		C90C3D382DB8B31600A1C13B /* liangshanaixinmao.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CEF2DB8B31600A1C13B /* liangshanaixinmao.bundle */; };
+		C90C3D392DB8B31600A1C13B /* dog_tongue.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CD82DB8B31600A1C13B /* dog_tongue.bundle */; };
+		C90C3D3A2DB8B31600A1C13B /* dahudiejie.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CD52DB8B31600A1C13B /* dahudiejie.bundle */; };
+		C90C3D3B2DB8B31600A1C13B /* kitty.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CEB2DB8B31600A1C13B /* kitty.bundle */; };
+		C90C3D3C2DB8B31600A1C13B /* lecher.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CEE2DB8B31600A1C13B /* lecher.bundle */; };
+		C90C3D3D2DB8B31600A1C13B /* long_ear_rabbit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CF22DB8B31600A1C13B /* long_ear_rabbit.bundle */; };
+		C90C3D3E2DB8B31600A1C13B /* myqueen.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CF62DB8B31600A1C13B /* myqueen.bundle */; };
+		C90C3D3F2DB8B31600A1C13B /* toy_dog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3D032DB8B31600A1C13B /* toy_dog.bundle */; };
+		C90C3D402DB8B31600A1C13B /* laugh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CED2DB8B31600A1C13B /* laugh.bundle */; };
+		C90C3D412DB8B31600A1C13B /* cidinmaozi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CD12DB8B31600A1C13B /* cidinmaozi.bundle */; };
+		C90C3D422DB8B31600A1C13B /* sheep.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CFE2DB8B31600A1C13B /* sheep.bundle */; };
+		C90C3D432DB8B31600A1C13B /* rabbit_blush.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CFB2DB8B31600A1C13B /* rabbit_blush.bundle */; };
+		C90C3D442DB8B31600A1C13B /* love_bubbles.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CF32DB8B31600A1C13B /* love_bubbles.bundle */; };
+		C90C3D452DB8B31600A1C13B /* cat_claw.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CCE2DB8B31600A1C13B /* cat_claw.bundle */; };
+		C90C3D462DB8B31600A1C13B /* qifei.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CFA2DB8B31600A1C13B /* qifei.bundle */; };
+		C90C3D472DB8B31600A1C13B /* damengyanjing.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CD62DB8B31600A1C13B /* damengyanjing.bundle */; };
+		C90C3D482DB8B31600A1C13B /* cream_cake.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C90C3CD22DB8B31600A1C13B /* cream_cake.bundle */; };
+		C90C3D4A2DB8B95500A1C13B /* allStickers.json in Resources */ = {isa = PBXBuildFile; fileRef = C90C3D492DB8B95500A1C13B /* allStickers.json */; };
+		C90C3D4C2DB8C79F00A1C13B /* baixiaomaohuxu in Resources */ = {isa = PBXBuildFile; fileRef = C90C3D4B2DB8C79F00A1C13B /* baixiaomaohuxu */; };
+		C958A3102D90019C0019ED6F /* AdjustmentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C958A3052D90019C0019ED6F /* AdjustmentItem.m */; };
+		C958A3122D90019C0019ED6F /* AdjustmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C958A3032D90019C0019ED6F /* AdjustmentCell.m */; };
+		C958A3132D90019C0019ED6F /* PFTakeColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = C958A3082D90019C0019ED6F /* PFTakeColorView.m */; };
+		C958A3142D90019C0019ED6F /* PFImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C958A30E2D90019C0019ED6F /* PFImageHelper.m */; };
+		C958A3152D90019C0019ED6F /* PFHLSToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = C958A30A2D90019C0019ED6F /* PFHLSToolView.m */; };
+		C958A31D2D9004E20019ED6F /* ToolUI.m in Sources */ = {isa = PBXBuildFile; fileRef = C958A31C2D9004E20019ED6F /* ToolUI.m */; };
+		C958A3302D91867D0019ED6F /* Pods_SMBeautyEngine_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C958A32D2D9186710019ED6F /* Pods_SMBeautyEngine_iOS.framework */; };
+		C95AB8702D93961900F59BD5 /* 2631742911906.png in Resources */ = {isa = PBXBuildFile; fileRef = C95AB86F2D93961900F59BD5 /* 2631742911906.png */; };
+		C99D8B6D2D7E8FAB00DC5D41 /* face_mask.png in Resources */ = {isa = PBXBuildFile; fileRef = C99D8B6C2D7E8FAB00DC5D41 /* face_mask.png */; };
+		C9AFDF0D2BC92ED9009C38CD /* qiniu_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C9AFDF0C2BC92ED9009C38CD /* qiniu_logo.png */; };
+		C9B609BA2F72DDBE0010C9BE /* PixelFree.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B609B82F72DDB50010C9BE /* PixelFree.framework */; };
+		C9B609BB2F72DDBE0010C9BE /* PixelFree.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C9B609B82F72DDB50010C9BE /* PixelFree.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C9BB18232D858830002AF75D /* face2.png in Resources */ = {isa = PBXBuildFile; fileRef = C9BB18222D858830002AF75D /* face2.png */; };
+		C9C0EC062D9688D200BE1D3A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C0EC052D96887B00BE1D3A /* libz.tbd */; };
+		C9CF037B2A8670FC00B2C394 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9CF03782A8670FB00B2C394 /* Accelerate.framework */; };
+		C9CF03812A87685100B2C394 /* PFOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9CF037F2A87685000B2C394 /* PFOpenGLView.m */; };
+		C9CF08542AA9E83800B2C394 /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BD4591274752E900CB44C9 /* CoreML.framework */; };
+		C9FCFEA82C85BE9D002E1906 /* baixiaomao.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C9FCFE9F2C85BE9D002E1906 /* baixiaomao.bundle */; };
+		C9FCFEA92C85BE9D002E1906 /* candy.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C9FCFEA02C85BE9D002E1906 /* candy.bundle */; };
+		C9FCFEAA2C85BE9D002E1906 /* flowers.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C9FCFEA12C85BE9D002E1906 /* flowers.bundle */; };
+		C9FCFEAB2C85BE9D002E1906 /* maorong.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C9FCFEA22C85BE9D002E1906 /* maorong.bundle */; };
+		C9FCFEAC2C85BE9D002E1906 /* xiantiaoxiongmao.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C9FCFEA32C85BE9D002E1906 /* xiantiaoxiongmao.bundle */; };
+		C9FCFEAD2C85BE9D002E1906 /* xiongerduo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C9FCFEA42C85BE9D002E1906 /* xiongerduo.bundle */; };
+		CE0C25E32EA0D2350079CB44 /* makeup in Resources */ = {isa = PBXBuildFile; fileRef = CE0C25E22EA0D22B0079CB44 /* makeup */; };
+		CE1493652ED87A88003C5D4D /* PFBeautyEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1493642ED87A88003C5D4D /* PFBeautyEditView.m */; };
+		CE14936C2ED87A94003C5D4D /* UIColor+PFBeautyEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE14936B2ED87A94003C5D4D /* UIColor+PFBeautyEditView.m */; };
+		CE14937A2ED88293003C5D4D /* PFAPIDemoBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE1493792ED88292003C5D4D /* PFAPIDemoBar.xib */; };
+		E31A9AC02903913400AF311C /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E31A9ABD2903913400AF311C /* CoreImage.framework */; };
+		E32C9FE028E69A3300FB225E /* pixelfreeAuth.lic in Resources */ = {isa = PBXBuildFile; fileRef = E32C9FDF28E69A3300FB225E /* pixelfreeAuth.lic */; };
+		E335682728E5883C00551FB3 /* PFImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E335682628E5883C00551FB3 /* PFImageController.m */; };
+		E335683028E5897600551FB3 /* PFVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = E335682F28E5897600551FB3 /* PFVideoController.m */; };
+		E3B90820298E527300B96ADF /* bg.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = E3B9081D298E527300B96ADF /* bg.jpeg */; };
+		E3B90822298E6E1A00B96ADF /* image.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = E3B90821298E6E1A00B96ADF /* image.jpeg */; };
+		E3BBBA04295C274A00306BD9 /* PFMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BBBA03295C274A00306BD9 /* PFMainViewController.m */; };
+		E3BD453827474A4E00CB44C9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BD453727474A4E00CB44C9 /* AppDelegate.m */; };
+		E3BD453B27474A4E00CB44C9 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BD453A27474A4E00CB44C9 /* SceneDelegate.m */; };
+		E3BD453E27474A4E00CB44C9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BD453D27474A4E00CB44C9 /* ViewController.m */; };
+		E3BD454127474A4E00CB44C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3BD453F27474A4E00CB44C9 /* Main.storyboard */; };
+		E3BD454327474A5300CB44C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3BD454227474A5300CB44C9 /* Assets.xcassets */; };
+		E3BD454627474A5300CB44C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3BD454427474A5300CB44C9 /* LaunchScreen.storyboard */; };
+		E3BD454927474A5300CB44C9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BD454827474A5300CB44C9 /* main.m */; };
+		E3BD457F27474A9800CB44C9 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3BD455B27474A9600CB44C9 /* Media.xcassets */; };
+		E3BD458227474A9800CB44C9 /* PFBeautyParam.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BD456127474A9600CB44C9 /* PFBeautyParam.m */; };
+		E3BD458327474A9800CB44C9 /* PFBeautyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BD456327474A9600CB44C9 /* PFBeautyView.m */; };
+		E3BD458427474A9800CB44C9 /* PFBottomColletionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BD456527474A9600CB44C9 /* PFBottomColletionView.m */; };
+		E3BD458527474A9800CB44C9 /* PFFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BD456827474A9600CB44C9 /* PFFilterView.m */; };
+		E3BD458627474A9800CB44C9 /* PFSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BD456A27474A9600CB44C9 /* PFSlider.m */; };
+		E3BD458827474A9800CB44C9 /* UIImage+demobar.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BD456E27474A9600CB44C9 /* UIImage+demobar.m */; };
+		E3BD458927474A9800CB44C9 /* PFDemoBar.strings in Resources */ = {isa = PBXBuildFile; fileRef = E3BD456F27474A9600CB44C9 /* PFDemoBar.strings */; };
+		E3BD458A27474A9800CB44C9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E3BD457127474A9600CB44C9 /* Localizable.strings */; };
+		E3BD458B27474A9800CB44C9 /* PFDateHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BD457527474A9600CB44C9 /* PFDateHandle.m */; };
+		E3BD458D27474A9800CB44C9 /* PFCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BD457927474A9600CB44C9 /* PFCamera.m */; };
+		E3BD4590274752DC00CB44C9 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BD458F274752D700CB44C9 /* libc++.tbd */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C9B609BC2F72DDBE0010C9BE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C9B609BB2F72DDBE0010C9BE /* PixelFree.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		4D61E344F4C535ACE64C554A /* Pods-SMBeautyEngine_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMBeautyEngine_iOS.debug.xcconfig"; path = "Target Support Files/Pods-SMBeautyEngine_iOS/Pods-SMBeautyEngine_iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		5C8A829A339A9CDADB015B9D /* Pods_SMBeautyEngine_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SMBeautyEngine_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D80F176E4A4919062FB8C44 /* Pods-SMBeautyEngine_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMBeautyEngine_iOS.release.xcconfig"; path = "Target Support Files/Pods-SMBeautyEngine_iOS/Pods-SMBeautyEngine_iOS.release.xcconfig"; sourceTree = "<group>"; };
+		C90C3CC72DB883B300A1C13B /* sunflower_glasses.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = sunflower_glasses.bundle; sourceTree = "<group>"; };
+		C90C3CC92DB8B31600A1C13B /* baixiaomaohuxu.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = baixiaomaohuxu.bundle; sourceTree = "<group>"; };
+		C90C3CCA2DB8B31600A1C13B /* bear_headgear.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = bear_headgear.bundle; sourceTree = "<group>"; };
+		C90C3CCB2DB8B31600A1C13B /* big_eyes.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = big_eyes.bundle; sourceTree = "<group>"; };
+		C90C3CCC2DB8B31600A1C13B /* birthday.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = birthday.bundle; sourceTree = "<group>"; };
+		C90C3CCD2DB8B31600A1C13B /* buliaoxiaomao.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = buliaoxiaomao.bundle; sourceTree = "<group>"; };
+		C90C3CCE2DB8B31600A1C13B /* cat_claw.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = cat_claw.bundle; sourceTree = "<group>"; };
+		C90C3CCF2DB8B31600A1C13B /* cat_fa_qia.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = cat_fa_qia.bundle; sourceTree = "<group>"; };
+		C90C3CD02DB8B31600A1C13B /* cat_on_the_head.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = cat_on_the_head.bundle; sourceTree = "<group>"; };
+		C90C3CD12DB8B31600A1C13B /* cidinmaozi.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = cidinmaozi.bundle; sourceTree = "<group>"; };
+		C90C3CD22DB8B31600A1C13B /* cream_cake.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = cream_cake.bundle; sourceTree = "<group>"; };
+		C90C3CD32DB8B31600A1C13B /* cut_hair.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = cut_hair.bundle; sourceTree = "<group>"; };
+		C90C3CD42DB8B31600A1C13B /* cute_cat.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = cute_cat.bundle; sourceTree = "<group>"; };
+		C90C3CD52DB8B31600A1C13B /* dahudiejie.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = dahudiejie.bundle; sourceTree = "<group>"; };
+		C90C3CD62DB8B31600A1C13B /* damengyanjing.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = damengyanjing.bundle; sourceTree = "<group>"; };
+		C90C3CD72DB8B31600A1C13B /* dayuanerduo.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = dayuanerduo.bundle; sourceTree = "<group>"; };
+		C90C3CD82DB8B31600A1C13B /* dog_tongue.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = dog_tongue.bundle; sourceTree = "<group>"; };
+		C90C3CD92DB8B31600A1C13B /* duboji.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = duboji.bundle; sourceTree = "<group>"; };
+		C90C3CDA2DB8B31600A1C13B /* fannao.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = fannao.bundle; sourceTree = "<group>"; };
+		C90C3CDB2DB8B31600A1C13B /* fashion_laddy.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = fashion_laddy.bundle; sourceTree = "<group>"; };
+		C90C3CDC2DB8B31600A1C13B /* feidie.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = feidie.bundle; sourceTree = "<group>"; };
+		C90C3CDD2DB8B31600A1C13B /* fengying.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = fengying.bundle; sourceTree = "<group>"; };
+		C90C3CDE2DB8B31600A1C13B /* flower.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = flower.bundle; sourceTree = "<group>"; };
+		C90C3CDF2DB8B31600A1C13B /* Gentleman_hat.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = Gentleman_hat.bundle; sourceTree = "<group>"; };
+		C90C3CE02DB8B31600A1C13B /* glasses_space.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = glasses_space.bundle; sourceTree = "<group>"; };
+		C90C3CE12DB8B31600A1C13B /* goux.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = goux.bundle; sourceTree = "<group>"; };
+		C90C3CE22DB8B31600A1C13B /* hdj.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = hdj.bundle; sourceTree = "<group>"; };
+		C90C3CE32DB8B31600A1C13B /* heart_explode.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = heart_explode.bundle; sourceTree = "<group>"; };
+		C90C3CE42DB8B31600A1C13B /* hello_baby.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = hello_baby.bundle; sourceTree = "<group>"; };
+		C90C3CE52DB8B31600A1C13B /* hello_glasses.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = hello_glasses.bundle; sourceTree = "<group>"; };
+		C90C3CE62DB8B31600A1C13B /* hongtoushi.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = hongtoushi.bundle; sourceTree = "<group>"; };
+		C90C3CE72DB8B31600A1C13B /* huangm.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = huangm.bundle; sourceTree = "<group>"; };
+		C90C3CE82DB8B31600A1C13B /* jianbixiaoheimao.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = jianbixiaoheimao.bundle; sourceTree = "<group>"; };
+		C90C3CE92DB8B31600A1C13B /* jiandanxiaomaomi.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = jiandanxiaomaomi.bundle; sourceTree = "<group>"; };
+		C90C3CEA2DB8B31600A1C13B /* jiandanzhuangshi.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = jiandanzhuangshi.bundle; sourceTree = "<group>"; };
+		C90C3CEB2DB8B31600A1C13B /* kitty.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = kitty.bundle; sourceTree = "<group>"; };
+		C90C3CEC2DB8B31600A1C13B /* laser.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = laser.bundle; sourceTree = "<group>"; };
+		C90C3CED2DB8B31600A1C13B /* laugh.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = laugh.bundle; sourceTree = "<group>"; };
+		C90C3CEE2DB8B31600A1C13B /* lecher.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = lecher.bundle; sourceTree = "<group>"; };
+		C90C3CEF2DB8B31600A1C13B /* liangshanaixinmao.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = liangshanaixinmao.bundle; sourceTree = "<group>"; };
+		C90C3CF02DB8B31600A1C13B /* little_bear.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = little_bear.bundle; sourceTree = "<group>"; };
+		C90C3CF12DB8B31600A1C13B /* long_ear_dog.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = long_ear_dog.bundle; sourceTree = "<group>"; };
+		C90C3CF22DB8B31600A1C13B /* long_ear_rabbit.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = long_ear_rabbit.bundle; sourceTree = "<group>"; };
+		C90C3CF32DB8B31600A1C13B /* love_bubbles.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = love_bubbles.bundle; sourceTree = "<group>"; };
+		C90C3CF42DB8B31600A1C13B /* love_gestures.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = love_gestures.bundle; sourceTree = "<group>"; };
+		C90C3CF52DB8B31600A1C13B /* maogou.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = maogou.bundle; sourceTree = "<group>"; };
+		C90C3CF62DB8B31600A1C13B /* myqueen.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = myqueen.bundle; sourceTree = "<group>"; };
+		C90C3CF72DB8B31600A1C13B /* noodles.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = noodles.bundle; sourceTree = "<group>"; };
+		C90C3CF82DB8B31600A1C13B /* pop_glasses.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = pop_glasses.bundle; sourceTree = "<group>"; };
+		C90C3CF92DB8B31600A1C13B /* prison.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = prison.bundle; sourceTree = "<group>"; };
+		C90C3CFA2DB8B31600A1C13B /* qifei.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = qifei.bundle; sourceTree = "<group>"; };
+		C90C3CFB2DB8B31600A1C13B /* rabbit_blush.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = rabbit_blush.bundle; sourceTree = "<group>"; };
+		C90C3CFC2DB8B31600A1C13B /* rabbit_holding_face.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = rabbit_holding_face.bundle; sourceTree = "<group>"; };
+		C90C3CFD2DB8B31600A1C13B /* red_glasses.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = red_glasses.bundle; sourceTree = "<group>"; };
+		C90C3CFE2DB8B31600A1C13B /* sheep.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = sheep.bundle; sourceTree = "<group>"; };
+		C90C3CFF2DB8B31600A1C13B /* shizitou.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = shizitou.bundle; sourceTree = "<group>"; };
+		C90C3D002DB8B31600A1C13B /* sunflower_glasses 2.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sunflower_glasses 2.bundle"; sourceTree = "<group>"; };
+		C90C3D012DB8B31600A1C13B /* tears.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = tears.bundle; sourceTree = "<group>"; };
+		C90C3D022DB8B31600A1C13B /* touhua.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = touhua.bundle; sourceTree = "<group>"; };
+		C90C3D032DB8B31600A1C13B /* toy_dog.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = toy_dog.bundle; sourceTree = "<group>"; };
+		C90C3D042DB8B31600A1C13B /* toy_rabbit_ear_tie.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = toy_rabbit_ear_tie.bundle; sourceTree = "<group>"; };
+		C90C3D052DB8B31600A1C13B /* under_water_glasses.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = under_water_glasses.bundle; sourceTree = "<group>"; };
+		C90C3D062DB8B31600A1C13B /* uniform2.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = uniform2.bundle; sourceTree = "<group>"; };
+		C90C3D072DB8B31600A1C13B /* xianzi.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = xianzi.bundle; sourceTree = "<group>"; };
+		C90C3D082DB8B31600A1C13B /* xingxing.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = xingxing.bundle; sourceTree = "<group>"; };
+		C90C3D492DB8B95500A1C13B /* allStickers.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = allStickers.json; sourceTree = "<group>"; };
+		C90C3D4B2DB8C79F00A1C13B /* baixiaomaohuxu */ = {isa = PBXFileReference; lastKnownFileType = folder; path = baixiaomaohuxu; sourceTree = "<group>"; };
+		C91A9EA32F0BC3E9002B44DE /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../PixelFreeCxx/PixelFree/Thirdparty/libcurl/iOS/lib/libcurl.a; sourceTree = "<group>"; };
+		C958A3022D90019C0019ED6F /* AdjustmentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdjustmentCell.h; sourceTree = "<group>"; };
+		C958A3032D90019C0019ED6F /* AdjustmentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdjustmentCell.m; sourceTree = "<group>"; };
+		C958A3042D90019C0019ED6F /* AdjustmentItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdjustmentItem.h; sourceTree = "<group>"; };
+		C958A3052D90019C0019ED6F /* AdjustmentItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdjustmentItem.m; sourceTree = "<group>"; };
+		C958A3062D90019C0019ED6F /* ToolUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToolUI.h; sourceTree = "<group>"; };
+		C958A3072D90019C0019ED6F /* PFTakeColorView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PFTakeColorView.h; sourceTree = "<group>"; };
+		C958A3082D90019C0019ED6F /* PFTakeColorView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PFTakeColorView.m; sourceTree = "<group>"; };
+		C958A3092D90019C0019ED6F /* PFHLSToolView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PFHLSToolView.h; sourceTree = "<group>"; };
+		C958A30A2D90019C0019ED6F /* PFHLSToolView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PFHLSToolView.m; sourceTree = "<group>"; };
+		C958A30D2D90019C0019ED6F /* PFImageHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PFImageHelper.h; sourceTree = "<group>"; };
+		C958A30E2D90019C0019ED6F /* PFImageHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PFImageHelper.m; sourceTree = "<group>"; };
+		C958A31C2D9004E20019ED6F /* ToolUI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToolUI.m; sourceTree = "<group>"; };
+		C958A32D2D9186710019ED6F /* Pods_SMBeautyEngine_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_SMBeautyEngine_iOS.framework; path = "../../../../Library/Developer/Xcode/DerivedData/SMBeautyEngine_iOS-fzdtawbuxtsbdeaqkxzxbdrevrwh/Build/Products/Debug-iphoneos/Pods_SMBeautyEngine_iOS.framework"; sourceTree = "<group>"; };
+		C95AB86F2D93961900F59BD5 /* 2631742911906.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2631742911906.png; sourceTree = "<group>"; };
+		C99D8B6C2D7E8FAB00DC5D41 /* face_mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = face_mask.png; sourceTree = "<group>"; };
+		C9AFDF0C2BC92ED9009C38CD /* qiniu_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qiniu_logo.png; sourceTree = "<group>"; };
+		C9B609B82F72DDB50010C9BE /* PixelFree.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PixelFree.framework; sourceTree = "<group>"; };
+		C9BB18222D858830002AF75D /* face2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = face2.png; sourceTree = "<group>"; };
+		C9C0EC022D9686A000BE1D3A /* libpng-universal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpng-universal.a"; path = "../PixelFreeCxx/PixelFree/Thirdparty/libpng-universal.a"; sourceTree = "<group>"; };
+		C9C0EC052D96887B00BE1D3A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		C9CF03782A8670FB00B2C394 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		C9CF037F2A87685000B2C394 /* PFOpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFOpenGLView.m; sourceTree = "<group>"; };
+		C9CF03802A87685100B2C394 /* PFOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFOpenGLView.h; sourceTree = "<group>"; };
+		C9FCFE9F2C85BE9D002E1906 /* baixiaomao.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = baixiaomao.bundle; sourceTree = "<group>"; };
+		C9FCFEA02C85BE9D002E1906 /* candy.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = candy.bundle; sourceTree = "<group>"; };
+		C9FCFEA12C85BE9D002E1906 /* flowers.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = flowers.bundle; sourceTree = "<group>"; };
+		C9FCFEA22C85BE9D002E1906 /* maorong.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = maorong.bundle; sourceTree = "<group>"; };
+		C9FCFEA32C85BE9D002E1906 /* xiantiaoxiongmao.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = xiantiaoxiongmao.bundle; sourceTree = "<group>"; };
+		C9FCFEA42C85BE9D002E1906 /* xiongerduo.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = xiongerduo.bundle; sourceTree = "<group>"; };
+		CE0C25E22EA0D22B0079CB44 /* makeup */ = {isa = PBXFileReference; lastKnownFileType = folder; path = makeup; sourceTree = "<group>"; };
+		CE1493632ED87A88003C5D4D /* PFBeautyEditView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PFBeautyEditView.h; sourceTree = "<group>"; };
+		CE1493642ED87A88003C5D4D /* PFBeautyEditView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PFBeautyEditView.m; sourceTree = "<group>"; };
+		CE14936A2ED87A94003C5D4D /* UIColor+PFBeautyEditView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+PFBeautyEditView.h"; sourceTree = "<group>"; };
+		CE14936B2ED87A94003C5D4D /* UIColor+PFBeautyEditView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+PFBeautyEditView.m"; sourceTree = "<group>"; };
+		CE1493792ED88292003C5D4D /* PFAPIDemoBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PFAPIDemoBar.xib; sourceTree = "<group>"; };
+		E31A9ABD2903913400AF311C /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		E32C9FDF28E69A3300FB225E /* pixelfreeAuth.lic */ = {isa = PBXFileReference; lastKnownFileType = file; path = pixelfreeAuth.lic; sourceTree = "<group>"; };
+		E335682528E5883C00551FB3 /* PFImageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PFImageController.h; sourceTree = "<group>"; };
+		E335682628E5883C00551FB3 /* PFImageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PFImageController.m; sourceTree = "<group>"; };
+		E335682E28E5897600551FB3 /* PFVideoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PFVideoController.h; sourceTree = "<group>"; };
+		E335682F28E5897600551FB3 /* PFVideoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PFVideoController.m; sourceTree = "<group>"; };
+		E39CFC932874189500D738FF /* DetectFace.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = DetectFace.a; path = ../PixelFreeCxx/DetectFace.a; sourceTree = "<group>"; };
+		E3B9081D298E527300B96ADF /* bg.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpeg; sourceTree = "<group>"; };
+		E3B90821298E6E1A00B96ADF /* image.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.jpeg; sourceTree = "<group>"; };
+		E3BBBA02295C274A00306BD9 /* PFMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PFMainViewController.h; sourceTree = "<group>"; };
+		E3BBBA03295C274A00306BD9 /* PFMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PFMainViewController.m; sourceTree = "<group>"; };
+		E3BD453327474A4E00CB44C9 /* SMBeautyEngine_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SMBeautyEngine_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3BD453627474A4E00CB44C9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E3BD453727474A4E00CB44C9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E3BD453927474A4E00CB44C9 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		E3BD453A27474A4E00CB44C9 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		E3BD453C27474A4E00CB44C9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		E3BD453D27474A4E00CB44C9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		E3BD454027474A4E00CB44C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E3BD454227474A5300CB44C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E3BD454527474A5300CB44C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E3BD454727474A5300CB44C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E3BD454827474A5300CB44C9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E3BD455B27474A9600CB44C9 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		E3BD456027474A9600CB44C9 /* PFBeautyParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFBeautyParam.h; sourceTree = "<group>"; };
+		E3BD456127474A9600CB44C9 /* PFBeautyParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFBeautyParam.m; sourceTree = "<group>"; };
+		E3BD456227474A9600CB44C9 /* PFBeautyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFBeautyView.h; sourceTree = "<group>"; };
+		E3BD456327474A9600CB44C9 /* PFBeautyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFBeautyView.m; sourceTree = "<group>"; };
+		E3BD456427474A9600CB44C9 /* PFBottomColletionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFBottomColletionView.h; sourceTree = "<group>"; };
+		E3BD456527474A9600CB44C9 /* PFBottomColletionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFBottomColletionView.m; sourceTree = "<group>"; };
+		E3BD456627474A9600CB44C9 /* PFDemoBarDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFDemoBarDefine.h; sourceTree = "<group>"; };
+		E3BD456727474A9600CB44C9 /* PFFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFFilterView.h; sourceTree = "<group>"; };
+		E3BD456827474A9600CB44C9 /* PFFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFFilterView.m; sourceTree = "<group>"; };
+		E3BD456927474A9600CB44C9 /* PFSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFSlider.h; sourceTree = "<group>"; };
+		E3BD456A27474A9600CB44C9 /* PFSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFSlider.m; sourceTree = "<group>"; };
+		E3BD456D27474A9600CB44C9 /* UIImage+demobar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+demobar.h"; sourceTree = "<group>"; };
+		E3BD456E27474A9600CB44C9 /* UIImage+demobar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+demobar.m"; sourceTree = "<group>"; };
+		E3BD457027474A9600CB44C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PFDemoBar.strings; sourceTree = "<group>"; };
+		E3BD457227474A9600CB44C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E3BD457427474A9600CB44C9 /* PFDateHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFDateHandle.h; sourceTree = "<group>"; };
+		E3BD457527474A9600CB44C9 /* PFDateHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFDateHandle.m; sourceTree = "<group>"; };
+		E3BD457627474A9600CB44C9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PFDemoBar.strings"; sourceTree = "<group>"; };
+		E3BD457727474A9600CB44C9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		E3BD457927474A9600CB44C9 /* PFCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFCamera.m; sourceTree = "<group>"; };
+		E3BD457A27474A9600CB44C9 /* PFCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFCamera.h; sourceTree = "<group>"; };
+		E3BD458F274752D700CB44C9 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		E3BD4591274752E900CB44C9 /* CoreML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreML.framework; path = System/Library/Frameworks/CoreML.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E3BD453027474A4E00CB44C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C958A3302D91867D0019ED6F /* Pods_SMBeautyEngine_iOS.framework in Frameworks */,
+				C9CF08542AA9E83800B2C394 /* CoreML.framework in Frameworks */,
+				E31A9AC02903913400AF311C /* CoreImage.framework in Frameworks */,
+				C9CF037B2A8670FC00B2C394 /* Accelerate.framework in Frameworks */,
+				C9B609BA2F72DDBE0010C9BE /* PixelFree.framework in Frameworks */,
+				C9C0EC062D9688D200BE1D3A /* libz.tbd in Frameworks */,
+				E3BD4590274752DC00CB44C9 /* libc++.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		17CBBCD9010203B207CC6C2B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4D61E344F4C535ACE64C554A /* Pods-SMBeautyEngine_iOS.debug.xcconfig */,
+				6D80F176E4A4919062FB8C44 /* Pods-SMBeautyEngine_iOS.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C958A30F2D90019C0019ED6F /* ColorGradingView */ = {
+			isa = PBXGroup;
+			children = (
+				C958A3022D90019C0019ED6F /* AdjustmentCell.h */,
+				C958A3032D90019C0019ED6F /* AdjustmentCell.m */,
+				C958A3042D90019C0019ED6F /* AdjustmentItem.h */,
+				C958A3052D90019C0019ED6F /* AdjustmentItem.m */,
+				C958A3062D90019C0019ED6F /* ToolUI.h */,
+				C958A31C2D9004E20019ED6F /* ToolUI.m */,
+				C958A3072D90019C0019ED6F /* PFTakeColorView.h */,
+				C958A3082D90019C0019ED6F /* PFTakeColorView.m */,
+				C958A3092D90019C0019ED6F /* PFHLSToolView.h */,
+				C958A30A2D90019C0019ED6F /* PFHLSToolView.m */,
+				C958A30D2D90019C0019ED6F /* PFImageHelper.h */,
+				C958A30E2D90019C0019ED6F /* PFImageHelper.m */,
+			);
+			path = ColorGradingView;
+			sourceTree = "<group>";
+		};
+		C9FCFEA52C85BE9D002E1906 /* Stickers */ = {
+			isa = PBXGroup;
+			children = (
+				C9FCFE9F2C85BE9D002E1906 /* baixiaomao.bundle */,
+				C9FCFEA02C85BE9D002E1906 /* candy.bundle */,
+				C9FCFEA12C85BE9D002E1906 /* flowers.bundle */,
+				C9FCFEA22C85BE9D002E1906 /* maorong.bundle */,
+				C9FCFEA32C85BE9D002E1906 /* xiantiaoxiongmao.bundle */,
+				C9FCFEA42C85BE9D002E1906 /* xiongerduo.bundle */,
+				C90C3CC72DB883B300A1C13B /* sunflower_glasses.bundle */,
+				C90C3CC92DB8B31600A1C13B /* baixiaomaohuxu.bundle */,
+				C90C3CCA2DB8B31600A1C13B /* bear_headgear.bundle */,
+				C90C3CCB2DB8B31600A1C13B /* big_eyes.bundle */,
+				C90C3CCC2DB8B31600A1C13B /* birthday.bundle */,
+				C90C3CCD2DB8B31600A1C13B /* buliaoxiaomao.bundle */,
+				C90C3CCE2DB8B31600A1C13B /* cat_claw.bundle */,
+				C90C3CCF2DB8B31600A1C13B /* cat_fa_qia.bundle */,
+				C90C3CD02DB8B31600A1C13B /* cat_on_the_head.bundle */,
+				C90C3CD12DB8B31600A1C13B /* cidinmaozi.bundle */,
+				C90C3CD22DB8B31600A1C13B /* cream_cake.bundle */,
+				C90C3CD32DB8B31600A1C13B /* cut_hair.bundle */,
+				C90C3CD42DB8B31600A1C13B /* cute_cat.bundle */,
+				C90C3CD52DB8B31600A1C13B /* dahudiejie.bundle */,
+				C90C3CD62DB8B31600A1C13B /* damengyanjing.bundle */,
+				C90C3CD72DB8B31600A1C13B /* dayuanerduo.bundle */,
+				C90C3CD82DB8B31600A1C13B /* dog_tongue.bundle */,
+				C90C3CD92DB8B31600A1C13B /* duboji.bundle */,
+				C90C3CDA2DB8B31600A1C13B /* fannao.bundle */,
+				C90C3CDB2DB8B31600A1C13B /* fashion_laddy.bundle */,
+				C90C3CDC2DB8B31600A1C13B /* feidie.bundle */,
+				C90C3CDD2DB8B31600A1C13B /* fengying.bundle */,
+				C90C3CDE2DB8B31600A1C13B /* flower.bundle */,
+				C90C3CDF2DB8B31600A1C13B /* Gentleman_hat.bundle */,
+				C90C3CE02DB8B31600A1C13B /* glasses_space.bundle */,
+				C90C3CE12DB8B31600A1C13B /* goux.bundle */,
+				C90C3CE22DB8B31600A1C13B /* hdj.bundle */,
+				C90C3CE32DB8B31600A1C13B /* heart_explode.bundle */,
+				C90C3CE42DB8B31600A1C13B /* hello_baby.bundle */,
+				C90C3CE52DB8B31600A1C13B /* hello_glasses.bundle */,
+				C90C3CE62DB8B31600A1C13B /* hongtoushi.bundle */,
+				C90C3CE72DB8B31600A1C13B /* huangm.bundle */,
+				C90C3CE82DB8B31600A1C13B /* jianbixiaoheimao.bundle */,
+				C90C3CE92DB8B31600A1C13B /* jiandanxiaomaomi.bundle */,
+				C90C3CEA2DB8B31600A1C13B /* jiandanzhuangshi.bundle */,
+				C90C3CEB2DB8B31600A1C13B /* kitty.bundle */,
+				C90C3CEC2DB8B31600A1C13B /* laser.bundle */,
+				C90C3CED2DB8B31600A1C13B /* laugh.bundle */,
+				C90C3CEE2DB8B31600A1C13B /* lecher.bundle */,
+				C90C3CEF2DB8B31600A1C13B /* liangshanaixinmao.bundle */,
+				C90C3CF02DB8B31600A1C13B /* little_bear.bundle */,
+				C90C3CF12DB8B31600A1C13B /* long_ear_dog.bundle */,
+				C90C3CF22DB8B31600A1C13B /* long_ear_rabbit.bundle */,
+				C90C3CF32DB8B31600A1C13B /* love_bubbles.bundle */,
+				C90C3CF42DB8B31600A1C13B /* love_gestures.bundle */,
+				C90C3CF52DB8B31600A1C13B /* maogou.bundle */,
+				C90C3CF62DB8B31600A1C13B /* myqueen.bundle */,
+				C90C3CF72DB8B31600A1C13B /* noodles.bundle */,
+				C90C3CF82DB8B31600A1C13B /* pop_glasses.bundle */,
+				C90C3CF92DB8B31600A1C13B /* prison.bundle */,
+				C90C3CFA2DB8B31600A1C13B /* qifei.bundle */,
+				C90C3CFB2DB8B31600A1C13B /* rabbit_blush.bundle */,
+				C90C3CFC2DB8B31600A1C13B /* rabbit_holding_face.bundle */,
+				C90C3CFD2DB8B31600A1C13B /* red_glasses.bundle */,
+				C90C3CFE2DB8B31600A1C13B /* sheep.bundle */,
+				C90C3CFF2DB8B31600A1C13B /* shizitou.bundle */,
+				C90C3D002DB8B31600A1C13B /* sunflower_glasses 2.bundle */,
+				C90C3D012DB8B31600A1C13B /* tears.bundle */,
+				C90C3D022DB8B31600A1C13B /* touhua.bundle */,
+				C90C3D032DB8B31600A1C13B /* toy_dog.bundle */,
+				C90C3D042DB8B31600A1C13B /* toy_rabbit_ear_tie.bundle */,
+				C90C3D052DB8B31600A1C13B /* under_water_glasses.bundle */,
+				C90C3D062DB8B31600A1C13B /* uniform2.bundle */,
+				C90C3D072DB8B31600A1C13B /* xianzi.bundle */,
+				C90C3D082DB8B31600A1C13B /* xingxing.bundle */,
+			);
+			path = Stickers;
+			sourceTree = "<group>";
+		};
+		E3BD452A27474A4E00CB44C9 = {
+			isa = PBXGroup;
+			children = (
+				C9B609B82F72DDB50010C9BE /* PixelFree.framework */,
+				E3BD453527474A4E00CB44C9 /* SMBeautyEngine_iOS */,
+				E3BD453427474A4E00CB44C9 /* Products */,
+				E3BD458E274752D600CB44C9 /* Frameworks */,
+				17CBBCD9010203B207CC6C2B /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		E3BD453427474A4E00CB44C9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E3BD453327474A4E00CB44C9 /* SMBeautyEngine_iOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E3BD453527474A4E00CB44C9 /* SMBeautyEngine_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				C9CF03802A87685100B2C394 /* PFOpenGLView.h */,
+				C9CF037F2A87685000B2C394 /* PFOpenGLView.m */,
+				E3BD457A27474A9600CB44C9 /* PFCamera.h */,
+				E3BD457927474A9600CB44C9 /* PFCamera.m */,
+				E3BD455227474A9400CB44C9 /* res */,
+				E3BD455727474A9600CB44C9 /* View */,
+				E3BD453627474A4E00CB44C9 /* AppDelegate.h */,
+				E3BD453727474A4E00CB44C9 /* AppDelegate.m */,
+				E3BD453927474A4E00CB44C9 /* SceneDelegate.h */,
+				E3BD453A27474A4E00CB44C9 /* SceneDelegate.m */,
+				E3BBBA02295C274A00306BD9 /* PFMainViewController.h */,
+				E3BBBA03295C274A00306BD9 /* PFMainViewController.m */,
+				E3BD453C27474A4E00CB44C9 /* ViewController.h */,
+				E3BD453D27474A4E00CB44C9 /* ViewController.m */,
+				E335682E28E5897600551FB3 /* PFVideoController.h */,
+				E335682F28E5897600551FB3 /* PFVideoController.m */,
+				E335682528E5883C00551FB3 /* PFImageController.h */,
+				E335682628E5883C00551FB3 /* PFImageController.m */,
+				E3BD453F27474A4E00CB44C9 /* Main.storyboard */,
+				E3BD454227474A5300CB44C9 /* Assets.xcassets */,
+				E3BD454427474A5300CB44C9 /* LaunchScreen.storyboard */,
+				E3BD454727474A5300CB44C9 /* Info.plist */,
+				E3BD454827474A5300CB44C9 /* main.m */,
+			);
+			path = SMBeautyEngine_iOS;
+			sourceTree = "<group>";
+		};
+		E3BD455227474A9400CB44C9 /* res */ = {
+			isa = PBXGroup;
+			children = (
+				CE0C25E22EA0D22B0079CB44 /* makeup */,
+				C90C3D4B2DB8C79F00A1C13B /* baixiaomaohuxu */,
+				C95AB86F2D93961900F59BD5 /* 2631742911906.png */,
+				C9BB18222D858830002AF75D /* face2.png */,
+				C9FCFEA52C85BE9D002E1906 /* Stickers */,
+				C9AFDF0C2BC92ED9009C38CD /* qiniu_logo.png */,
+				E3B90821298E6E1A00B96ADF /* image.jpeg */,
+				E3B9081D298E527300B96ADF /* bg.jpeg */,
+				E32C9FDF28E69A3300FB225E /* pixelfreeAuth.lic */,
+				C99D8B6C2D7E8FAB00DC5D41 /* face_mask.png */,
+				C90C3D492DB8B95500A1C13B /* allStickers.json */,
+			);
+			path = res;
+			sourceTree = "<group>";
+		};
+		E3BD455727474A9600CB44C9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E3BD455827474A9600CB44C9 /* PFBeautyEditView */,
+				C958A30F2D90019C0019ED6F /* ColorGradingView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E3BD455827474A9600CB44C9 /* PFBeautyEditView */ = {
+			isa = PBXGroup;
+			children = (
+				CE1493792ED88292003C5D4D /* PFAPIDemoBar.xib */,
+				E3BD455B27474A9600CB44C9 /* Media.xcassets */,
+				CE1493632ED87A88003C5D4D /* PFBeautyEditView.h */,
+				CE1493642ED87A88003C5D4D /* PFBeautyEditView.m */,
+				CE14936A2ED87A94003C5D4D /* UIColor+PFBeautyEditView.h */,
+				CE14936B2ED87A94003C5D4D /* UIColor+PFBeautyEditView.m */,
+				E3BD456027474A9600CB44C9 /* PFBeautyParam.h */,
+				E3BD456127474A9600CB44C9 /* PFBeautyParam.m */,
+				E3BD456227474A9600CB44C9 /* PFBeautyView.h */,
+				E3BD456327474A9600CB44C9 /* PFBeautyView.m */,
+				E3BD456427474A9600CB44C9 /* PFBottomColletionView.h */,
+				E3BD456527474A9600CB44C9 /* PFBottomColletionView.m */,
+				E3BD456627474A9600CB44C9 /* PFDemoBarDefine.h */,
+				E3BD456727474A9600CB44C9 /* PFFilterView.h */,
+				E3BD456827474A9600CB44C9 /* PFFilterView.m */,
+				E3BD456927474A9600CB44C9 /* PFSlider.h */,
+				E3BD456A27474A9600CB44C9 /* PFSlider.m */,
+				E3BD456D27474A9600CB44C9 /* UIImage+demobar.h */,
+				E3BD456E27474A9600CB44C9 /* UIImage+demobar.m */,
+				E3BD456F27474A9600CB44C9 /* PFDemoBar.strings */,
+				E3BD457127474A9600CB44C9 /* Localizable.strings */,
+				E3BD457327474A9600CB44C9 /* modle */,
+			);
+			path = PFBeautyEditView;
+			sourceTree = "<group>";
+		};
+		E3BD457327474A9600CB44C9 /* modle */ = {
+			isa = PBXGroup;
+			children = (
+				E3BD457427474A9600CB44C9 /* PFDateHandle.h */,
+				E3BD457527474A9600CB44C9 /* PFDateHandle.m */,
+			);
+			path = modle;
+			sourceTree = "<group>";
+		};
+		E3BD458E274752D600CB44C9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C91A9EA32F0BC3E9002B44DE /* libcurl.a */,
+				C9C0EC052D96887B00BE1D3A /* libz.tbd */,
+				C9C0EC022D9686A000BE1D3A /* libpng-universal.a */,
+				C958A32D2D9186710019ED6F /* Pods_SMBeautyEngine_iOS.framework */,
+				C9CF03782A8670FB00B2C394 /* Accelerate.framework */,
+				E31A9ABD2903913400AF311C /* CoreImage.framework */,
+				E39CFC932874189500D738FF /* DetectFace.a */,
+				E3BD4591274752E900CB44C9 /* CoreML.framework */,
+				E3BD458F274752D700CB44C9 /* libc++.tbd */,
+				5C8A829A339A9CDADB015B9D /* Pods_SMBeautyEngine_iOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E3BD453227474A4E00CB44C9 /* SMBeautyEngine_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E3BD454C27474A5300CB44C9 /* Build configuration list for PBXNativeTarget "SMBeautyEngine_iOS" */;
+			buildPhases = (
+				0B1FDE39FF7CEC34AA434F6B /* [CP] Check Pods Manifest.lock */,
+				E3BD452F27474A4E00CB44C9 /* Sources */,
+				E3BD453027474A4E00CB44C9 /* Frameworks */,
+				E3BD453127474A4E00CB44C9 /* Resources */,
+				52EBBC8AC168428F0F72EE10 /* [CP] Embed Pods Frameworks */,
+				C9B609BC2F72DDBE0010C9BE /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SMBeautyEngine_iOS;
+			productName = SMBeautyEngine_iOS;
+			productReference = E3BD453327474A4E00CB44C9 /* SMBeautyEngine_iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E3BD452B27474A4E00CB44C9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1310;
+				TargetAttributes = {
+					E3BD453227474A4E00CB44C9 = {
+						CreatedOnToolsVersion = 13.1;
+					};
+				};
+			};
+			buildConfigurationList = E3BD452E27474A4E00CB44C9 /* Build configuration list for PBXProject "SMBeautyEngine_iOS" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				"zh-Hans",
+			);
+			mainGroup = E3BD452A27474A4E00CB44C9;
+			productRefGroup = E3BD453427474A4E00CB44C9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E3BD453227474A4E00CB44C9 /* SMBeautyEngine_iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E3BD453127474A4E00CB44C9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3BD454627474A5300CB44C9 /* LaunchScreen.storyboard in Resources */,
+				C90C3D092DB8B31600A1C13B /* bear_headgear.bundle in Resources */,
+				C90C3D0A2DB8B31600A1C13B /* fannao.bundle in Resources */,
+				C90C3D0B2DB8B31600A1C13B /* little_bear.bundle in Resources */,
+				C90C3D0C2DB8B31600A1C13B /* feidie.bundle in Resources */,
+				C90C3D0D2DB8B31600A1C13B /* big_eyes.bundle in Resources */,
+				C90C3D0E2DB8B31600A1C13B /* birthday.bundle in Resources */,
+				C90C3D0F2DB8B31600A1C13B /* jiandanxiaomaomi.bundle in Resources */,
+				C90C3D102DB8B31600A1C13B /* love_gestures.bundle in Resources */,
+				C90C3D112DB8B31600A1C13B /* long_ear_dog.bundle in Resources */,
+				C90C3D122DB8B31600A1C13B /* pop_glasses.bundle in Resources */,
+				C90C3D132DB8B31600A1C13B /* jiandanzhuangshi.bundle in Resources */,
+				C90C3D142DB8B31600A1C13B /* goux.bundle in Resources */,
+				C90C3D152DB8B31600A1C13B /* laser.bundle in Resources */,
+				C90C3D162DB8B31600A1C13B /* duboji.bundle in Resources */,
+				C90C3D172DB8B31600A1C13B /* fengying.bundle in Resources */,
+				C90C3D182DB8B31600A1C13B /* jianbixiaoheimao.bundle in Resources */,
+				C90C3D192DB8B31600A1C13B /* baixiaomaohuxu.bundle in Resources */,
+				C90C3D1A2DB8B31600A1C13B /* xianzi.bundle in Resources */,
+				C90C3D1B2DB8B31600A1C13B /* hdj.bundle in Resources */,
+				C90C3D1C2DB8B31600A1C13B /* hongtoushi.bundle in Resources */,
+				C90C3D1D2DB8B31600A1C13B /* maogou.bundle in Resources */,
+				C90C3D1E2DB8B31600A1C13B /* cut_hair.bundle in Resources */,
+				C90C3D1F2DB8B31600A1C13B /* buliaoxiaomao.bundle in Resources */,
+				C90C3D202DB8B31600A1C13B /* hello_glasses.bundle in Resources */,
+				C90C3D212DB8B31600A1C13B /* huangm.bundle in Resources */,
+				C90C3D222DB8B31600A1C13B /* hello_baby.bundle in Resources */,
+				C90C3D232DB8B31600A1C13B /* sunflower_glasses 2.bundle in Resources */,
+				C90C3D242DB8B31600A1C13B /* uniform2.bundle in Resources */,
+				C90C3D252DB8B31600A1C13B /* xingxing.bundle in Resources */,
+				C90C3D262DB8B31600A1C13B /* Gentleman_hat.bundle in Resources */,
+				C90C3D272DB8B31600A1C13B /* glasses_space.bundle in Resources */,
+				C90C3D282DB8B31600A1C13B /* rabbit_holding_face.bundle in Resources */,
+				C90C3D292DB8B31600A1C13B /* toy_rabbit_ear_tie.bundle in Resources */,
+				C90C3D2A2DB8B31600A1C13B /* prison.bundle in Resources */,
+				CE0C25E32EA0D2350079CB44 /* makeup in Resources */,
+				C90C3D2B2DB8B31600A1C13B /* touhua.bundle in Resources */,
+				C90C3D2C2DB8B31600A1C13B /* red_glasses.bundle in Resources */,
+				C90C3D2D2DB8B31600A1C13B /* noodles.bundle in Resources */,
+				C90C3D2E2DB8B31600A1C13B /* shizitou.bundle in Resources */,
+				C90C3D2F2DB8B31600A1C13B /* flower.bundle in Resources */,
+				C90C3D302DB8B31600A1C13B /* fashion_laddy.bundle in Resources */,
+				C90C3D312DB8B31600A1C13B /* cat_on_the_head.bundle in Resources */,
+				C90C3D322DB8B31600A1C13B /* tears.bundle in Resources */,
+				C90C3D332DB8B31600A1C13B /* under_water_glasses.bundle in Resources */,
+				C90C3D342DB8B31600A1C13B /* heart_explode.bundle in Resources */,
+				C90C3D352DB8B31600A1C13B /* cute_cat.bundle in Resources */,
+				C90C3D362DB8B31600A1C13B /* dayuanerduo.bundle in Resources */,
+				C90C3D4C2DB8C79F00A1C13B /* baixiaomaohuxu in Resources */,
+				C90C3D372DB8B31600A1C13B /* cat_fa_qia.bundle in Resources */,
+				C90C3D382DB8B31600A1C13B /* liangshanaixinmao.bundle in Resources */,
+				C90C3D392DB8B31600A1C13B /* dog_tongue.bundle in Resources */,
+				C90C3D3A2DB8B31600A1C13B /* dahudiejie.bundle in Resources */,
+				C90C3D3B2DB8B31600A1C13B /* kitty.bundle in Resources */,
+				C90C3D3C2DB8B31600A1C13B /* lecher.bundle in Resources */,
+				C90C3D3D2DB8B31600A1C13B /* long_ear_rabbit.bundle in Resources */,
+				C90C3D3E2DB8B31600A1C13B /* myqueen.bundle in Resources */,
+				C90C3D3F2DB8B31600A1C13B /* toy_dog.bundle in Resources */,
+				C90C3D402DB8B31600A1C13B /* laugh.bundle in Resources */,
+				C90C3D412DB8B31600A1C13B /* cidinmaozi.bundle in Resources */,
+				C90C3D422DB8B31600A1C13B /* sheep.bundle in Resources */,
+				C90C3D432DB8B31600A1C13B /* rabbit_blush.bundle in Resources */,
+				C90C3D4A2DB8B95500A1C13B /* allStickers.json in Resources */,
+				C90C3D442DB8B31600A1C13B /* love_bubbles.bundle in Resources */,
+				C90C3D452DB8B31600A1C13B /* cat_claw.bundle in Resources */,
+				C90C3D462DB8B31600A1C13B /* qifei.bundle in Resources */,
+				C90C3D472DB8B31600A1C13B /* damengyanjing.bundle in Resources */,
+				C90C3D482DB8B31600A1C13B /* cream_cake.bundle in Resources */,
+				E3BD457F27474A9800CB44C9 /* Media.xcassets in Resources */,
+				C9FCFEAD2C85BE9D002E1906 /* xiongerduo.bundle in Resources */,
+				C95AB8702D93961900F59BD5 /* 2631742911906.png in Resources */,
+				C9FCFEAA2C85BE9D002E1906 /* flowers.bundle in Resources */,
+				C9FCFEA82C85BE9D002E1906 /* baixiaomao.bundle in Resources */,
+				C9FCFEAB2C85BE9D002E1906 /* maorong.bundle in Resources */,
+				C9FCFEAC2C85BE9D002E1906 /* xiantiaoxiongmao.bundle in Resources */,
+				C9AFDF0D2BC92ED9009C38CD /* qiniu_logo.png in Resources */,
+				C9BB18232D858830002AF75D /* face2.png in Resources */,
+				E32C9FE028E69A3300FB225E /* pixelfreeAuth.lic in Resources */,
+				E3B90820298E527300B96ADF /* bg.jpeg in Resources */,
+				E3BD454327474A5300CB44C9 /* Assets.xcassets in Resources */,
+				C90C3CC82DB883B300A1C13B /* sunflower_glasses.bundle in Resources */,
+				C9FCFEA92C85BE9D002E1906 /* candy.bundle in Resources */,
+				C99D8B6D2D7E8FAB00DC5D41 /* face_mask.png in Resources */,
+				E3BD458A27474A9800CB44C9 /* Localizable.strings in Resources */,
+				CE14937A2ED88293003C5D4D /* PFAPIDemoBar.xib in Resources */,
+				E3BD458927474A9800CB44C9 /* PFDemoBar.strings in Resources */,
+				E3BD454127474A4E00CB44C9 /* Main.storyboard in Resources */,
+				E3B90822298E6E1A00B96ADF /* image.jpeg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0B1FDE39FF7CEC34AA434F6B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SMBeautyEngine_iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		52EBBC8AC168428F0F72EE10 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SMBeautyEngine_iOS/Pods-SMBeautyEngine_iOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SMBeautyEngine_iOS/Pods-SMBeautyEngine_iOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SMBeautyEngine_iOS/Pods-SMBeautyEngine_iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E3BD452F27474A4E00CB44C9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3BD453E27474A4E00CB44C9 /* ViewController.m in Sources */,
+				E3BD458227474A9800CB44C9 /* PFBeautyParam.m in Sources */,
+				E3BD453827474A4E00CB44C9 /* AppDelegate.m in Sources */,
+				E335683028E5897600551FB3 /* PFVideoController.m in Sources */,
+				C958A3102D90019C0019ED6F /* AdjustmentItem.m in Sources */,
+				C958A3122D90019C0019ED6F /* AdjustmentCell.m in Sources */,
+				C958A3132D90019C0019ED6F /* PFTakeColorView.m in Sources */,
+				CE1493652ED87A88003C5D4D /* PFBeautyEditView.m in Sources */,
+				C958A3142D90019C0019ED6F /* PFImageHelper.m in Sources */,
+				CE14936C2ED87A94003C5D4D /* UIColor+PFBeautyEditView.m in Sources */,
+				C958A3152D90019C0019ED6F /* PFHLSToolView.m in Sources */,
+				C9CF03812A87685100B2C394 /* PFOpenGLView.m in Sources */,
+				C958A31D2D9004E20019ED6F /* ToolUI.m in Sources */,
+				E3BD458627474A9800CB44C9 /* PFSlider.m in Sources */,
+				E3BD458B27474A9800CB44C9 /* PFDateHandle.m in Sources */,
+				E3BD458427474A9800CB44C9 /* PFBottomColletionView.m in Sources */,
+				E3BBBA04295C274A00306BD9 /* PFMainViewController.m in Sources */,
+				E3BD458327474A9800CB44C9 /* PFBeautyView.m in Sources */,
+				E3BD458D27474A9800CB44C9 /* PFCamera.m in Sources */,
+				E3BD458527474A9800CB44C9 /* PFFilterView.m in Sources */,
+				E335682728E5883C00551FB3 /* PFImageController.m in Sources */,
+				E3BD454927474A5300CB44C9 /* main.m in Sources */,
+				E3BD458827474A9800CB44C9 /* UIImage+demobar.m in Sources */,
+				E3BD453B27474A4E00CB44C9 /* SceneDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E3BD453F27474A4E00CB44C9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E3BD454027474A4E00CB44C9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E3BD454427474A5300CB44C9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E3BD454527474A5300CB44C9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		E3BD456F27474A9600CB44C9 /* PFDemoBar.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E3BD457027474A9600CB44C9 /* en */,
+				E3BD457627474A9600CB44C9 /* zh-Hans */,
+			);
+			name = PFDemoBar.strings;
+			sourceTree = "<group>";
+		};
+		E3BD457127474A9600CB44C9 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E3BD457227474A9600CB44C9 /* en */,
+				E3BD457727474A9600CB44C9 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E3BD454A27474A5300CB44C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		E3BD454B27474A5300CB44C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E3BD454D27474A5300CB44C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4D61E344F4C535ACE64C554A /* Pods-SMBeautyEngine_iOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = HN6VGCRNY9;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../PixelFreeCxx/Include\"",
+					"\"$(SRCROOT)/../PixelFreeCxx/PixelFree/Include\"",
+					"\"$(SRCROOT)/../PixelFreeCxx/DetectFace/c\"",
+					"\"$(SRCROOT)/../PixelFreeCxx/PixelFree/Thirdparty/png\"",
+				);
+				INFOPLIST_FILE = SMBeautyEngine_iOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "望图美颜SDK";
+				INFOPLIST_KEY_NSCameraUsageDescription = "app 想要访问相机";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "app 想要访问mic";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "aap 想要访问你的相册";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../PixelFreeCxx/PixelFree/Thirdparty\"",
+				);
+				MARKETING_VERSION = 2.5.05;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pixelFree.demo0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		E3BD454E27474A5300CB44C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6D80F176E4A4919062FB8C44 /* Pods-SMBeautyEngine_iOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HN6VGCRNY9;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../PixelFreeCxx/Include\"",
+					"\"$(SRCROOT)/../PixelFreeCxx/PixelFree/Include\"",
+					"\"$(SRCROOT)/../PixelFreeCxx/DetectFace/c\"",
+					"\"$(SRCROOT)/../PixelFreeCxx/PixelFree/Thirdparty/png\"",
+				);
+				INFOPLIST_FILE = SMBeautyEngine_iOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "望图美颜SDK";
+				INFOPLIST_KEY_NSCameraUsageDescription = "app 想要访问相机";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "app 想要访问mic";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "aap 想要访问你的相册";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../PixelFreeCxx/PixelFree/Thirdparty\"",
+				);
+				MARKETING_VERSION = 2.5.05;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pixelFree.demo0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E3BD452E27474A4E00CB44C9 /* Build configuration list for PBXProject "SMBeautyEngine_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E3BD454A27474A5300CB44C9 /* Debug */,
+				E3BD454B27474A5300CB44C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E3BD454C27474A5300CB44C9 /* Build configuration list for PBXNativeTarget "SMBeautyEngine_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E3BD454D27474A5300CB44C9 /* Debug */,
+				E3BD454E27474A5300CB44C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E3BD452B27474A4E00CB44C9 /* Project object */;
+}

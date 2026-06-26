@@ -1,0 +1,65 @@
+{
+  "1": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "portrait_demo.png"
+    }
+  },
+  "2": {
+    "class_type": "LoadMediaPipeFaceLandmarker",
+    "inputs": {
+      "model_name": "mediapipe_face_fp32.safetensors"
+    }
+  },
+  "3": {
+    "class_type": "MediaPipeFaceLandmarker",
+    "inputs": {
+      "face_detection_model": ["2", 0],
+      "image": ["1", 0],
+      "detector_variant": "short",
+      "num_faces": 1,
+      "min_confidence": 0.5,
+      "missing_frame_fallback": "empty"
+    }
+  },
+  "4": {
+    "class_type": "FaceToFaceBeauty",
+    "inputs": {
+      "image": ["1", 0],
+      "face_landmarks": ["3", 0],
+      "slim_face": 0.25,
+      "v_face": 0.10,
+      "jawline": 0.10,
+      "eye_enlarge": 0.15,
+      "nose_slim": 0.10,
+      "chin_slim": 0.10,
+      "smooth_skin": 0.40,
+      "whiten": 0.15,
+      "ruddy": 0.12,
+      "sharpen_eyes": 0.20,
+      "lip_color": 0.45,
+      "eye_shadow": 0.30,
+      "eyebrow": 0.20,
+      "blush": 0.25,
+      "eyeliner": 0.15,
+      "lip_gloss": 0.15,
+      "lip_style": "rose",
+      "shadow_style": "natural",
+      "preserve_identity": 0.35,
+      "use_global_state": false
+    }
+  },
+  "5": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "face_to_face",
+      "images": ["4", 0]
+    }
+  },
+  "6": {
+    "class_type": "PreviewImage",
+    "inputs": {
+      "images": ["4", 0]
+    }
+  }
+}

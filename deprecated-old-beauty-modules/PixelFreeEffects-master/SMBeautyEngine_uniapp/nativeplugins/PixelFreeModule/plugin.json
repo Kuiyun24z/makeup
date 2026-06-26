@@ -1,0 +1,15 @@
+{
+  "name": "PixelFreeModule",
+  "version": "1.0.0",
+  "description": "PixelFree 原生模块",
+  "platform": {
+    "android": {
+      "path": "android",
+      "main": "PixelFreeModule"
+    },
+    "ios": {
+      "path": "ios",
+      "main": "PixelFreeModule"
+    }
+  }
+}

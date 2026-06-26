@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beauty Studio Coach</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <section class="intelligence-pane">
+        <header class="pane-header">
+          <div class="title-block">
+            <p class="eyebrow">BEAUTY MIRROR</p>
+            <h1>Beauty Studio Coach</h1>
+          </div>
+
+          <div class="status-cluster">
+            <div class="status-pill">
+              <span class="dot" id="camera-dot"></span>
+              <div>
+                <span class="status-label">GPUPixel 画面</span>
+                <strong id="camera-state">GPUPixel 画面待连接</strong>
+                <button class="status-action" id="camera-reconnect-btn" type="button">重连画面</button>
+              </div>
+            </div>
+            <div class="status-pill">
+              <span class="dot" id="agent-dot"></span>
+              <div>
+                <span class="status-label">OpenHarness</span>
+                <strong id="agent-state">智能体状态检测中</strong>
+              </div>
+            </div>
+            <div class="status-pill">
+              <span class="dot" id="voice-dot"></span>
+              <div>
+                <span class="status-label">语音</span>
+                <strong id="voice-pill-state">语音待连接</strong>
+              </div>
+            </div>
+            <div class="status-pill">
+              <span class="dot" id="wake-dot"></span>
+              <div>
+                <span class="status-label">唤醒</span>
+                <strong id="wake-pill-state">后台待命中</strong>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <section class="panel-card conversation-panel">
+          <div class="deck-head">
+            <div>
+              <p class="eyebrow">OPENHARNESS CHAT</p>
+              <h2>和魔镜直接对话</h2>
+            </div>
+          </div>
+
+          <div class="mirror-chat-shell left-chat-shell">
+            <div class="mirror-chat-header">
+              <div>
+                <p class="eyebrow">OPENHARNESS</p>
+                <h4>魔镜对话框</h4>
+              </div>
+              <div class="mirror-chat-status" id="mirror-chat-status">后台常驻监听中</div>
+            </div>
+
+            <div class="mirror-chat-thread" id="mirror-chat-thread">
+              <div class="chat-bubble assistant" id="mirror-chat-assistant">
+                <span>魔镜</span>
+                <p>我在。你可以告诉我你想要的妆容需求，我会同步给 OpenHarness。</p>
+              </div>
+              <div class="chat-bubble user" id="mirror-chat-user">
+                <span>你</span>
+                <p>等待输入</p>
+              </div>
+              <div class="chat-bubble assistant highlight" id="mirror-chat-reply">
+                <span>镜子回复</span>
+                <p>系统会在这里显示当前建议。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="intent-ribbon">
+            <span>当前诉求</span>
+            <strong id="intent-text">你还没有输入具体想要的妆效。</strong>
+          </div>
+
+          <label class="input-label" for="prompt-input">直接说你现在想要的效果</label>
+          <textarea
+            id="prompt-input"
+            rows="4"
+            placeholder="例如：我想要自然一点的通勤妆，脸更干净，气色更自然。"
+          ></textarea>
+          <div class="prompt-send-row">
+            <button class="primary prompt-send-btn" id="prompt-send-btn" type="button">发送</button>
+          </div>
+
+          <div class="button-row">
+            <button class="secondary" id="coach-loop-btn">开启连续对话</button>
+            <button class="secondary" id="start-voice-btn">开启实时语音</button>
+            <button class="secondary" id="stop-voice-btn">关闭实时语音</button>
+          </div>
+
+          <p class="support-copy" id="voice-state">后台常驻监听中。</p>
+          <div class="voice-realtime-panel" id="voice-realtime-panel">
+            <div class="voice-realtime-head">
+              <span class="eyebrow">REALTIME VOICE</span>
+              <strong id="voice-session-status">待开启</strong>
+            </div>
+            <p class="voice-realtime-line" id="voice-partial-transcript">实时转写会显示在这里。</p>
+            <p class="voice-realtime-line voice-realtime-final" id="voice-final-transcript">确认后的文本会显示在这里。</p>
+            <div class="voice-metrics-row" id="voice-metrics">
+              <span>VAD -</span>
+              <span>ASR -</span>
+              <span>COMMIT -</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel-card gpupixel-control-panel">
+          <div class="deck-head">
+            <div>
+              <p class="eyebrow">GPUPIXEL</p>
+              <h3>原生美颜参数</h3>
+            </div>
+            <span class="control-sync-state" id="gpupixel-control-state">连接中</span>
+          </div>
+
+          <div class="gpupixel-slider-grid">
+            <label class="gpupixel-slider"><span>磨皮</span><strong id="gpupixel-smoothing-value">4.0</strong><input data-gpupixel-param="smoothing" type="range" min="0" max="10" step="0.1" value="4" /></label>
+            <label class="gpupixel-slider"><span>提亮</span><strong id="gpupixel-whitening-value">2.0</strong><input data-gpupixel-param="whitening" type="range" min="0" max="10" step="0.1" value="2" /></label>
+            <label class="gpupixel-slider"><span>瘦脸</span><strong id="gpupixel-faceSlim-value">0.0</strong><input data-gpupixel-param="faceSlim" type="range" min="0" max="4" step="0.1" value="0" /></label>
+            <label class="gpupixel-slider"><span>大眼</span><strong id="gpupixel-eyeEnlarge-value">0.0</strong><input data-gpupixel-param="eyeEnlarge" type="range" min="0" max="8" step="0.1" value="0" /></label>
+            <label class="gpupixel-slider"><span>嘴型</span><strong id="gpupixel-mouthResize-value">0.0</strong><input data-gpupixel-param="mouthResize" type="range" min="-1" max="1" step="0.05" value="0" /></label>
+            <label class="gpupixel-slider"><span>鼻型</span><strong id="gpupixel-noseResize-value">0.0</strong><input data-gpupixel-param="noseResize" type="range" min="-1" max="1" step="0.05" value="0" /></label>
+            <label class="gpupixel-slider"><span>眉毛</span><strong id="gpupixel-eyebrow-value">0.0</strong><input data-gpupixel-param="eyebrow" type="range" min="0" max="10" step="0.1" value="0" /></label>
+            <label class="gpupixel-slider"><span>腮红</span><strong id="gpupixel-blusher-value">0.0</strong><input data-gpupixel-param="blusher" type="range" min="0" max="10" step="0.1" value="0" /></label>
+          </div>
+        </section>
+
+        <section class="legacy-panels" hidden aria-hidden="true">
+          <div id="wake-mode-text">后台持续监听</div>
+          <div id="wake-mode-hint">后台常驻监听。</div>
+          <div id="analysis-source-text">等待第一次分析</div>
+          <div id="summary-text">等待分析。</div>
+          <div id="next-step-text">等待分析。</div>
+          <div id="focus-text">等待分析。</div>
+          <div id="tips-list"></div>
+          <div id="step-label">1 / 6</div>
+          <div id="step-title">妆前准备</div>
+          <div id="mirror-step-text">妆前准备</div>
+          <div id="mirror-step-index">1 / 6</div>
+          <button id="prev-step-btn" type="button"></button>
+          <button id="next-step-btn" type="button"></button>
+          <button id="auto-step-btn" type="button"></button>
+          <div id="step-mode-text">自动识别</div>
+          <div id="step-confidence-text">-</div>
+          <div id="step-reason-text">等待分析。</div>
+          <div id="routine-list"></div>
+          <div id="face-shape-text">待确认</div>
+          <div id="face-confidence-text">-</div>
+          <div id="face-shape-detail">等待摄像头和脸部关键点初始化。</div>
+          <div id="expression-text">待分析</div>
+          <div id="pose-text">待分析</div>
+          <div id="signal-detail">等待视觉模块初始化。</div>
+          <div id="metric-list"></div>
+          <div id="module-list"></div>
+          <div id="checkpoint-list"></div>
+          <div id="coach-loop-state">关闭</div>
+          <div id="agent-log"></div>
+        </section>
+      </section>
+
+      <section class="mirror-pane">
+        <div class="mirror-frame">
+          <img id="gpupixel-stream" crossorigin="anonymous" alt="GPUPixel live beauty stream" />
+          <canvas id="mirror-output" aria-hidden="true"></canvas>
+          <canvas id="camera-canvas" hidden></canvas>
+          <div class="mirror-sheen"></div>
+
+          <div class="mirror-topbar">
+            <div class="mirror-brand">
+              <p class="eyebrow eyebrow-light">LIVE MIRROR</p>
+              <h3>实时镜像妆容视图</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

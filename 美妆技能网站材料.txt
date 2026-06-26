@@ -1,0 +1,10 @@
+美颜：
+https://github.com/pixpark/gpupixel
+https://github.com/pixpark/gpupixel
+
+人脸关键点：
+https://github.com/google-ai-edge/mediapipe/blob/master/README.md
+人脸mask部分分割：
+https://ai.gitcode.com/hf_mirrors/jonathandinu/face-parsing?utm_source=gitcode_aigc_v1_t1&index=bottom&type=card&uuid_tt_dd=10_26823898100-1780989924395-294796&isLogin=9&from_id=155841154&from_link=2a3412d93806a2765b9759989b6b32be
+人脸3d：
+https://github.com/cleardusk/3DDFA_V2/blob/master/readme.md

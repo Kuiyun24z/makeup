@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Beauty Agent Drawer Demo</title>
+    <link rel="stylesheet" href="/drawer_demo.css" />
+  </head>
+  <body>
+    <main class="drawer-app">
+      <section class="drawer-camera" aria-label="drawer camera preview">
+        <div class="drawer-topbar">
+          <div>
+            <h1>Beauty Agent</h1>
+            <p>底部抽屉交互概念</p>
+          </div>
+          <button id="drawerToggle" type="button">展开建议</button>
+        </div>
+
+        <div class="face-placeholder">
+          <div class="face-oval"></div>
+          <div class="face-eye face-eye-left"></div>
+          <div class="face-eye face-eye-right"></div>
+          <div class="face-lip"></div>
+        </div>
+
+        <div class="camera-chips">
+          <span>面部已检测</span>
+          <span>光线正常</span>
+          <span>位置居中</span>
+          <span>稳定</span>
+        </div>
+      </section>
+
+      <section id="adviceDrawer" class="drawer-sheet" aria-label="advice drawer">
+        <div class="drawer-handle"></div>
+        <div class="drawer-summary">
+          <div>
+            <h2>今日通勤淡妆</h2>
+            <p>偏长椭圆 · 眉眼距离偏近 · 唇部线条偏薄</p>
+          </div>
+          <button id="drawerCollapse" type="button">收起</button>
+        </div>
+
+        <div class="drawer-cards">
+          <article>
+            <h3>底妆</h3>
+            <p>选择轻薄雾面底妆，腮红横向扫在面中，弱化脸部纵向长度。</p>
+          </article>
+          <article>
+            <h3>眉眼</h3>
+            <p>眉下保持干净，眼影以浅色打底，眼尾轻微拉长，减少眉眼压迫感。</p>
+          </article>
+          <article>
+            <h3>唇妆</h3>
+            <p>唇峰和唇中提亮，外缘轻微晕染，选择豆沙或裸粉提升日常气色。</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script src="/drawer_demo.js"></script>
+  </body>
+</html>

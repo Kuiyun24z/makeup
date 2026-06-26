@@ -1,0 +1,51 @@
+{
+  "slim_face": 0.25,
+  "v_face": 0.10,
+  "jawline": 0.10,
+  "eye_enlarge": 0.15,
+  "nose_slim": 0.10,
+  "chin_slim": 0.10,
+  "smooth_skin": 0.40,
+  "whiten": 0.15,
+  "ruddy": 0.12,
+  "sharpen_eyes": 0.20,
+  "lip_color": 0.45,
+  "eye_shadow": 0.30,
+  "eyebrow": 0.20,
+  "blush": 0.25,
+  "eyeliner": 0.15,
+  "lip_gloss": 0.15,
+  "lip_style": "rose",
+  "shadow_style": "natural",
+  "preserve_identity": 0.35,
+  "presets": {
+    "natural": {
+      "slim_face": 0.15,
+      "smooth_skin": 0.30,
+      "whiten": 0.10,
+      "lip_color": 0.25,
+      "eye_shadow": 0.15,
+      "preserve_identity": 0.45
+    },
+    "glam": {
+      "slim_face": 0.30,
+      "smooth_skin": 0.45,
+      "whiten": 0.20,
+      "lip_color": 0.60,
+      "eye_shadow": 0.45,
+      "blush": 0.35,
+      "preserve_identity": 0.25
+    },
+    "skin_only": {
+      "slim_face": 0.20,
+      "smooth_skin": 0.45,
+      "whiten": 0.18,
+      "lip_color": 0.0,
+      "eye_shadow": 0.0,
+      "eyebrow": 0.0,
+      "blush": 0.0,
+      "eyeliner": 0.0,
+      "preserve_identity": 0.40
+    }
+  }
+}

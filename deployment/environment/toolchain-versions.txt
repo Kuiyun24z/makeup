@@ -1,0 +1,9 @@
+﻿Generated: 2026-06-25T11:31:09.7887243+08:00
+Windows: Microsoft Windows NT 10.0.26200.0
+Node: v24.16.0
+CMake: cmake version 4.3.1-msvc1
+Visual Studio: C:\Program Files\Microsoft Visual Studio\18\Community
+Git: git version 2.54.0.windows.1
+Conda: conda 26.3.2
+uv: uv 0.11.23 (3cdf50e09 2026-06-19 x86_64-pc-windows-msvc)
+Python: Python 3.11.15

@@ -1,0 +1,490 @@
+//
+//  ViewController.m
+//  faceLandmark
+//
+//  Created by mumu on 2021/9/6.
+//
+
+#import "ViewController.h"
+#import "PFDateHandle.h"
+
+@interface ViewController ()<PFBeautyEditViewDelegate>
+
+@property (nonatomic, strong) NSUserDefaults *def;
+@property (nonatomic, copy) NSString *currentMakeupKey;
+@end
+
+@implementation ViewController
+
+
+-(PFBeautyEditView *)beautyEditView {
+    if (!_beautyEditView) {
+        _beautyEditView = [[PFBeautyEditView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 280, self.view.frame.size.width, 280)];
+        
+        _beautyEditView.mDelegate = self;
+    }
+    return _beautyEditView ;
+}
+
+-(void)comparisonButtonDidClick:(BOOL)state{
+    self.clickCompare = state;
+}
+
+
+-(void)filterValueChange:(PFBeautyParam *)param{
+
+    CFAbsoluteTime startTime = CFAbsoluteTimeGetCurrent();
+
+
+    float value = param.mValue;
+    if(param.type == FUDataTypeBeautify){
+        if ([param.mParam isEqualToString:@"face_EyeStrength"]) {
+
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_EyeStrength value:&value];
+          }
+          if ([param.mParam isEqualToString:@"face_thinning"]) {
+              float aa = param.mValue;
+              [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_thinning value:&value];
+          }
+          if ([param.mParam isEqualToString:@"face_narrow"]) {
+              [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_narrow value:&value];
+          }
+          if ([param.mParam isEqualToString:@"face_chin"]) {
+              [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_chin value:&value];
+          }
+        if ([param.mParam isEqualToString:@"face_V"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_V value:&value];
+
+        }
+        if ([param.mParam isEqualToString:@"face_small"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_small value:&value];
+        }
+        if ([param.mParam isEqualToString:@"face_nose"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_nose value:&value];
+        }
+
+        if ([param.mParam isEqualToString:@"face_forehead"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_forehead value:&value];
+        }
+        if ([param.mParam isEqualToString:@"face_mouth"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_mouth value:&value];
+        }
+        if ([param.mParam isEqualToString:@"face_philtrum"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_philtrum value:&value];
+        }
+
+        if ([param.mParam isEqualToString:@"face_long_nose"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_long_nose value:&value];
+        }
+        if ([param.mParam isEqualToString:@"face_eye_space"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_eye_space value:&value];
+        }
+        
+        if ([param.mParam isEqualToString:@"face_smile"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_smile value:&value];
+        }
+        if ([param.mParam isEqualToString:@"face_eye_rotate"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_eye_rotate value:&value];
+        }
+        if ([param.mParam isEqualToString:@"face_canthus"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_canthus value:&value];
+        }
+
+        // ===== 新增：ins1.png 点位细分 =====
+        if ([param.mParam isEqualToString:@"face_eye_y"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_eye_y value:&value];
+        }
+        if ([param.mParam isEqualToString:@"face_eye_height"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_eye_height value:&value];
+        }
+        if ([param.mParam isEqualToString:@"face_nose_size"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_nose_size value:&value];
+        }
+        if ([param.mParam isEqualToString:@"face_nose_height"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_nose_height value:&value];
+        }
+        if ([param.mParam isEqualToString:@"face_nose_y"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_nose_y value:&value];
+        }
+        if ([param.mParam isEqualToString:@"face_nose_tip"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_nose_tip value:&value];
+        }
+        if ([param.mParam isEqualToString:@"face_nose_bridge"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_nose_bridge value:&value];
+        }
+
+        if ([param.mParam isEqualToString:@"face_brow_thickness"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_brow_thickness value:&value];
+        }
+        if ([param.mParam isEqualToString:@"face_brow_length"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_brow_length value:&value];
+        }
+        if ([param.mParam isEqualToString:@"face_brow_lift"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_brow_lift value:&value];
+        }
+        if ([param.mParam isEqualToString:@"face_brow_distance"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_brow_distance value:&value];
+        }
+        if ([param.mParam isEqualToString:@"face_brow_tilt"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_brow_tilt value:&value];
+        }
+
+        if ([param.mParam isEqualToString:@"face_upper_lip_thickness"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_upper_lip_thickness value:&value];
+        }
+        if ([param.mParam isEqualToString:@"face_lower_lip_thickness"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_lower_lip_thickness value:&value];
+        }
+        if ([param.mParam isEqualToString:@"face_lip_fullness"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_lip_fullness value:&value];
+        }
+        if ([param.mParam isEqualToString:@"face_mouth_width"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFace_mouth_width value:&value];
+        }
+
+          if ([param.mParam isEqualToString:@"runddy"]) {
+              [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFaceRuddyStrength value:&value];
+          }
+          if ([param.mParam isEqualToString:@"writen"]) {
+              [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFaceM_newWhitenStrength value:&value];
+          }
+          if ([param.mParam isEqualToString:@"blur"]) {
+              [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFaceBlurStrength value:&value];
+          }
+          if ([param.mParam isEqualToString:@"sharpen"]) {
+              [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFaceSharpenStrength value:&value];
+          }
+        if ([param.mParam isEqualToString:@"eye_b"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFaceEyeBrighten value:&value];
+        }
+        
+        if ([param.mParam isEqualToString:@"newWhitenStrength"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFaceM_newWhitenStrength value:&value];
+        }
+        if ([param.mParam isEqualToString:@"qualityStrength"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeFaceH_qualityStrength value:&value];
+        }
+        
+        if ([param.mParam isEqualToString:@"nasolabialStrength"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterNasolabial value:&value];
+        }
+        if ([param.mParam isEqualToString:@"blackEyeStrength"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterBlackEye value:&value];
+        }
+        
+        if ([param.mParam isEqualToString:@"teethStrength"]) {
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterWhitenTeeth value:&value];
+        }
+        
+    }
+
+    if (param.type == FUDataTypeFilter) {
+
+       const char *aaa = [param.mParam UTF8String];
+        [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterName value:(void *)aaa];
+        [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterStrength value:&value];
+    }
+
+    if (param.type == FUDataTypeStickers) {
+        if([param.mParam isEqualToString:@"origin"]){
+            [self.mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterSticker2DFilter value:NULL];
+        } else{
+//            NSString *path =  [[NSBundle mainBundle] pathForResource:@"pixelfree2D" ofType:nil];
+//            NSString *currentFolder = [path stringByAppendingPathComponent:param.mParam];
+//            const char *aaa = [currentFolder UTF8String];
+//            [self.mPixelFree  pixelFreeSetFiterStickerWithPath:currentFolder];
+            
+            NSString *name = [NSString stringWithFormat:@"%@.bundle",param.mParam];
+            NSString *paths = [[NSBundle mainBundle] pathForResource:name ofType:nil];
+            [self.mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterSticker2DFilter value:(void *)[paths UTF8String]];
+            
+//            NSString *path =  [[NSBundle mainBundle] pathForResource:@"effect" ofType:nil];
+//            NSString *currentFolder = [path stringByAppendingPathComponent:@"roseEyeMakeup"];
+//            const char *aaa = [currentFolder UTF8String];
+//            [self.mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterSticker2DFilter value:(void *)aaa];
+            
+            
+        }
+    }
+    
+    if (param.type == FUDataTypeMakeup) {
+        if (param.mParam.length == 0 || [param.mParam isEqualToString:@"origin"]) {
+            [self.mPixelFree clearMakeup];
+            self.currentMakeupKey = nil;
+            return;
+        }
+        if (![param.mParam isEqualToString:self.currentMakeupKey]) {
+            NSString *makeupRoot = [[NSBundle mainBundle] pathForResource:@"makeup" ofType:nil];
+            if (!makeupRoot) {
+                NSLog(@"[Makeup] makeup folder missing");
+                return;
+            }
+            NSString *bundleName = [NSString stringWithFormat:@"%@.bundle", param.mParam];
+            NSString *bundlePath = [makeupRoot stringByAppendingPathComponent:bundleName];
+            NSData *bundleData = [NSData dataWithContentsOfFile:bundlePath];
+            if (!bundleData) {
+                NSLog(@"[Makeup] bundle not found at %@", bundlePath);
+                return;
+            }
+            [self.mPixelFree createBeautyItemFormBundleKey:PFSrcTypeMakeup data:(void *)bundleData.bytes size:(int)bundleData.length];
+            self.currentMakeupKey = param.mParam;
+        }
+        float degree = fmaxf(0.0f, fminf(param.mValue, 1.0f));
+        for (int part = PFMakeupPartBrow; part <= PFMakeupPartFoundation; part++) {
+            [self.mPixelFree pixelFreeSetMakeupPart:part degree:degree];
+        }
+        return;
+    }
+    
+    if (param.type == FUDataTypeOneKey) {
+        if ([param.mTitle isEqualToString:@"origin"]) {
+            int value = PFBeautyTypeOneKeyNormal;
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeOneKey value:&value];
+            
+        }
+        if ([param.mTitle isEqualToString:@"自然"]) {
+            int value = PFBeautyTypeOneKeyNatural;
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeOneKey value:&value];
+         
+        }
+        if ([param.mTitle isEqualToString:@"可爱"]) {
+            int value = PFBeautyTypeOneKeyCute;
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeOneKey value:&value];
+            
+        }
+        if ([param.mTitle isEqualToString:@"女神"]) {
+            int value = PFBeautyTypeOneKeyGoddess;
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeOneKey value:&value];
+            
+        }
+        if ([param.mTitle isEqualToString:@"白净"]) {
+            int value = PFBeautyTypeOneKeyFair;
+            [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeOneKey value:&value];
+           
+        }
+
+    }
+
+}
+
+-(void)bottomDidChange:(int)index{
+    if (index != 0 && _beautyEditView.oneKeyType != PFBeautyTypeOneKeyNormal) {
+        int value = PFBeautyTypeOneKeyNormal;
+        [_mPixelFree pixelFreeSetBeautyFilterParam:PFBeautyFilterTypeOneKey value:&value];
+        [self showDelayedAlert];
+        _beautyEditView.oneKeyType = PFBeautyTypeOneKeyNormal;
+    }
+}
+
+
+- (void)showDelayedAlert {
+    // 创建 UIAlertController
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"一键美颜已关闭" preferredStyle:UIAlertControllerStyleAlert];
+    
+    dispatch_time_t delay = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC));
+    dispatch_after(delay, dispatch_get_main_queue(), ^{
+        [alertController dismissViewControllerAnimated:YES completion:nil];
+    });
+
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.def = [NSUserDefaults standardUserDefaults];
+    
+    [self initPixelFree];
+    
+    [self setDefaultParam];
+    
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    // 归档
+//    NSData *shapeParamsData = [NSKeyedArchiver archivedDataWithRootObject:_beautyEditView.shapeParams];
+//    NSData *skinParamsData = [NSKeyedArchiver archivedDataWithRootObject:_beautyEditView.skinParams];
+//    NSData *stickerseData = [NSKeyedArchiver archivedDataWithRootObject:_beautyEditView.stickersParams];
+//    
+//    NSUserDefaults*userDefaults = [NSUserDefaults standardUserDefaults];
+//    [userDefaults setInteger:_beautyEditView.oneKeyType forKey:@"oneKeyType"];
+//    [userDefaults setInteger:_beautyEditView.filterIndex forKey:@"filtersUseIndex"];
+//    [userDefaults setInteger:_beautyEditView.stickersIndex forKey:@"stickerUseIndex"];
+//    [userDefaults synchronize];
+//    
+//    // 写本地
+//    [self writeData:shapeParamsData fileName:@"shapeParamsData"];
+//    [self writeData:skinParamsData fileName:@"skinParamsData"];
+//    [self writeData:stickerseData fileName:@"stickerseData"];
+    
+}
+
+
+-(void)initPixelFree{
+    NSBundle *libBundle = [NSBundle bundleForClass:[SMPixelFree class]];
+    NSString *face_FiltePath = [libBundle pathForResource:@"filter_model.bundle" ofType:nil];
+//    NSString *face_DetectPath = [[NSBundle mainBundle] pathForResource:@"face_detect.bundle" ofType:nil];
+    NSString *authFile = [[NSBundle mainBundle] pathForResource:@"pixelfreeAuth.lic" ofType:nil];
+    
+    CFAbsoluteTime startTime = CFAbsoluteTimeGetCurrent();
+
+    self.mPixelFree = [[SMPixelFree alloc] initWithProcessContext:nil srcFilterPath:face_FiltePath authFile:authFile];
+    
+//    NSLog(@"mPixelFree retain  count = %ld\n",CFGetRetainCount((__bridge  CFTypeRef)(self.mPixelFree)));
+
+    CFAbsoluteTime endTime = (CFAbsoluteTimeGetCurrent() - startTime);
+
+    [self.view addSubview:self.beautyEditView];
+}
+
+-(void)setDefaultParam{
+    NSArray<PFBeautyParam *>* defaultData = [PFDateHandle setupShapData];
+    NSArray<PFBeautyParam *>* defaultSkinData = [PFDateHandle setupSkinData];
+    NSArray<PFBeautyParam *>* defaultfiltersData = [PFDateHandle setupFilterData];
+    NSArray<PFBeautyParam *>* defaultfaceData = [PFDateHandle setupFaceType];
+    NSArray<PFBeautyParam *>* defaultStickerseData = [PFDateHandle setupStickers];
+    
+    // 读本地缓存
+    NSData *data = [self readDatafileName:@"shapeParamsData"];
+    if (data) {
+        defaultData = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    }
+    
+    data = [self readDatafileName:@"skinParamsData"];
+    if (data) {
+        defaultSkinData = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    }
+    
+    data = [self readDatafileName:@"filtersParamsData"];
+    if (data) {
+        defaultfiltersData = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    }
+    
+    data = [self readDatafileName:@"oneKeyParamsData"];
+    if (data) {
+        defaultfaceData = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    }
+    
+    data = [self readDatafileName:@"stickerseData"];
+    if (data) {
+        defaultStickerseData = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    }
+
+    // 更新 UI
+    self.beautyEditView.shapeParams = defaultData;
+    self.beautyEditView.skinParams = defaultSkinData;
+    self.beautyEditView.filtersParams = defaultfiltersData;
+    self.beautyEditView.faceTypeParams = defaultfaceData;
+    self.beautyEditView.stickersParams = defaultStickerseData;
+    
+    NSUserDefaults*userDefaults = [NSUserDefaults standardUserDefaults];
+    int oneKeyType = (int)[userDefaults integerForKey:@"oneKeyType"];
+    int filtersIndex = (int)[userDefaults integerForKey:@"filtersUseIndex"];
+    int stickerIndex = (int)[userDefaults integerForKey:@"stickerUseIndex"];
+
+    self.beautyEditView.oneKeyType = oneKeyType;
+    self.beautyEditView.filterIndex = filtersIndex;
+    self.beautyEditView.stickersIndex = stickerIndex;
+    
+    [self.beautyEditView updateDemoBar];
+    
+    
+    // 更新 SDK 设置
+    for (PFBeautyParam *param in defaultData) {
+        [self filterValueChange:param];
+    }
+    
+    for (PFBeautyParam *param in defaultSkinData) {
+        [self filterValueChange:param];
+    }
+    
+    
+    PFBeautyParam *param = defaultfaceData[oneKeyType];
+    [self filterValueChange:param];
+    param = defaultfiltersData[filtersIndex];
+    [self filterValueChange:param];
+    
+    param = defaultStickerseData[stickerIndex];
+    [self filterValueChange:param];
+    
+}
+
+
+-(void)appBecomeActive{
+    [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:nil];
+}
+
+
+-(void)writeData:(NSData *)data fileName:(NSString *)fileName{
+    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = [documentDirectories objectAtIndex:0];
+
+    // 获取目标文件的完整路径
+    NSString *filePath = [documentDirectory stringByAppendingPathComponent:fileName];
+    
+//    [[NSFileManager defaultManager] fileExistsAtPath:filePath];
+    // 创建文件并覆盖写入数据
+    BOOL success = [[NSFileManager defaultManager] createFileAtPath:filePath
+                                                          contents:data
+                                                        attributes:nil];
+    if (success) {
+        NSLog(@"数据写入成功");
+    } else {
+        NSLog(@"数据写入失败");
+    }
+    
+}
+
+-(NSData *)readDatafileName:(NSString *)fileName{
+    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = [documentDirectories objectAtIndex:0];
+
+    // 获取目标文件的完整路径
+    NSString *filePath = [documentDirectory stringByAppendingPathComponent:fileName];
+    
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    return data;
+}
+
+
+//-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"makeup" ofType:nil];
+//    if (!path) {
+//        NSLog(@"[Makeup] 错误: 找不到 makeup 资源文件夹");
+//        return;
+//    }
+//    
+//    NSString *currentFolder = [path stringByAppendingPathComponent:@"大气"];
+//    NSLog(@"[Makeup] 美妆路径: %@", currentFolder);
+//    
+//    // 检查文件夹是否存在
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    BOOL isDirectory = NO;
+//    BOOL exists = [fileManager fileExistsAtPath:currentFolder isDirectory:&isDirectory];
+//    
+//    if (exists && isDirectory) {
+//        NSLog(@"[Makeup] 文件夹存在，应用美妆");
+////            int ret = [self.mPixelFree pixelFreeSetMakeupWithJsonPath:currentFolder];
+//        
+//        NSString *name = [NSString stringWithFormat:@"%@.bundle",@"大气"];
+//        NSString *currentBundle = [path stringByAppendingPathComponent:name];
+//        NSData *date = [NSData dataWithContentsOfFile:currentBundle];
+//        
+//        [self.mPixelFree createBeautyItemFormBundleKey:PFSrcTypeMakeup data:(void *)date.bytes size:date.length];
+////            NSLog(@"[Makeup] 应用美妆返回值: %d", ret);
+//    } else {
+//        NSLog(@"[Makeup] 错误: 美妆文件夹不存在: %@", currentFolder);
+//    }
+//
+//}
+
+-(void)dealloc{
+    // 清理 mPixelFree，确保资源释放
+    if (_mPixelFree) {
+        // SMPixelFree 的 dealloc 会调用 destroy 方法清理资源
+        _mPixelFree = nil;
+    }
+    NSLog(@"ViewController dealloc");
+}
+
+@end

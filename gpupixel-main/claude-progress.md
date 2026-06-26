@@ -1,0 +1,509 @@
+# 进度日志
+
+## 当前已验证状态
+
+- 仓库根目录：`C:\Users\huaweiuser\Desktop\GPUPixel`
+- GitHub 仓库：`https://github.com/Kuiyun24z/GPUPixel-personal.git`
+- 当前分支：`main`
+- 最近提交：`40ce135 Initial GPUPixel Windows MediaPipe demo`
+- 标准启动路径：`.\start_video_client_mediapipe.cmd`
+- 当前客户端产物：源码已升级到 v21；`build\windows-nmake\out\bin\gpupixel_video_client_v21.exe` 需在 Windows 上 cmake 构建后生成
+- 已 passing：`reshape-mouth-nose-001`（嘴/鼻放大缩小 + 放大 UI，用户已构建 v20 并验收，强度调到 0.15）
+- 当前唯一进行中功能：`eyebrow-darken-001`（眉毛加深）；`lipstick-002` 仍按用户要求冻结为 blocked
+- 标准验证路径：
+  - `node --check desktop_mediapipe_bridge\bridge.js`
+  - `python -m py_compile desktop_mediapipe_bridge\bridge_server.py`，当前机器使用 Codex bundled Python 路径验证过
+  - `cmake --build build\windows-nmake --config Release --target gpupixel_video_client`
+- 当前最高优先级未完成功能：修正 `init.sh`，把占位 npm 验证替换成 GPUPixel Windows/CMake 验证入口
+- 当前 blocker：`init.sh` 仍是模板脚本，运行的是 `npm install`、`npm test`、`npm run dev`，不适合作为本项目标准启动/验证入口
+
+## 会话记录
+
+### Session 001
+
+- 日期：2026-06-18
+- 本轮目标：完成 Windows GPUPixel + MediaPipe 视频客户端第一版，并解决 face parsing 导致的卡顿和口红漂移问题
+- 已完成：
+  - 构建 Windows native video client MVP
+  - 接入浏览器 MediaPipe bridge，输出 468 点和 GPUPixel 111 点映射
+  - 修正视频画面拉伸和镜像问题
+  - 将瘦脸、大眼、磨皮、美白、腮红保留在 GPUPixel 原链路
+  - 增加 MP468 专用口红模块，使用 MediaPipe 内外唇点和牙齿保护
+  - 调整大眼上限到 `kEyeEnlargeUiMax = 8.0f`，实际强度恢复可见
+  - 移除实时 face parsing / ONNX mask 路径，口红回到 `MP468 live`
+  - 旧 `desktop_mediapipe_bridge\vendor\face-parsing` 目录已改名为 `face-parsing.disabled`
+- 运行过的验证：
+  - `node --check desktop_mediapipe_bridge\bridge.js`
+  - Codex bundled Python 执行 `-m py_compile desktop_mediapipe_bridge\bridge_server.py`
+  - `cmake --build build\windows-nmake --config Release --target gpupixel_video_client`
+- 已记录证据：
+  - 构建产物存在：`build\windows-nmake\out\bin\gpupixel_video_client_v11.exe`
+  - C++ 客户端面板显示 `Lip mode: MP468 live`
+  - `rg` 在运行代码和文档中未找到 face parsing/ONNX/lip mask 残留引用
+- 提交记录：
+  - `40ce135 Initial GPUPixel Windows MediaPipe demo`
+- 更新过的文件或工件：
+  - `demo\desktop\video_client_mp468.cc`
+  - `demo\desktop\lip_renderer_mp468.cc`
+  - `demo\desktop\lip_renderer_mp468.h`
+  - `desktop_mediapipe_bridge\bridge.js`
+  - `desktop_mediapipe_bridge\bridge_server.py`
+  - `desktop_mediapipe_bridge\index.html`
+  - `demo\CMakeLists.txt`
+  - `start_video_client.cmd`
+  - `start_video_client_mediapipe.cmd`
+  - `docs\windows_video_client_mediapipe_bridge.md`
+- 已知风险或未解决问题：
+  - 口红仍依赖 MP468 几何点，强张嘴、侧脸、遮挡时边界质量有限
+  - MediaPipe bridge 仍是浏览器 JS/WASM，不是纯 C++ 集成
+  - `init.sh` 仍是占位脚本，尚不能代表本项目标准验证入口
+  - 摄像头如果被其他程序占用，客户端仍会停在 `Camera: waiting for frame`
+- 下一步最佳动作：
+  - 优先修正 `init.sh` 为 Windows/CMake/MediaPipe bridge 的真实 smoke test
+  - 然后继续微调 MP468 口红边缘、张嘴牙齿保护和侧脸稳定性
+
+### Session 002
+
+- 日期：2026-06-18
+- 本轮目标：按 `AGENTS.md` 要求，把当前进度和功能状态写入持久化文件
+- 已完成：
+  - 读取并确认 `AGENTS.md` 工作流
+  - 读取当前 `claude-progress.md` 和 `feature_list.json`
+  - 发现两者仍是模板/占位内容
+  - 记录当前仓库、启动路径、验证路径、已完成 v11 状态和当前 blocker
+- 运行过的验证：
+  - `pwd`
+  - `git -c safe.directory=C:/Users/huaweiuser/Desktop/GPUPixel log --oneline -5`
+  - `git -c safe.directory=C:/Users/huaweiuser/Desktop/GPUPixel status -sb`
+- 已记录证据：
+  - 当前目录为 `C:\Users\huaweiuser\Desktop\GPUPixel`
+  - 最近提交为 `40ce135 Initial GPUPixel Windows MediaPipe demo`
+  - 工作区跟踪 `main...origin/main`
+- 提交记录：
+  - 待本轮文档更新后提交
+- 更新过的文件或工件：
+  - `claude-progress.md`
+  - `feature_list.json`
+- 已知风险或未解决问题：
+  - 本轮只更新状态文件，尚未修正 `init.sh`
+- 下一步最佳动作：
+  - 提交本轮状态文件更新
+  - 下一轮优先修正 `init.sh`
+
+### Session 003
+
+- 日期：2026-06-18
+- 本轮目标：排查 v11 画面比之前未加 face parsing 版本更糊的问题，并恢复清晰度
+- 已完成：
+  - 按当前状态文件确认 `init.sh` 仍是占位 blocker，因此未将其作为验证入口运行
+  - 检查视频客户端采集路径，发现当前摄像头目标尺寸为 `640x360`
+  - 对照此前客户端面板截图中的 `Camera: 1920x1080`，判断糊的主要原因是低分辨率帧被放大显示
+  - 将 native GPUPixel 渲染路径的摄像头目标尺寸恢复为 `1920x1080`
+  - 保持 MediaPipe bridge 的 `kMediaPipeBridgeMaxSide = 360` 不变，关键点检测仍使用下采样小图
+  - 将客户端产物升级为 `gpupixel_video_client_v12.exe`
+  - 更新启动脚本，优先启动 v12，并保留 v11/v10 等回退
+- 运行过的验证：
+  - `cmake -S . -B build\windows-nmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DGPUPIXEL_BUILD_DESKTOP_DEMO=ON -DGPUPIXEL_ENABLE_FACE_DETECTOR=OFF`
+  - `cmake --build build\windows-nmake --config Release --target gpupixel_video_client`
+- 已记录证据：
+  - 构建成功生成 `build\windows-nmake\out\bin\gpupixel_video_client_v12.exe`
+  - `demo\desktop\video_client_mp468.cc` 中 `kCameraWidth = 1920`，`kCameraHeight = 1080`
+  - `start_video_client.cmd` 和 `start_video_client_mediapipe.cmd` 优先选择 v12，找不到时回退 v11
+- 提交记录：
+  - 待本轮修复提交
+- 更新过的文件或工件：
+  - `demo\desktop\video_client_mp468.cc`
+  - `demo\CMakeLists.txt`
+  - `start_video_client.cmd`
+  - `start_video_client_mediapipe.cmd`
+  - `docs\windows_video_client_mediapipe_bridge.md`
+  - `claude-progress.md`
+  - `feature_list.json`
+- 已知风险或未解决问题：
+  - 1080p 输入会比 640x360 更吃 GPU/CPU；如果用户机器帧率下降，可以再做 720p/1080p 档位切换
+  - 仍需要用户实际打开客户端确认面板显示 1080p 或接近 1080p，并主观确认清晰度恢复
+- 下一步最佳动作：
+  - 用户运行 `.\start_video_client_mediapipe.cmd` 试 v12
+  - 若清晰但帧率下降，增加“清晰/流畅”采集档位切换
+
+### Session 004
+
+- 日期：2026-06-22
+- 本轮目标：实现 v13 口红低延迟和柔边自然化，保持 face parsing 关闭
+- 已完成：
+  - 保留 GPUPixel 原链路处理磨皮、美白、瘦脸、大眼和腮红
+  - 将口红点位链路从平滑 MP468 改为优先使用最新原始 MP468 点位，面板显示 `Lip landmarks: live/raw`
+  - 保留 reshape/blusher 使用当前平滑后的 111 点，避免瘦脸和大眼重新抖动
+  - 将 `desktop_mediapipe_bridge\bridge.js` 轮询间隔从 `45ms` 降到 `16ms`，保留 `busy` 防重入
+  - 口红渲染改为自适应外缘 feather，1080p 常见口唇尺寸下约 `6-10px`
+  - 降低口红最大混合强度，并加入原图像素置信度规则，皮肤、高亮牙齿区域会自动减弱
+  - 内嘴边界继续排除，并做内缘羽化，减少张嘴时的硬切边
+  - 客户端产物升级为 `gpupixel_video_client_v13.exe`，启动脚本优先 v13，并保留 v12/v11 回退
+- 运行过的验证：
+  - `node --check desktop_mediapipe_bridge\bridge.js`
+  - Codex bundled Python 执行 `-m py_compile desktop_mediapipe_bridge\bridge_server.py`
+  - Codex bundled Python 执行 `-m json.tool feature_list.json`
+  - `cmake -S . -B build\windows-nmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DGPUPIXEL_BUILD_DESKTOP_DEMO=ON -DGPUPIXEL_ENABLE_FACE_DETECTOR=OFF`
+  - `cmake --build build\windows-nmake --config Release --target gpupixel_video_client`
+- 已记录证据：
+  - 构建成功生成 `build\windows-nmake\out\bin\gpupixel_video_client_v13.exe`
+  - `demo\desktop\video_client_mp468.cc` 中口红使用 `bridge.lip_mediapipe_landmarks()`，优先 raw MP468 点
+  - `demo\desktop\lip_renderer_mp468.cc` 中口红使用自适应 feather、牙齿保护和原图像素置信度
+  - `desktop_mediapipe_bridge\bridge.js` 使用 `setTimeout(poll, 16)`
+- 提交记录：
+  - 待本轮修复提交
+- 更新过的文件或工件：
+  - `demo\desktop\video_client_mp468.cc`
+  - `demo\desktop\lip_renderer_mp468.cc`
+  - `demo\desktop\lip_renderer_mp468.h`
+  - `desktop_mediapipe_bridge\bridge.js`
+  - `demo\CMakeLists.txt`
+  - `start_video_client.cmd`
+  - `start_video_client_mediapipe.cmd`
+  - `docs\windows_video_client_mediapipe_bridge.md`
+  - `claude-progress.md`
+  - `feature_list.json`
+- 已知风险或未解决问题：
+  - 口红边缘和跟随效果仍需要用户打开摄像头做人眼验收；代码级验证已通过，但无法在当前自动验证中判断主观自然度
+  - 如果柔边后颜色显得偏淡，优先调高口红 slider 或微调 `opacity_scale`，不建议回到硬 mask
+  - 如果仍有明显延迟，下一步应加时间戳/age 面板或评估纯 C++ MediaPipe，减少浏览器 bridge 链路延迟
+  - `init.sh` 仍是占位脚本，尚不能代表本项目标准验证入口
+- 下一步最佳动作：
+  - 用户运行 `.\start_video_client_mediapipe.cmd` 试 v13，确认面板显示 `Lip landmarks: live/raw`
+  - 若口红仍慢半拍，优先给 MP468 文件写入和 C++ 读取增加时间戳诊断，再决定是否推进纯 C++ MediaPipe
+
+### Session 005
+
+- 日期：2026-06-22
+- 本轮目标：实现 v14 口红补边、lip-only 低延迟微预测和调试轮廓
+- 已完成：
+  - 保持 face parsing/ONNX 路径关闭，口红继续基于 MP468 点位
+  - 在 `LipRendererMP468` 中增加自适应外扩，按唇部宽高生成约 `3-7px` 的柔和补边区域
+  - 原始 MP468 唇形内部保持主上色，外扩区域只使用低 alpha 晕染，避免重新变成硬贴图
+  - 放宽浅色嘴唇的像素置信度下限，让低饱和唇色不再被过度压淡
+  - 保留内嘴排除、内缘羽化和高亮牙齿保护
+  - 在 `MediaPipeLandmarkBridge` 中增加 lip-only 微预测：只对唇部 MP468 点按上一帧速度前推约一帧，并限制单点最大位移
+  - 如果 MP468 文件没有更新，自动关闭微预测并回到 raw/fallback 点位
+  - 面板增加 `Lip debug` 开关，打开后绘制原始唇框、外扩唇框和内嘴排除区
+  - 面板状态增加 `Lip landmarks: live/raw + lead`，用于确认口红低延迟链路是否生效
+  - 客户端产物升级为 `gpupixel_video_client_v14.exe`，启动脚本优先 v14，并保留 v13/v12/v11 回退
+- 运行过的验证：
+  - `node --check desktop_mediapipe_bridge\bridge.js`
+  - Codex bundled Python 执行 `-m py_compile desktop_mediapipe_bridge\bridge_server.py`
+  - Codex bundled Python 执行 `-m json.tool feature_list.json`
+  - `cmake --build build\windows-nmake --config Release --target gpupixel_video_client`
+- 已记录证据：
+  - 构建成功生成 `build\windows-nmake\out\bin\gpupixel_video_client_v14.exe`
+  - `demo\desktop\lip_renderer_mp468.cc` 中新增外扩补边、调试几何和放宽后的唇色置信度
+  - `demo\desktop\video_client_mp468.cc` 中新增 lip-only lead prediction、`Lip debug` 和 `live/raw + lead` 状态
+  - `start_video_client.cmd` 和 `start_video_client_mediapipe.cmd` 优先选择 v14
+- 提交记录：
+  - 待本轮修复提交
+- 更新过的文件或工件：
+  - `demo\desktop\video_client_mp468.cc`
+  - `demo\desktop\lip_renderer_mp468.cc`
+  - `demo\desktop\lip_renderer_mp468.h`
+  - `demo\CMakeLists.txt`
+  - `start_video_client.cmd`
+  - `start_video_client_mediapipe.cmd`
+  - `docs\windows_video_client_mediapipe_bridge.md`
+  - `claude-progress.md`
+  - `feature_list.json`
+- 已知风险或未解决问题：
+  - v14 仍需要用户打开摄像头做人眼验收：闭嘴唇边是否盖满、说话延迟是否降低、张嘴牙齿是否安全
+  - 外扩补边如果在侧脸时轻微涂到皮肤，下一步应优先调低 `outer_opacity_scale` 或外扩上限，而不是重新启用 face parsing
+  - `init.sh` 仍是占位脚本，尚不能代表本项目标准验证入口
+- 下一步最佳动作：
+  - 用户运行 `.\start_video_client_mediapipe.cmd` 试 v14
+  - 打开 `Lip debug` 对照黄线外扩框、青线原唇框、红线内嘴排除区，判断是否需要继续扩大或收窄补边
+
+### Session 006
+
+- 日期：2026-06-22
+- 本轮目标：针对 v14 “变化不明显、延迟仍在”的反馈，做 v15 强化版
+- 已完成：
+  - 将专用 MP468 口红渲染从 GPUPixel 前置改为 GPUPixel 后置，避免磨皮/美白/平滑链路把口红颜色冲淡
+  - 提高口红默认混合强度、外扩补边宽度和外圈透明度，让补边效果肉眼可见
+  - 放宽浅色嘴唇像素置信度，减少真实唇边仍露出的情况
+  - 将 lip-only lead prediction 从轻量补偿提高到更明显的前推补偿，并限制单点最大位移
+  - 面板新增 `Build: v15`，方便确认实际启动的是当前版本
+  - 客户端产物升级为 `gpupixel_video_client_v15.exe`，启动脚本优先 v15，并保留 v14/v13/v12/v11 回退
+- 运行过的验证：
+  - `node --check desktop_mediapipe_bridge\bridge.js`
+  - Codex bundled Python 执行 `-m py_compile desktop_mediapipe_bridge\bridge_server.py`
+  - Codex bundled Python 执行 `-m json.tool feature_list.json`
+  - `cmake --build build\windows-nmake --config Release --target gpupixel_video_client`
+- 已记录证据：
+  - 构建成功生成 `build\windows-nmake\out\bin\gpupixel_video_client_v15.exe`
+  - `demo\desktop\video_client_mp468.cc` 中口红改为 GPUPixel 输出后再应用，并显示 `Build: v15`
+  - `demo\desktop\lip_renderer_mp468.h` 和 `.cc` 中提高了补边、混合和浅唇覆盖参数
+  - `demo\desktop\video_client_mp468.cc` 中提高了 lip-only lead prediction 参数
+- 提交记录：
+  - 待本轮修复提交
+- 更新过的文件或工件：
+  - `demo\desktop\video_client_mp468.cc`
+  - `demo\desktop\lip_renderer_mp468.cc`
+  - `demo\desktop\lip_renderer_mp468.h`
+  - `demo\CMakeLists.txt`
+  - `start_video_client.cmd`
+  - `start_video_client_mediapipe.cmd`
+  - `docs\windows_video_client_mediapipe_bridge.md`
+  - `claude-progress.md`
+  - `feature_list.json`
+- 已知风险或未解决问题：
+  - 如果 v15 仍有明显嘴动延迟，说明 browser MediaPipe bridge 的检测/文件传输延迟已成为主瓶颈，继续调渲染参数收益会很低
+  - 口红后置后妆感会更明显；如果太重，优先降低口红 slider 或回调 `opacity_scale`/`outer_opacity_scale`
+  - `init.sh` 仍是占位脚本，尚不能代表本项目标准验证入口
+- 下一步最佳动作：
+  - 用户运行 `.\start_video_client_mediapipe.cmd` 试 v15，并确认面板显示 `Build: v15`
+  - 如果 v15 仍慢，下一步进入纯 C++/native landmark 或降低 MediaPipe bridge 检测延迟的方案，而不是继续只调口红 shader
+
+### Session 007
+
+- 日期：2026-06-22
+- 本轮目标：先做 v16 延迟诊断版，确认口红慢半拍到底卡在浏览器 MediaPipe、HTTP/文件桥接、还是 C++ 读取/使用环节
+- 已完成：
+  - 客户端产物升级为 `gpupixel_video_client_v16.exe`，启动脚本优先 v16，并保留 v15/v14/v13/v12/v11 回退
+  - C++ 发布 MediaPipe 下采样 BMP 时同步写入 `mediapipe_bridge_frame_meta.json`，记录 `cppPublishMs` 和帧序号
+  - `bridge.js` 读取 frame-info 时携带帧 meta，并在提交 landmark 时上报 image load、detect、poll/http、landmark interval 等耗时
+  - `bridge_server.py` 写入 `mediapipe_live_meta.json`，记录 JS 诊断数据、服务端接收时间、写入时间和写入耗时
+  - C++ 客户端读取 `mediapipe_live_meta.json`，面板显示 `Latency`、`Bridge`、`Costs`、`Landmark FPS` 和 `C++ read`
+  - 文档更新为 v16 诊断链路；`lipstick-002` 仍保持 `in_progress`，不把诊断版标记为口红视觉问题已完成
+- 运行过的验证：
+  - `node --check desktop_mediapipe_bridge\bridge.js`
+  - Codex bundled Python 执行 `-m py_compile desktop_mediapipe_bridge\bridge_server.py`
+  - Codex bundled Python 执行 `-m json.tool feature_list.json`
+  - `cmake --build build\windows-nmake --config Release --target gpupixel_video_client`
+- 已记录证据：
+  - 构建成功生成 `build\windows-nmake\out\bin\gpupixel_video_client_v16.exe`
+  - `demo\desktop\video_client_mp468.cc` 面板显示 `Build: v16 latency diagnostics`
+  - `desktop_mediapipe_bridge\bridge.js` 上报 `jsImageLoadMs`、`jsDetectCostMs`、`jsLandmarkIntervalMs` 和 `frameInfoRoundTripMs`
+  - `desktop_mediapipe_bridge\bridge_server.py` 写出 `mediapipe_live_meta.json`
+- 提交记录：
+  - 待本轮修复提交
+- 更新过的文件或工具：
+  - `demo\desktop\video_client_mp468.cc`
+  - `desktop_mediapipe_bridge\bridge.js`
+  - `desktop_mediapipe_bridge\bridge_server.py`
+  - `demo\CMakeLists.txt`
+  - `start_video_client.cmd`
+  - `start_video_client_mediapipe.cmd`
+  - `docs\windows_video_client_mediapipe_bridge.md`
+  - `claude-progress.md`
+  - `feature_list.json`
+- 已知风险或未解决问题：
+  - v16 只是诊断版，口红边缘和延迟的人眼问题仍需要根据面板数字继续定位
+  - 诊断时间戳都在同一台机器上产生，适合本地排查；如果浏览器标签页被后台限速或窗口最小化，`Landmark FPS` 和 `frame->landmark` 会直接反映变慢
+  - `init.sh` 仍是占位脚本，尚不能代表本项目标准验证入口，本轮按既有记录未运行它以避免执行无关 npm install/test/dev
+- 下一步最佳动作：
+  - 用户运行 `.\start_video_client_mediapipe.cmd` 试 v16，并确认面板显示 `Build: v16 latency diagnostics`
+  - 观察 `Bridge: frame->landmark`、`Costs: detect/image/http` 和 `Landmark FPS`：如果 `frame->landmark` 或 `detect` 明显高，再决定是优化 JS bridge、换 WebSocket/共享内存，还是推进 C++ MediaPipe 内嵌版
+
+### Session 008
+
+- 日期：2026-06-22
+- 本轮目标：根据 v16 截图中 `Landmark FPS: 1.0`、`detect: 68ms`、`http: 5ms` 的数据，做 v17 浏览器 bridge 限速修复和诊断精度修复
+- 已完成：
+  - 客户端产物升级为 `gpupixel_video_client_v17.exe`，启动脚本优先 v17，并保留 v16/v15/v14/v13/v12/v11 回退
+  - 修复 `mediapipe_bridge_frame_meta.json` 中 `cppPublishMs` 默认浮点精度过低的问题，避免 `frame age` 和 `frame->landmark` 出现大负数
+  - 面板版本显示改为 `Build: v17 bridge throttle diagnostics`
+  - 面板 `Landmark FPS` 同时显示 landmark interval 毫秒
+  - 如果 `Landmark FPS <= 2` 且 `detect < 200ms`，面板显示 `Bridge throttle suspected` 黄色提示
+  - `start_video_client_mediapipe.cmd` 优先用 Edge/Chrome 独立 app 窗口打开 bridge，并加入 `--disable-background-timer-throttling`、`--disable-renderer-backgrounding`、`--disable-backgrounding-occluded-windows`、`--disable-features=CalculateNativeWinOcclusion`
+  - 文档更新为 v17 限速诊断链路；`lipstick-002` 仍保持 `in_progress`，等待用户用 v17 实测 Landmark FPS 和口红跟随
+- 运行过的验证：
+  - `node --check desktop_mediapipe_bridge\bridge.js`
+  - Codex bundled Python 执行 `-m py_compile desktop_mediapipe_bridge\bridge_server.py`
+  - Codex bundled Python 执行 `-m json.tool feature_list.json`
+  - `git diff --check`
+  - `cmake --build build\windows-nmake --config Release --target gpupixel_video_client`
+- 已记录证据：
+  - 构建成功生成 `build\windows-nmake\out\bin\gpupixel_video_client_v17.exe`
+  - `start_video_client.cmd` 和 `start_video_client_mediapipe.cmd` 优先选择 v17
+  - `demo\desktop\video_client_mp468.cc` 面板显示 `Build: v17 bridge throttle diagnostics`
+  - `start_video_client_mediapipe.cmd` 会优先用 Edge/Chrome 带后台限速禁用 flags 打开 bridge 窗口
+- 提交记录：
+  - 待本轮修复提交
+- 更新过的文件或工具：
+  - `demo\desktop\video_client_mp468.cc`
+  - `demo\CMakeLists.txt`
+  - `start_video_client.cmd`
+  - `start_video_client_mediapipe.cmd`
+  - `docs\windows_video_client_mediapipe_bridge.md`
+  - `claude-progress.md`
+  - `feature_list.json`
+- 已知风险或未解决问题：
+  - 如果 v17 启动后的 `Landmark FPS` 仍接近 1 FPS，说明问题不是普通浏览器后台限速，需要继续评估 WebSocket/共享内存或 C++ MediaPipe 内嵌版
+  - 启动脚本只有在找到 Edge 或 Chrome 时才会带性能 flags 打开 bridge；找不到浏览器时仍回退到系统默认打开 URL
+  - `init.sh` 仍是占位脚本，尚不能代表本项目标准验证入口，本轮仍按既有记录未运行它以避免执行无关 npm install/test/dev
+- 下一步最佳动作：
+  - 用户运行 `.\start_video_client_mediapipe.cmd` 试 v17，并确认面板显示 `Build: v17 bridge throttle diagnostics`
+  - 重点观察 `Landmark FPS` 是否从 1.0 提升，以及 `frame age/frame->landmark` 是否不再为大负数
+
+### Session 009
+
+- 日期：2026-06-22
+- 本轮目标：根据 v17 实测 `Landmark FPS: 15.4`、`frame age: 132ms`、`landmark age: 78ms`，做 v18 口红动态延迟补偿版
+- 已完成：
+  - 客户端产物升级为 `gpupixel_video_client_v18.exe`，启动脚本优先 v18，并保留 v17/v16/v15/v14/v13/v12/v11 回退
+  - 口红预测从固定 lead 改为 age-compensated lead：优先按 `frame age`，异常时退回 `landmark age`
+  - 动态 lead 只作用于 MP468 唇部点，不改变瘦脸、大眼、磨皮、美白、腮红链路
+  - 加入保护条件：`Landmark FPS` 过低、检测间隔异常、点位年龄异常时不启用动态预测
+  - 单点预测位移继续有限制，避免大幅转头或断帧时口红飞出
+  - 面板显示 `Lip landmarks: live/raw + age lead xxms xN.NN`，方便确认补偿是否生效
+  - `bridge.js` 在成功处理新帧后下一轮 poll 等待从 16ms 改为 0ms，重复帧仍回到 16ms 等待，减少固定轮询等待且避免空转
+  - 文档更新为 v18 动态补偿链路；`lipstick-002` 仍保持 `in_progress`，等待用户实测口红跟随和边缘表现
+- 运行过的验证：
+  - `node --check desktop_mediapipe_bridge\bridge.js`
+  - Codex bundled Python 执行 `-m py_compile desktop_mediapipe_bridge\bridge_server.py`
+  - Codex bundled Python 执行 `-m json.tool feature_list.json`
+  - `git diff --check`
+  - `cmake --build build\windows-nmake --config Release --target gpupixel_video_client`
+- 已记录证据：
+  - 构建成功生成 `build\windows-nmake\out\bin\gpupixel_video_client_v18.exe`
+  - `demo\desktop\video_client_mp468.cc` 面板显示 `Build: v18 age compensated lipstick`
+  - `Lip landmarks` 面板可显示 `live/raw + age lead xxms xN.NN`
+  - `start_video_client.cmd` 和 `start_video_client_mediapipe.cmd` 优先选择 v18，并保留 v17/v16/v15/v14/v13/v12/v11 回退
+  - `desktop_mediapipe_bridge\bridge.js` 成功处理新帧后下一轮 poll 使用 0ms，重复帧或无帧时使用 16ms
+- 提交记录：
+  - 待本轮修复提交
+- 更新过的文件或工具：
+  - `demo\desktop\video_client_mp468.cc`
+  - `desktop_mediapipe_bridge\bridge.js`
+  - `demo\CMakeLists.txt`
+  - `start_video_client.cmd`
+  - `start_video_client_mediapipe.cmd`
+  - `docs\windows_video_client_mediapipe_bridge.md`
+  - `claude-progress.md`
+  - `feature_list.json`
+- 已知风险或未解决问题：
+  - 动态补偿是预测，不是新的检测结果；快速反向运动或遮挡时仍可能过冲，因此保留了 FPS、age 和单点位移上限
+  - 如果 v18 仍有明显慢半拍，说明剩余延迟已超出轻量预测可接受范围，下一步应评估 C++ MediaPipe 内嵌或 C++ 侧嘴部 ROI 跟踪
+  - `init.sh` 仍是占位脚本，尚不能代表本项目标准验证入口，本轮仍按既有记录未运行它以避免执行无关 npm install/test/dev
+- 下一步最佳动作：
+  - 用户运行 `.\start_video_client_mediapipe.cmd` 试 v18，并确认面板显示 `Build: v18 age compensated lipstick`
+  - 重点观察说话和抿嘴时 `Lip landmarks` 是否显示 `age lead`，以及口红是否比 v17 更跟嘴
+
+### Session 010
+
+- 日期：2026-06-22
+- 本轮目标：按 `session-handoff.md` 的方向，以 v18 为 baseline 做 v19 温和预测版，解决 v18 仍慢半拍、而激进 v19 原型过冲抖动的问题
+- 背景：之前的激进 v19 原型（连续逐点速度外推）实测跟嘴变差，已回退到 v18 commit `8e11753`；本轮重新实现 v19，采用 handoff 推荐的“中心位移+轻形变”拆分思路
+- 已完成：
+  - `demo\desktop\video_client_mp468.cc` 重写 `UpdateLipLandmarksWithLead`：把唇部运动拆成“嘴部整体中心位移”和“单点形变”两部分
+  - 嘴部中心位移按 landmark age（`js_detect_end_ms`，frame age 仅作回退）做温和 lead，参数下调：`kLipLeadMaxScale 2.25->1.0`、`kLipLeadMaxAgeMs 140->80`、新增 `kLipCenterMaxDelta=0.010`
+  - 单点形变（相对中心的变化）只做 `kLipShapeLeadScale=0.35` 的弱 lead，并用 `kLipShapeMaxDelta=0.006` 限幅，避免放大 jitter 和头动
+  - 保留 v18 的安全门：FPS 过低、检测间隔异常、点位年龄异常时不预测；预测仍只作用于新帧那一拍，重复帧回退 raw，杜绝停顿/反向时的持续外推
+  - 新增 `Lip pred gap` 面板读数（平均 raw->pred 位移，单位 px）和 `lip_pred_gap_norm()` 访问器
+  - `Lip debug` 叠加层同时绘制 raw（绿）与 pred（青）唇线，便于人眼判断是否过冲
+  - 面板版本改为 `Build: v19 center-lead lipstick`，`Lip landmarks` 文案改为 `center lead`
+  - `demo\CMakeLists.txt` 输出名改为 `gpupixel_video_client_v19`；两个启动脚本优先 v19 并保留 v18/v17/... 回退
+  - 文档 `docs\windows_video_client_mediapipe_bridge.md` 增加 v19 说明，pipeline 改为 v19.exe
+- 运行过的验证：
+  - `node --check desktop_mediapipe_bridge\bridge.js` 通过（本轮未改 bridge.js）
+  - 系统 Python 执行 `-m py_compile desktop_mediapipe_bridge\bridge_server.py` 通过（本轮未改）
+  - 用 Grep/Read 核对 `DrawControlPanel`(14 参)、`RenderControlOnlyFrame`(11 参)、`DrawLipDebugOverlay`(7 参) 定义与全部调用点 arity 一致
+  - `feature_list.json` 经 Read 核对结构完整（结尾 `]`/`}` 正常、字符串内 `\\` 正确转义）；注：本会话 Linux 沙箱挂载对该文件是会话初的过期快照，`json.tool` 跑的是旧副本，故改用 Read 核对
+- 未运行（需用户在 Windows 上做）：
+  - `cmake --build build\windows-nmake --config Release --target gpupixel_video_client`（本会话 Linux 沙箱无 MSVC + Windows GPUPixel 依赖，无法编译）
+  - 打开摄像头人眼验收口红跟随/边缘/张嘴牙齿保护
+- 更新过的文件或工件：
+  - `demo\desktop\video_client_mp468.cc`
+  - `demo\CMakeLists.txt`
+  - `start_video_client.cmd`
+  - `start_video_client_mediapipe.cmd`
+  - `docs\windows_video_client_mediapipe_bridge.md`
+  - `claude-progress.md`
+  - `feature_list.json`
+  - `session-handoff.md`
+- 已知风险或未解决问题：
+  - v19 的 C++ 改动只过了静态/人工核对，尚未在 Windows 上编译运行，存在编译期未发现问题的可能（已尽量核对所有调用点 arity 与头文件 include）
+  - 仍是预测而非真实新检测；极快反向运动或遮挡时仍可能轻微过冲，已用中心/形变限幅和单帧生效策略压制
+  - 若 v19 仍慢半拍，说明剩余延迟超出轻量预测范围，下一步应评估 C++ MediaPipe 内嵌或 C++ 侧嘴部 ROI 跟踪
+  - `init.sh` 仍是占位脚本，本轮按既有记录未运行
+- 下一步最佳动作：
+  - 用户在 Windows 上 `cmake --build ...` 构建出 `gpupixel_video_client_v19.exe`
+  - 运行 `.\start_video_client_mediapipe.cmd`，确认面板显示 `Build: v19 center-lead lipstick`
+  - 重点对比 v18：说话/抿嘴/转头时口红是否更跟嘴且不过冲；打开 `Lip debug` 看绿线(raw)与青线(pred)间距，`Lip pred gap` px 是否合理（过大说明仍过冲，需再下调 `kLipLeadMaxScale`/`kLipShapeLeadScale`）
+
+### Session 011
+
+- 日期：2026-06-22
+- 本轮目标：用户改变计划——先冻结口红，新增“嘴型放大缩小”和“鼻子/鼻翼放大缩小”两个特效，并把调节 UI 做大
+- 已完成：
+  - 冻结口红：v19 唇部预测代码保留未回退，`feature_list.json` 中 `lipstick-002` 状态从 `in_progress` 改为 `blocked`（blocker=用户主动冻结）
+  - `src\filter\face_reshape_filter.cc` 两个 shader 变体（GLES/GL）均新增：`mouthResizeDelta`/`noseResizeDelta` uniform、有符号半径缩放 `scaleFeature`（delta>0 放大、<0 缩小、影响限制在 radius 内）、`mouthReshape` 和 `noseReshape`，并在 `main()` 的 thinFace/bigEye 之后调用；`facePoints` 数组从 `106*2` 扩到 `111*2` 以匹配实际上传的 222 个 float
+  - 嘴部中心/半径用 84/90 嘴角与 87/93 上下唇中心；鼻子用 80/81 鼻翼外点与 48/49 鼻尖/鼻下点（均为 111 点布局内、<106 的安全索引）
+  - `include\gpupixel\filter\face_reshape_filter.h` 增加 `SetMouthResizeLevel`/`SetNoseResizeLevel` 与成员；`.cc` 增加 setter 实现、`RegisterProperty` 和 Init 默认 0；`DoRender` 上传两个新 uniform
+  - `demo\desktop\video_client_mp468.cc`：`BeautyState` 增加 `mouth_resize`/`nose_resize`（带符号），`ApplyState` 调用新 setter（×`kMouthResizeStrength`/`kNoseResizeStrength`=0.30），面板新增 `Mouth size`/`Nose size` 滑块（-1..+1）
+  - 放大 UI：`SetupImGui` 设 `io.FontGlobalScale=1.6` 和 `ScaleAllSizes(1.6)`，面板 `PushItemWidth(260*1.6)` 加宽滑块
+  - 版本升 v20：面板 `Build: v20 mouth+nose reshape`，CMake 输出名 `gpupixel_video_client_v20`，两个启动脚本优先 v20 并保留 v19/v18/... 回退；文档新增 v20 说明
+- 运行过的验证：
+  - 用 Grep/Read 核对两个 shader 变体都含 `facePoints[111*2]`、`mouthResizeDelta`/`noseResizeDelta` uniform、`scaleFeature`/`mouthReshape`/`noseReshape` 定义与 main() 调用，DoRender 也上传了两个 uniform
+  - 核对头文件 setter 声明、`.cc` setter 实现、`BeautyState`/`ApplyState`/面板滑块、`SetupImGui` 放大设置一致
+  - `feature_list.json` 经 Read 核对新条目 `reshape-mouth-nose-001` 结构完整、逗号/括号平衡（本会话 Linux 沙箱挂载对该文件仍是过期快照，`json.tool` 不可信，改用 Read 核对）
+- 未运行（需用户在 Windows 上做）：
+  - `cmake --build build\windows-nmake --config Release --target gpupixel_video_client`（沙箱无 MSVC，无法编译）
+  - 打开摄像头人眼验收嘴/鼻放大缩小幅度与自然度、UI 是否够大
+- 更新过的文件或工件：
+  - `src\filter\face_reshape_filter.cc`
+  - `include\gpupixel\filter\face_reshape_filter.h`
+  - `demo\desktop\video_client_mp468.cc`
+  - `demo\CMakeLists.txt`
+  - `start_video_client.cmd`
+  - `start_video_client_mediapipe.cmd`
+  - `docs\windows_video_client_mediapipe_bridge.md`
+  - `claude-progress.md`
+  - `feature_list.json`
+  - `session-handoff.md`
+- 已知风险或未解决问题：
+  - v20 的 C++/GLSL 改动只过了静态/人工核对，尚未在 Windows 上编译运行；GLSL 在目标驱动上的编译、以及 `facePoints` 数组从 212 扩到 222 的兼容性需实机确认
+  - 嘴/鼻形变强度（0.30）和半径系数（嘴 0.85×嘴宽、鼻 1.15×鼻翼宽）是初值，可能偏强或偏弱，需人眼微调
+  - 口红为用户主动冻结，非技术阻塞；解冻后继续 `lipstick-002`
+  - `init.sh` 仍是占位脚本，本轮按既有记录未运行
+- 下一步最佳动作：
+  - 用户在 Windows 上构建出 `gpupixel_video_client_v20.exe`
+  - 运行 `.\start_video_client_mediapipe.cmd`，确认面板 `Build: v20 mouth+nose reshape` 和 `Mouth size`/`Nose size` 两个滑块、UI 变大
+  - 拖动两个滑块正/负向验收嘴和鼻子的放大缩小；若过度变形就下调 `kMouthResizeStrength`/`kNoseResizeStrength` 或半径系数
+
+### Session 012
+
+- 日期：2026-06-22
+- 本轮目标：用户已构建 v20 验收嘴/鼻 reshape（满格太强已下调 0.30→0.15 并认可）；本轮新增眉毛加深特效（v21）
+- 已完成：
+  - 确认 v20 reshape 经用户人眼验收，`reshape-mouth-nose-001` 标记为 `passing`；强度从 0.30 下调到 0.15
+  - 新建 `demo\desktop\eyebrow_renderer_mp468.h/.cc`（`EyebrowRendererMP468`）：仿照 `lip_renderer_mp468`，用 MP468 眉毛点构左右眉多边形，带边缘羽化、小幅外扩和眉毛-发丝置信度 `BrowConfidence`（暗发丝加深更多、亮皮肤少压暗），对区域做乘法变暗
+  - 右眉环 MP 70/63/105/66/107/55/65/52/53/46，左眉环 300/293/334/296/336/285/295/282/283/276
+  - `demo\CMakeLists.txt` 的 gpupixel_video_client target 增加 `eyebrow_renderer_mp468.cc`
+  - `demo\desktop\video_client_mp468.cc`：include + using；`BeautyState` 加 `eyebrow`；主循环后处理块改为同时支持口红和眉毛（写入同一 `lipstick_frame`，任一生效就显示）；面板新增 `Eyebrow` 滑块（0..10）；实例化 `eyebrow_renderer`；眉毛用 `bridge.mediapipe_landmarks()` 平滑 468 点
+  - 版本升 v21：面板 `Build: v21 eyebrow darken`，CMake 输出名 `gpupixel_video_client_v21`，两个启动脚本优先 v21 并保留 v20/v19/... 回退；文档更新
+- 关于 git/AGENTS.md（用户本轮提问）：
+  - 截至本轮 HEAD 仍是 `8e11753`（v18），v19/v20/v21 全部改动**未提交**，按既有交接约定提交由用户在本机 PowerShell 执行（且沙箱 git 有 index.lock 权限问题）
+  - AGENTS.md 大部分遵守（读状态文件、单一活动功能、记录证据/风险、更新持久化文件、交接文档）；两处缺口：`init.sh` 仍是占位脚本未跑（历史 blocker）、提交步骤交给用户
+- 运行过的验证：
+  - 用 Grep/Read 核对 include/using、`BeautyState.eyebrow`、后处理块、UI 滑块、`eyebrow_renderer` 实例化、CMake 源文件、版本号与脚本一致
+  - `eyebrow_renderer_mp468.cc` 几何/羽化逻辑严格镜像已验证可用的 `lip_renderer_mp468.cc`
+  - `feature_list.json` 经 Read 核对新条目 `eyebrow-darken-001` 与 reshape passing 改动结构完整（沙箱挂载对该文件仍过期，`json.tool` 不可信）
+- 未运行（需用户在 Windows 上做）：
+  - `cmake --build ...`（沙箱无 MSVC）
+  - 打开摄像头人眼验收眉毛加深强度与自然度
+- 更新过的文件或工件：
+  - `demo\desktop\eyebrow_renderer_mp468.h`（新）
+  - `demo\desktop\eyebrow_renderer_mp468.cc`（新）
+  - `demo\desktop\video_client_mp468.cc`
+  - `demo\CMakeLists.txt`
+  - `start_video_client.cmd`
+  - `start_video_client_mediapipe.cmd`
+  - `docs\windows_video_client_mediapipe_bridge.md`
+  - `claude-progress.md`
+  - `feature_list.json`
+  - `session-handoff.md`
+- 已知风险或未解决问题：
+  - v21 的新文件与改动只过了静态/人工核对，尚未在 Windows 上编译运行（新增源文件需 cmake 重新配置/构建才会纳入）
+  - 眉毛加深强度 `darkness=0.55` 和羽化是初值，可能偏强/偏弱，需人眼微调
+  - 多个版本（v19/v20/v21）一直未提交，历史不可回退，建议用户尽快 commit
+  - `init.sh` 仍是占位脚本
+- 下一步最佳动作：
+  - 用户在 Windows 上重新构建（新增了源文件，建议确保 CMake 重新配置）出 `gpupixel_video_client_v21.exe`
+  - 运行 `.\start_video_client_mediapipe.cmd`，确认 `Build: v21 eyebrow darken` 和 `Eyebrow` 滑块
+  - 拉高 Eyebrow 验收眉毛加深；过强就下调 `eyebrow_renderer_mp468.h` 里的 `darkness`，边缘生硬就调 `edge_feather_px`

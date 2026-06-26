@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "vBc8UnMcKr25SSK2uVZ4v+KvMoyHU5J4HVqNZBbmYhBNVVUj4rM4QI9esZ+OJoRfMMTCY6hXHLekXDhVSZJFUQ==",
+  "success": true,
+  "projectFilePath": "D:\\work\\makeup\\local-tts-service\\winrt-tts\\WinRtLocalTts.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\王有道\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.28\\microsoft.windows.sdk.net.ref.10.0.19041.28.nupkg.sha512"
+  ],
+  "logs": []
+}

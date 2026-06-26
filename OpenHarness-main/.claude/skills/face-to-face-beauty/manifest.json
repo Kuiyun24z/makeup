@@ -1,0 +1,41 @@
+{
+  "name": "face-to-face-beauty",
+  "version": "1.0.0",
+  "description": "ComfyUI Face-to-Face 美颜工作流：在原本人脸上瘦脸、美肤、美妆，背景与身份保留",
+  "comfyui_version": ">=0.24.0",
+  "custom_nodes": [
+    {
+      "path": "custom_nodes/ComfyUI-RealtimeBeauty",
+      "required_nodes": [
+        "FaceToFaceBeauty",
+        "LoadImage",
+        "LoadMediaPipeFaceLandmarker",
+        "MediaPipeFaceLandmarker",
+        "SaveImage",
+        "PreviewImage"
+      ]
+    }
+  ],
+  "models": [
+    {
+      "path": "models/detection/mediapipe_face_fp32.safetensors",
+      "download": "custom_nodes/ComfyUI-RealtimeBeauty/download_mediapipe_model.py"
+    }
+  ],
+  "workflow": {
+    "api": "workflow/face-to-face-beauty.api.json",
+    "defaults": "params/default.json",
+    "user_install_path": "user/default/workflows/Image High Quality Makeup.json"
+  },
+  "server": {
+    "scheme": "https",
+    "host": "127.0.0.1",
+    "port": 8188,
+    "start_script": "start_remote.sh",
+    "tls_self_signed": true
+  },
+  "inputs": {
+    "image_dir": "input",
+    "output_dir": "output"
+  }
+}

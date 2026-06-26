@@ -1,0 +1,9 @@
+{
+  "name": "pixelfree-demo",
+  "version": "1.0.0",
+  "description": "PixelFree 美颜 SDK UniApp Demo",
+  "main": "main.js",
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {}
+}

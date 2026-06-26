@@ -1,0 +1,93 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs and generated bundles
+dist/
+build/
+out/
+.next/
+.nuxt/
+.vite/
+coverage/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.logs/
+
+# Runtime caches / local tool state
+.cache/
+.tmp/
+tmp/
+temp/
+.uv-cache/
+.ohmo-beauty-studio/
+.superpowers/
+
+# Environment and local machine config
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.local
+*.local.*
+beauty-studio.local.ps1
+.tmp-*.ps1
+imgui.ini
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+env/
+
+# Native/CMake build artifacts
+CMakeFiles/
+CMakeCache.txt
+cmake-build-*/
+*.obj
+*.o
+*.a
+*.lib
+*.dll
+*.exe
+*.pdb
+*.ilk
+
+# IDE / editor
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Large model/checkpoint artifacts
+models/
+*.onnx
+*.bin
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+*.gguf
+
+# Archives and generated packages
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.rar

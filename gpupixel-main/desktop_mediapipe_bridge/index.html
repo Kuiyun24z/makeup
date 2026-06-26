@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GPUPixel MediaPipe Bridge</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: Segoe UI, Arial, sans-serif;
+        background: #f6f7f4;
+        color: #20302f;
+      }
+      body {
+        margin: 0;
+        padding: 24px;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 16px;
+        margin-bottom: 18px;
+      }
+      h1 {
+        font-size: 24px;
+        margin: 0;
+      }
+      #status {
+        color: #60706d;
+        margin: 0;
+      }
+      main {
+        display: grid;
+        grid-template-columns: minmax(360px, 720px) 280px;
+        gap: 18px;
+        align-items: start;
+      }
+      canvas {
+        width: 100%;
+        background: #111817;
+        border: 1px solid #cdd6d1;
+        border-radius: 6px;
+      }
+      section {
+        border-left: 1px solid #d7ded9;
+        padding-left: 18px;
+      }
+      dl {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        row-gap: 10px;
+        margin: 0;
+        font-size: 14px;
+      }
+      dt {
+        color: #60706d;
+      }
+      dd {
+        margin: 0;
+        font-variant-numeric: tabular-nums;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>GPUPixel MediaPipe Bridge</h1>
+        <p id="status">Loading MediaPipe...</p>
+      </div>
+    </header>
+    <main>
+      <canvas id="preview" width="640" height="360"></canvas>
+      <section>
+        <dl>
+          <dt>Frame</dt>
+          <dd id="frameSeq">-</dd>
+          <dt>MediaPipe</dt>
+          <dd id="mpState">loading</dd>
+          <dt>Face</dt>
+          <dd id="faceState">waiting</dd>
+          <dt>Posted</dt>
+          <dd id="postedCount">0</dd>
+        </dl>
+      </section>
+    </main>
+    <script type="module" src="/bridge.js"></script>
+  </body>
+</html>
