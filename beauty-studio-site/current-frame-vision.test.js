@@ -6,6 +6,9 @@ const path = require("node:path");
 const {
   createVisionRequestRegistry,
   buildCurrentFrameVisionPrompt,
+  buildArkChatCompletionsUrl,
+  buildArkChatVisionPayload,
+  extractArkTextFromPayload,
 } = require("./current-frame-vision");
 
 test("视觉请求同一轮只能领取一次并能发送真实进度", () => {
@@ -96,5 +99,60 @@ test("当前画面视觉请求限制短输出并预留足够超时时间", () =>
     server,
     /CURRENT_FRAME_VISION_TIMEOUT_MS\s*=\s*Number\(process\.env\.CURRENT_FRAME_VISION_TIMEOUT_MS\s*\|\|\s*30000\)/
   );
-  assert.match(server, /max_output_tokens:\s*800/);
+  assert.match(server, /maxTokens:\s*800/);
+});
+
+test("current-frame Ark vision uses OpenAI-compatible chat image format", () => {
+  assert.equal(
+    buildArkChatCompletionsUrl("https://ark.cn-beijing.volces.com/api/v3/responses"),
+    "https://ark.cn-beijing.volces.com/api/v3/chat/completions"
+  );
+  assert.equal(
+    buildArkChatCompletionsUrl("https://ark.cn-beijing.volces.com/api/v3"),
+    "https://ark.cn-beijing.volces.com/api/v3/chat/completions"
+  );
+
+  const payload = buildArkChatVisionPayload({
+    model: "doubao-seed-1-6-vision-250815",
+    imageBuffer: Buffer.from("abc"),
+    imageMimeType: "image/jpeg",
+    promptText: "Return JSON only.",
+    maxTokens: 800,
+  });
+
+  assert.equal(payload.model, "doubao-seed-1-6-vision-250815");
+  assert.equal(payload.max_tokens, 800);
+  assert.deepEqual(payload.response_format, { type: "json_object" });
+  assert.equal(payload.messages[0].role, "user");
+  assert.deepEqual(payload.messages[0].content[0], {
+    type: "text",
+    text: "Return JSON only.",
+  });
+  assert.deepEqual(payload.messages[0].content[1], {
+    type: "image_url",
+    image_url: {
+      url: `data:image/jpeg;base64,${Buffer.from("abc").toString("base64")}`,
+    },
+  });
+  assert.doesNotMatch(JSON.stringify(payload), /input_image/);
+  assert.doesNotMatch(JSON.stringify(payload), /max_output_tokens/);
+});
+
+test("Ark chat completion text is extracted once from string message content", () => {
+  const content = JSON.stringify({
+    visible: false,
+    gentleSuggestion: "测试图不可见",
+  });
+  const text = extractArkTextFromPayload({
+    choices: [
+      {
+        message: {
+          content,
+        },
+      },
+    ],
+  });
+
+  assert.equal(text, content);
+  assert.doesNotMatch(text, new RegExp(`${content}\\s+${content}`));
 });

@@ -100,7 +100,109 @@ function buildCurrentFrameVisionPrompt({
   ].join("\n");
 }
 
+function stripArkCompletionSuffix(rawUrl) {
+  const trimmed = String(rawUrl || "").trim().replace(/\/+$/, "");
+  return trimmed
+    .replace(/\/responses$/i, "")
+    .replace(/\/chat\/completions$/i, "");
+}
+
+function buildArkChatCompletionsUrl(rawUrl) {
+  const base = stripArkCompletionSuffix(rawUrl);
+  return base ? `${base}/chat/completions` : "";
+}
+
+function buildArkChatVisionPayload({
+  model = "",
+  imageBuffer,
+  imageBase64 = "",
+  imageMimeType = "image/jpeg",
+  promptText = "",
+  maxTokens = 800,
+} = {}) {
+  const base64 = imageBase64 || Buffer.from(imageBuffer || "").toString("base64");
+  const mimeType = String(imageMimeType || "image/jpeg").split(";")[0].trim() || "image/jpeg";
+  const imageUrl = `data:${mimeType};base64,${base64}`;
+
+  return {
+    model,
+    max_tokens: maxTokens,
+    response_format: {
+      type: "json_object",
+    },
+    messages: [
+      {
+        role: "user",
+        content: [
+          {
+            type: "text",
+            text: String(promptText || ""),
+          },
+          {
+            type: "image_url",
+            image_url: {
+              url: imageUrl,
+            },
+          },
+        ],
+      },
+    ],
+  };
+}
+
+function extractArkTextFromPayload(payload) {
+  if (!payload || typeof payload !== "object") {
+    return "";
+  }
+
+  if (typeof payload.output_text === "string" && payload.output_text.trim()) {
+    return payload.output_text.trim();
+  }
+
+  const chunks = [];
+  const pushText = (value) => {
+    if (typeof value === "string" && value.trim()) {
+      chunks.push(value.trim());
+    }
+  };
+  const walkContent = (content) => {
+    if (typeof content === "string") {
+      pushText(content);
+      return;
+    }
+    if (!Array.isArray(content)) {
+      return;
+    }
+    for (const item of content) {
+      pushText(item?.text);
+      pushText(item?.output_text);
+      walkContent(item?.content);
+    }
+  };
+
+  walkContent(payload.content);
+  walkContent(payload.output);
+
+  if (Array.isArray(payload.output)) {
+    for (const item of payload.output) {
+      pushText(item?.text);
+      walkContent(item?.content);
+    }
+  }
+
+  if (Array.isArray(payload.choices)) {
+    for (const choice of payload.choices) {
+      walkContent(choice?.message?.content);
+    }
+  }
+
+  return chunks.join("\n").trim();
+}
+
 module.exports = {
   createVisionRequestRegistry,
   buildCurrentFrameVisionPrompt,
+  buildArkChatCompletionsUrl,
+  buildArkChatVisionPayload,
+  extractArkTextFromPayload,
 };

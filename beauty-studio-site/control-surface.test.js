@@ -18,6 +18,13 @@ test("前端不再显示播报音色选择框", () => {
   );
 });
 
+test("服务端不把 GPUPixel 内部运行模式当成用户回复", () => {
+  const server = read("server.js");
+
+  assert.doesNotMatch(server, /GPUPixel active mode/);
+  assert.doesNotMatch(server, /nextStep[\s\S]{0,120}moduleFocus\s*\|\|/);
+});
+
 test("删除音色选择后仍保留默认 TTS 播报链路", () => {
   const app = read("public/app.js");
   const adapter = read("public/audio/tts-adapter.js");

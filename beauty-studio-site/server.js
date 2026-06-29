@@ -13,14 +13,38 @@ const {
 const {
   createVisionRequestRegistry,
   buildCurrentFrameVisionPrompt,
+  buildArkChatCompletionsUrl,
+  buildArkChatVisionPayload,
+  extractArkTextFromPayload,
 } = require("./current-frame-vision");
 const { buildBeautyOpenHarnessPrompt } = require("./openharness-prompt");
 const {
+  buildBeautyCapabilityContext,
+  enforceBeautyCapabilityBoundary,
+  shouldBufferBeautyCapabilitySensitiveReply,
+} = require("./beauty-capabilities");
+const {
   shouldResolveOpenHarnessAssistant,
 } = require("./openharness-bridge-events");
+const {
+  readBeautyUserProfile,
+  resetBeautyUserProfile,
+  setBeautyUserConsent,
+  summarizeBeautyUserFeedbackReflectionForPrompt,
+  summarizeBeautyUserProfileForPrompt,
+  getNextOnboardingField,
+  getNextOnboardingQuestion,
+  markOnboardingQuestionAsked,
+  shouldAskOnboardingThisTurn,
+  updateBeautyUserBehaviorAdaptation,
+  updateBeautyUserFeedbackReflection,
+  updateBeautyUserProfileFromText,
+  writeBeautyUserProfile,
+} = require("./beauty-user-memory");
 
 const SITE_ROOT = __dirname;
 const PUBLIC_ROOT = path.join(SITE_ROOT, "public");
+const BEAUTY_USER_MEMORY_DIR = path.resolve(SITE_ROOT, "..", ".ohmo-beauty-studio", "data", "beauty-user-memory");
 const HOST = process.env.HOST || "127.0.0.1";
 const PORT = Number(process.env.PORT || 4173);
 const REQUEST_TIMEOUT_MS = 45000;
@@ -41,6 +65,12 @@ const OPENHARNESS_MODEL = process.env.OPENHARNESS_MODEL || "";
 const OPENHARNESS_API_FORMAT = process.env.OPENHARNESS_API_FORMAT || "";
 const OPENHARNESS_BASE_URL = process.env.OPENHARNESS_BASE_URL || "";
 const OPENHARNESS_API_KEY = process.env.OPENHARNESS_API_KEY || "";
+const ARK_CHAT_COMPLETIONS_URL = buildArkChatCompletionsUrl(
+  process.env.ARK_CHAT_COMPLETIONS_URL ||
+    process.env.ARK_BASE_URL ||
+    OPENHARNESS_BASE_URL ||
+    ARK_RESPONSES_URL
+);
 const OPENHARNESS_UV_EXE =
   process.env.OPENHARNESS_UV_EXE ||
   (fs.existsSync("C:\\ProgramData\\miniconda3\\envs\\openharness\\Scripts\\uv.exe")
@@ -264,25 +294,118 @@ function normalizeText(value) {
   return String(value || "").trim();
 }
 
+function enforceOpenHarnessReplyCapabilityBoundary(replyText, payload = {}) {
+  const result = enforceBeautyCapabilityBoundary(
+    replyText,
+    buildBeautyCapabilityContext(payload)
+  );
+  return result.text;
+}
+
+function collectBeautyUserMemoryText(payload) {
+  return [
+    payload?.userRequest,
+    payload?.finalTranscript,
+    payload?.stableTranscript,
+    payload?.partialTranscript,
+    payload?.streamAsr?.transcript?.finalTranscript,
+    payload?.streamAsr?.transcript?.stableTranscript,
+    payload?.streamAsr?.transcript?.partialTranscript,
+    payload?.realtimeSnapshot?.transcript?.finalTranscript,
+    payload?.realtimeSnapshot?.transcript?.stableTranscript,
+    payload?.realtimeSnapshot?.transcript?.partialTranscript,
+  ]
+    .map((item) => normalizeText(item))
+    .filter(Boolean)
+    .join(" ");
+}
+
+function shouldResetBeautyUserMemory(text) {
+  return /清空记忆|重置记忆|重新认识我|忘了我|删除画像/.test(normalizeText(text));
+}
+
+function shouldDenyBeautyUserMemory(text) {
+  return /别记了|不要记|不想让你记|停止记忆|以后别记/.test(normalizeText(text));
+}
+
+function shouldGrantBeautyUserMemory(text) {
+  return /可以记|记住吧|同意|允许|好呀.*记|好啊.*记|嗯.*记/.test(normalizeText(text));
+}
+
+function enrichPayloadWithBeautyUserMemory(payload = {}) {
+  const text = collectBeautyUserMemoryText(payload);
+  if (shouldResetBeautyUserMemory(text)) {
+    const profile = resetBeautyUserProfile(BEAUTY_USER_MEMORY_DIR);
+    return {
+      ...payload,
+      userMemory: {
+        summary: "用户刚刚要求清空记忆。不要引用旧画像；可以自然表示已经重新开始认识她。",
+        nextQuestion: getNextOnboardingQuestion(profile),
+        shouldAsk: true,
+        profile,
+      },
+    };
+  }
+
+  let profile = readBeautyUserProfile(BEAUTY_USER_MEMORY_DIR);
+  if (shouldDenyBeautyUserMemory(text)) {
+    profile = setBeautyUserConsent(profile, "denied");
+    writeBeautyUserProfile(BEAUTY_USER_MEMORY_DIR, profile);
+    return {
+      ...payload,
+      userMemory: {
+        summary: "用户已拒绝持久记忆。不要写入长期画像，也不要继续追问建档问题。",
+        nextQuestion: "",
+        shouldAsk: false,
+        profile,
+      },
+    };
+  }
+
+  const isGrantingBeautyUserMemory = shouldGrantBeautyUserMemory(text);
+  if (isGrantingBeautyUserMemory) {
+    profile = setBeautyUserConsent(profile, "granted");
+  }
+  const previousProfile = profile;
+  profile = updateBeautyUserProfileFromText(profile, text);
+  profile = updateBeautyUserBehaviorAdaptation(previousProfile, profile, text);
+  if (!isGrantingBeautyUserMemory) {
+    profile = updateBeautyUserFeedbackReflection(profile, text, {
+      topic: normalizeText(payload.currentStep) || "美妆建议",
+    });
+  }
+  let nextQuestion = getNextOnboardingQuestion(profile);
+  const shouldAsk = shouldAskOnboardingThisTurn(profile, text, nextQuestion);
+  if (shouldAsk) {
+    profile = markOnboardingQuestionAsked(profile, getNextOnboardingField(profile), nextQuestion);
+  } else {
+    nextQuestion = "";
+  }
+  writeBeautyUserProfile(BEAUTY_USER_MEMORY_DIR, profile);
+
+  return {
+    ...payload,
+    userMemory: {
+      summary: summarizeBeautyUserProfileForPrompt(profile),
+      feedbackReflectionSummary: summarizeBeautyUserFeedbackReflectionForPrompt(profile),
+      nextQuestion,
+      shouldAsk,
+      proactiveLevel: profile.evolution.proactiveLevel || "normal",
+      profile,
+    },
+  };
+}
+
 function buildModuleSignalHighlights(moduleSignals) {
   const highlights = [];
   const gpupixel = moduleSignals?.gpupixel || {};
   const summary = normalizeText(gpupixel.summary);
-  const mode = normalizeText(gpupixel.mode);
 
-  if (summary) {
+  if (summary && !/gpupixel|native[- ]?video[- ]?client|active/i.test(summary)) {
     highlights.push(summary);
-  }
-  if (mode) {
-    highlights.push(`GPUPixel mode: ${mode}`);
   }
 
   return highlights.slice(0, 3);
-}
-
-function buildModuleFocus(moduleSignals) {
-  const mode = normalizeText(moduleSignals?.gpupixel?.mode);
-  return mode ? `GPUPixel active mode: ${mode}` : "";
 }
 
 function buildLocalAdvice(input) {
@@ -294,16 +417,15 @@ function buildLocalAdvice(input) {
   const confidence = Number(input.faceProfile?.confidence || 0);
   const observation = String(input.observation || "").trim();
   const moduleHighlights = buildModuleSignalHighlights(input.moduleSignals);
-  const moduleFocus = buildModuleFocus(input.moduleSignals);
 
   const summaryCore = userRequest
     ? `好呀，我明白你想要“${userRequest}”。你现在的整体状态已经很不错啦，我们先把 ${stepTitle} 轻轻调整到位，效果会更自然。`
     : `你现在的整体状态已经很不错啦，我们先轻轻处理一下 ${stepTitle}，再慢慢看下一步。`;
-  const summary = moduleFocus ? `${summaryCore} ${moduleFocus}` : summaryCore;
+  const summary = summaryCore;
 
   const nextStep = stepTitle === "修容腮红"
     ? `可以先这样试试哦：${detail.contour} 完成后再补 ${detail.blush}`
-    : moduleFocus || `可以先这样试试哦：${stepGuide.focus}`;
+    : `可以先这样试试哦：${stepGuide.focus}`;
 
   const tips = [
     `${detail.signature}`,
@@ -1411,7 +1533,7 @@ function probeArkVision() {
       reason: "未配置 ARK_API_KEY，当前无法调用 Ark 视觉模型。",
       provider: "volcengine-ark",
       model: ARK_VISION_MODEL,
-      endpoint: ARK_RESPONSES_URL,
+      endpoint: ARK_CHAT_COMPLETIONS_URL,
     };
   }
 
@@ -1421,7 +1543,7 @@ function probeArkVision() {
     reason: `Ark 视觉模型已配置：${ARK_VISION_MODEL}`,
     provider: "volcengine-ark",
     model: ARK_VISION_MODEL,
-    endpoint: ARK_RESPONSES_URL,
+    endpoint: ARK_CHAT_COMPLETIONS_URL,
   };
 }
 
@@ -1609,85 +1731,22 @@ function requestBuffer(
   });
 }
 
-function extractArkText(payload) {
-  if (!payload || typeof payload !== "object") {
-    return "";
-  }
-
-  if (typeof payload.output_text === "string" && payload.output_text.trim()) {
-    return payload.output_text.trim();
-  }
-
-  const chunks = [];
-  const pushText = (value) => {
-    if (typeof value === "string" && value.trim()) {
-      chunks.push(value.trim());
-    }
-  };
-  const walkContent = (content) => {
-    if (typeof content === "string") {
-      pushText(content);
-      return;
-    }
-    if (!Array.isArray(content)) {
-      return;
-    }
-    for (const item of content) {
-      pushText(item?.text);
-      pushText(item?.output_text);
-      pushText(item?.content);
-    }
-  };
-
-  walkContent(payload.content);
-  walkContent(payload.output);
-
-  if (Array.isArray(payload.output)) {
-    for (const item of payload.output) {
-      pushText(item?.text);
-      walkContent(item?.content);
-    }
-  }
-
-  if (Array.isArray(payload.choices)) {
-    for (const choice of payload.choices) {
-      pushText(choice?.message?.content);
-      walkContent(choice?.message?.content);
-    }
-  }
-
-  return chunks.join("\n").trim();
-}
-
 async function callArkCurrentFrameVision({ imageBuffer, imageMimeType, question, analysisFocus }) {
-  const imageUrl = `data:${imageMimeType || "image/jpeg"};base64,${imageBuffer.toString("base64")}`;
-  const result = await requestJson(ARK_RESPONSES_URL, {
+  const result = await requestJson(ARK_CHAT_COMPLETIONS_URL, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${ARK_API_KEY}`,
     },
-    body: {
+    body: buildArkChatVisionPayload({
       model: ARK_VISION_MODEL,
-      max_output_tokens: 800,
-      input: [
-        {
-          role: "user",
-          content: [
-            {
-              type: "input_image",
-              image_url: imageUrl,
-            },
-            {
-              type: "input_text",
-              text: buildCurrentFrameVisionPrompt({
-                question,
-                analysisFocus,
-              }),
-            },
-          ],
-        },
-      ],
-    },
+      imageBuffer,
+      imageMimeType,
+      promptText: buildCurrentFrameVisionPrompt({
+        question,
+        analysisFocus,
+      }),
+      maxTokens: 800,
+    }),
     timeoutMs: CURRENT_FRAME_VISION_TIMEOUT_MS,
   });
 
@@ -1700,7 +1759,7 @@ async function callArkCurrentFrameVision({ imageBuffer, imageMimeType, question,
     );
   }
 
-  const assistantText = extractArkText(result.payload);
+  const assistantText = extractArkTextFromPayload(result.payload);
   const jsonCandidate = extractJsonCandidate(assistantText);
   const parsed = jsonCandidate ? safeParseJson(jsonCandidate) : null;
   if (!parsed || typeof parsed !== "object") {
@@ -1712,30 +1771,18 @@ async function callArkCurrentFrameVision({ imageBuffer, imageMimeType, question,
 }
 
 async function callArkVision(input) {
-  const imageUrl = `data:${input.imageMimeType || "image/jpeg"};base64,${input.imageBase64}`;
-  const result = await requestJson(ARK_RESPONSES_URL, {
+  const result = await requestJson(ARK_CHAT_COMPLETIONS_URL, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${ARK_API_KEY}`,
     },
-    body: {
+    body: buildArkChatVisionPayload({
       model: ARK_VISION_MODEL,
-      input: [
-        {
-          role: "user",
-          content: [
-            {
-              type: "input_image",
-              image_url: imageUrl,
-            },
-            {
-              type: "input_text",
-              text: buildPrompt(input),
-            },
-          ],
-        },
-      ],
-    },
+      imageBase64: input.imageBase64,
+      imageMimeType: input.imageMimeType,
+      promptText: buildPrompt(input),
+      maxTokens: 800,
+    }),
   });
 
   if (!result.ok) {
@@ -1747,7 +1794,7 @@ async function callArkVision(input) {
     );
   }
 
-  const assistantText = extractArkText(result.payload);
+  const assistantText = extractArkTextFromPayload(result.payload);
   const jsonCandidate = extractJsonCandidate(assistantText);
   const parsed = jsonCandidate ? safeParseJson(jsonCandidate) : null;
   if (!parsed) {
@@ -1855,6 +1902,88 @@ async function handleCurrentFrameVision(req, res) {
       ok: false,
       error: error.message,
     });
+  }
+}
+
+async function handleUserMemoryProfile(req, res) {
+  try {
+    if (req.method === "GET") {
+      const profile = readBeautyUserProfile(BEAUTY_USER_MEMORY_DIR);
+      sendJson(res, 200, {
+        ok: true,
+        profile,
+        summary: summarizeBeautyUserProfileForPrompt(profile),
+        nextQuestion: getNextOnboardingQuestion(profile),
+      });
+      return;
+    }
+
+    const raw = await readRequestBody(req);
+    const payload = raw ? safeParseJson(raw) : {};
+    if (payload === null || typeof payload !== "object") {
+      sendJson(res, 400, { ok: false, error: "Invalid JSON payload." });
+      return;
+    }
+    const current = readBeautyUserProfile(BEAUTY_USER_MEMORY_DIR);
+    const text = normalizeText(payload.text || payload.userRequest || "");
+    const merged = updateBeautyUserProfileFromText(
+      {
+        ...current,
+        ...(payload.profile && typeof payload.profile === "object" ? payload.profile : {}),
+        consent: payload.profile?.consent || current.consent,
+      },
+      text
+    );
+    const storedPath = writeBeautyUserProfile(BEAUTY_USER_MEMORY_DIR, merged);
+    sendJson(res, 200, {
+      ok: true,
+      persisted: Boolean(storedPath),
+      profile: storedPath ? readBeautyUserProfile(BEAUTY_USER_MEMORY_DIR) : merged,
+      summary: summarizeBeautyUserProfileForPrompt(merged),
+      nextQuestion: getNextOnboardingQuestion(merged),
+    });
+  } catch (error) {
+    sendJson(res, 500, { ok: false, error: error.message });
+  }
+}
+
+async function handleUserMemoryConsent(req, res) {
+  try {
+    const raw = await readRequestBody(req);
+    const payload = raw ? safeParseJson(raw) : {};
+    if (payload === null || typeof payload !== "object") {
+      sendJson(res, 400, { ok: false, error: "Invalid JSON payload." });
+      return;
+    }
+    let profile = readBeautyUserProfile(BEAUTY_USER_MEMORY_DIR);
+    profile = setBeautyUserConsent(
+      profile,
+      payload.consent === true || payload.status === "granted" ? "granted" : "denied"
+    );
+    writeBeautyUserProfile(BEAUTY_USER_MEMORY_DIR, profile);
+    sendJson(res, 200, {
+      ok: true,
+      persisted: profile.consent.status === "granted",
+      profile,
+      summary: summarizeBeautyUserProfileForPrompt(profile),
+      nextQuestion: getNextOnboardingQuestion(profile),
+    });
+  } catch (error) {
+    sendJson(res, 500, { ok: false, error: error.message });
+  }
+}
+
+async function handleUserMemoryReset(_req, res) {
+  try {
+    const profile = resetBeautyUserProfile(BEAUTY_USER_MEMORY_DIR);
+    sendJson(res, 200, {
+      ok: true,
+      profile,
+      summary: summarizeBeautyUserProfileForPrompt(profile),
+      nextQuestion: getNextOnboardingQuestion(profile),
+    });
+  } catch (error) {
+    sendJson(res, 500, { ok: false, error: error.message });
   }
 }
 
@@ -2002,22 +2131,24 @@ async function handleAdvice(req, res) {
 
   const streamAsr = buildStreamAsrEnvelope(payload);
   payload.streamAsr = streamAsr;
+  const enrichedPayload = enrichPayloadWithBeautyUserMemory(payload);
 
   const vision = probeArkVision();
-  const fallback = buildLocalAdvice(payload);
+  const fallback = buildLocalAdvice(enrichedPayload);
 
-  if (isOpenHarnessConversation(payload)) {
+  if (isOpenHarnessConversation(enrichedPayload)) {
     try {
-      const replyText = await submitToOpenHarness(buildBeautyOpenHarnessPrompt(payload));
+      const replyText = await submitToOpenHarness(buildBeautyOpenHarnessPrompt(enrichedPayload));
+      const safeReplyText = enforceOpenHarnessReplyCapabilityBoundary(replyText, enrichedPayload);
       const voiceAdvice = {
         ...fallback,
         integration: "openharness",
         source: "agent-runtime",
-        summary: replyText || fallback.summary,
-        nextStep: replyText || fallback.nextStep,
-        teachingFocus: replyText || fallback.teachingFocus,
-        speakText: replyText || fallback.speakText,
-        replyText: replyText || fallback.nextStep || fallback.summary,
+        summary: safeReplyText || fallback.summary,
+        nextStep: safeReplyText || fallback.nextStep,
+        teachingFocus: safeReplyText || fallback.teachingFocus,
+        speakText: safeReplyText || fallback.speakText,
+        replyText: safeReplyText || fallback.nextStep || fallback.summary,
         meta: {
           vision: vision.available ? "active" : "unavailable-or-disabled",
           openharness: "active",
@@ -2184,6 +2315,7 @@ async function handleAdviceWithGpupixel(req, res) {
     }
   }
   payload.gpupixelControl = gpupixelControl;
+  const enrichedPayload = enrichPayloadWithBeautyUserMemory(payload);
 
   if (!isOpenHarnessConversation(payload)) {
     try {
@@ -2276,10 +2408,11 @@ async function handleAdviceWithGpupixel(req, res) {
           });
         };
 
-        const requestText = buildBeautyOpenHarnessPrompt(payload);
+        const requestText = buildBeautyOpenHarnessPrompt(enrichedPayload);
         const sessionId = normalizeText(payload.sessionId);
         const turnId = Number(payload.turnId || 0);
         const conversationMode = normalizeText(payload.conversationMode) || "standard";
+        const bufferCapabilitySensitiveReply = shouldBufferBeautyCapabilitySensitiveReply(enrichedPayload);
         if (gpupixelControl.applied) {
           writeEvent({
             type: "gpupixel-control",
@@ -2322,6 +2455,9 @@ async function handleAdviceWithGpupixel(req, res) {
                 if (toolName !== "inspect_current_beauty_frame") {
                   return;
                 }
+                if (!isError) {
+                  enrichedPayload.currentFrameVisionCompleted = true;
+                }
                 visionRequests.emit(
                   payload.visionRequestId,
                   isError ? "failed" : "composing",
@@ -2334,6 +2470,9 @@ async function handleAdviceWithGpupixel(req, res) {
                 pendingItem.accumulatedText = normalizeOpenHarnessReply(
                   `${pendingItem.accumulatedText}${deltaText || ""}`
                 );
+                if (bufferCapabilitySensitiveReply) {
+                  return;
+                }
                 writeEvent({
                   type: "delta",
                   text: pendingItem.accumulatedText,
@@ -2406,6 +2545,7 @@ async function handleAdviceWithGpupixel(req, res) {
         const finalReplyText = gpupixelControl.applied
           ? joinMirrorReply(gpupixelControl.message, replyText)
           : replyText;
+        const safeFinalReplyText = enforceOpenHarnessReplyCapabilityBoundary(finalReplyText, enrichedPayload);
         const voiceAdvice = {
           ...fallback,
           integration: "openharness",
@@ -2413,9 +2553,9 @@ async function handleAdviceWithGpupixel(req, res) {
           summary: fallback.summary,
           nextStep: fallback.nextStep,
           teachingFocus: fallback.teachingFocus,
-          speakText: finalReplyText || fallback.speakText,
-          replyText: finalReplyText || fallback.nextStep || fallback.summary,
-          rawReplyText: finalReplyText || "",
+          speakText: safeFinalReplyText || fallback.speakText,
+          replyText: safeFinalReplyText || fallback.nextStep || fallback.summary,
+          rawReplyText: safeFinalReplyText || "",
           meta: {
             vision: vision.available ? "active" : "unavailable-or-disabled",
             openharness: "active",
@@ -2424,7 +2564,7 @@ async function handleAdviceWithGpupixel(req, res) {
           },
         };
 
-        for (const sentence of splitReplyIntoSentences(finalReplyText || voiceAdvice.replyText || "")) {
+        for (const sentence of splitReplyIntoSentences(safeFinalReplyText || voiceAdvice.replyText || "")) {
           writeEvent({
             type: "sentence",
             text: sentence,
@@ -2466,10 +2606,11 @@ async function handleAdviceWithGpupixel(req, res) {
         question: payload.userRequest,
         analysisFocus: "",
       });
-      const replyText = await submitToOpenHarness(buildBeautyOpenHarnessPrompt(payload));
+      const replyText = await submitToOpenHarness(buildBeautyOpenHarnessPrompt(enrichedPayload));
       const finalReplyText = gpupixelControl.applied
         ? joinMirrorReply(gpupixelControl.message, replyText)
         : replyText;
+      const safeFinalReplyText = enforceOpenHarnessReplyCapabilityBoundary(finalReplyText, enrichedPayload);
       const voiceAdvice = {
         ...fallback,
         integration: "openharness",
@@ -2477,9 +2618,9 @@ async function handleAdviceWithGpupixel(req, res) {
         summary: fallback.summary,
         nextStep: fallback.nextStep,
         teachingFocus: fallback.teachingFocus,
-        speakText: finalReplyText || fallback.speakText,
-        replyText: finalReplyText || fallback.nextStep || fallback.summary,
-        rawReplyText: finalReplyText || "",
+        speakText: safeFinalReplyText || fallback.speakText,
+        replyText: safeFinalReplyText || fallback.nextStep || fallback.summary,
+        rawReplyText: safeFinalReplyText || "",
         meta: {
           vision: vision.available ? "active" : "unavailable-or-disabled",
           openharness: "active",
@@ -2635,6 +2776,21 @@ const server = http.createServer(async (req, res) => {
 
   if (req.method === "GET" && url.pathname === "/api/modules") {
     await handleHealth(req, res);
+    return;
+  }
+
+  if ((req.method === "GET" || req.method === "POST") && url.pathname === "/api/user-memory/profile") {
+    await handleUserMemoryProfile(req, res);
+    return;
+  }
+
+  if (req.method === "POST" && url.pathname === "/api/user-memory/consent") {
+    await handleUserMemoryConsent(req, res);
+    return;
+  }
+
+  if (req.method === "POST" && url.pathname === "/api/user-memory/reset") {
+    await handleUserMemoryReset(req, res);
     return;
   }
 
