@@ -27,6 +27,10 @@ const {
   shouldResolveOpenHarnessAssistant,
 } = require("./openharness-bridge-events");
 const {
+  isVolcengineTtsEnabled,
+  synthesizeVolcengineTts,
+} = require("./volcengine-tts");
+const {
   readBeautyUserProfile,
   resetBeautyUserProfile,
   setBeautyUserConsent,
@@ -54,6 +58,7 @@ const LOCAL_ASR_SERVICE_URL = process.env.LOCAL_ASR_SERVICE_URL || "";
 const LOCAL_TTS_SERVICE_URL = process.env.LOCAL_TTS_SERVICE_URL || "";
 const ASR_PROVIDER = process.env.ASR_PROVIDER || "whisper-local";
 const ASR_ENABLE_PARTIAL = process.env.ASR_ENABLE_PARTIAL || "off";
+const TTS_PROVIDER = process.env.TTS_PROVIDER || "local";
 const ARK_RESPONSES_URL = process.env.ARK_RESPONSES_URL || "https://ark.cn-beijing.volces.com/api/v3/responses";
 const ARK_API_KEY = process.env.ARK_API_KEY || "";
 const ARK_VISION_MODEL = process.env.ARK_VISION_MODEL || "doubao-seed-1-6-vision-250815";
@@ -2114,6 +2119,39 @@ async function handleLocalTtsProxy(req, res, targetPath) {
   }
 }
 
+async function handleTtsSpeak(req, res) {
+  if (!isVolcengineTtsEnabled({ ...process.env, TTS_PROVIDER })) {
+    await handleLocalTtsProxy(req, res, "/speak");
+    return;
+  }
+
+  let payload = {};
+  try {
+    const raw = await readRequestBody(req);
+    payload = safeParseJson(raw) || {};
+  } catch (error) {
+    sendJson(res, 400, { ok: false, error: error.message });
+    return;
+  }
+
+  const text = normalizeText(payload.text);
+  if (!text) {
+    sendJson(res, 400, { ok: false, error: "Missing text for TTS." });
+    return;
+  }
+
+  try {
+    const result = await synthesizeVolcengineTts(text);
+    sendJson(res, 200, result);
+  } catch (error) {
+    sendJson(res, 502, {
+      ok: false,
+      error: error.message,
+      provider: "volcengine",
+    });
+  }
+}
+
 async function handleAdvice(req, res) {
   let payload;
   try {
@@ -2830,7 +2868,7 @@ const server = http.createServer(async (req, res) => {
   }
 
   if (req.method === "POST" && url.pathname === "/api/voice/tts/speak") {
-    await handleLocalTtsProxy(req, res, "/speak");
+    await handleTtsSpeak(req, res);
     return;
   }
 

@@ -205,6 +205,7 @@ if (-not $nodeExe) {
 
 $pythonExe = Resolve-Executable @(
   $env:LOCAL_ASR_PYTHON,
+  "C:\ProgramData\miniconda3\envs\openharness\python.exe",
   "D:\Anaconda3\envs\openharness\python.exe",
   "D:\Anaconda3\python.exe"
 ) "python"
@@ -220,6 +221,10 @@ $localAsrHost = if ($env:LOCAL_ASR_HOST) { $env:LOCAL_ASR_HOST } else { "127.0.0
 $localAsrPort = if ($env:LOCAL_ASR_PORT) { [int]$env:LOCAL_ASR_PORT } else { 9101 }
 $localTtsHost = if ($env:LOCAL_TTS_HOST) { $env:LOCAL_TTS_HOST } else { "127.0.0.1" }
 $localTtsPort = if ($env:LOCAL_TTS_PORT) { [int]$env:LOCAL_TTS_PORT } else { 9102 }
+$ttsProvider = if ($env:TTS_PROVIDER) { $env:TTS_PROVIDER.Trim().ToLowerInvariant() } else { "local" }
+$volcTtsEnabledFlag = if ($env:VOLC_TTS_ENABLED) { $env:VOLC_TTS_ENABLED.Trim().ToLowerInvariant() } else { "" }
+$volcTtsEnabled = @("on", "true", "1") -contains $volcTtsEnabledFlag
+$useLocalTts = -not ($ttsProvider -eq "volcengine" -or $volcTtsEnabled)
 
 $env:GPUPIXEL_SERVICE_URL = if ($env:GPUPIXEL_SERVICE_URL) {
   $env:GPUPIXEL_SERVICE_URL
@@ -269,7 +274,11 @@ $localTtsStderrLog = Join-Path $logDir "local-tts.stderr.log"
 Write-Info "Starting Beauty Studio on $siteUrl"
 Write-Info "GPUPixel adapter target: $($env:GPUPIXEL_SERVICE_URL)"
 Write-Info "Local ASR adapter target: $($env:LOCAL_ASR_SERVICE_URL)"
-Write-Info "Local TTS adapter target: $($env:LOCAL_TTS_SERVICE_URL)"
+if ($useLocalTts) {
+  Write-Info "Local TTS adapter target: $($env:LOCAL_TTS_SERVICE_URL)"
+} else {
+  Write-Info "Cloud TTS provider: $ttsProvider"
+}
 
 if ($env:ARK_API_KEY) {
   Write-Info "Ark Vision mode: enabled"
@@ -322,12 +331,15 @@ $localAsrProcess = Start-DetachedProcess `
   -StdoutLog $localAsrStdoutLog `
   -StderrLog $localAsrStderrLog
 
-$localTtsProcess = Start-DetachedProcess `
-  -FilePath $pythonExe `
-  -ArgumentList @($localTtsServiceScript) `
-  -WorkingDirectory $localTtsServiceDir `
-  -StdoutLog $localTtsStdoutLog `
-  -StderrLog $localTtsStderrLog
+$localTtsProcess = $null
+if ($useLocalTts) {
+  $localTtsProcess = Start-DetachedProcess `
+    -FilePath $pythonExe `
+    -ArgumentList @($localTtsServiceScript) `
+    -WorkingDirectory $localTtsServiceDir `
+    -StdoutLog $localTtsStdoutLog `
+    -StderrLog $localTtsStderrLog
+}
 
 $siteProcess = Start-DetachedProcess `
   -FilePath $nodeExe `
@@ -340,7 +352,7 @@ if (-not (Wait-ForUrl -Url $localAsrHealthUrl -TimeoutSeconds 90)) {
   throw "The local ASR service did not become ready within 90 seconds. Check logs:`n$localAsrStdoutLog`n$localAsrStderrLog"
 }
 
-if (-not (Wait-ForUrl -Url $localTtsHealthUrl -TimeoutSeconds 20)) {
+if ($useLocalTts -and -not (Wait-ForUrl -Url $localTtsHealthUrl -TimeoutSeconds 20)) {
   throw "The local TTS service did not become ready within 20 seconds. Check logs:`n$localTtsStdoutLog`n$localTtsStderrLog"
 }
 
@@ -365,15 +377,21 @@ if ($gpupixelNativeProcess) {
   Write-Host "GPUPixel stream: http://127.0.0.1:8791/stream.mjpg"
 }
 Write-Host "Local ASR PID: $($localAsrProcess.Id)"
-Write-Host "Local TTS PID: $($localTtsProcess.Id)"
+if ($localTtsProcess) {
+  Write-Host "Local TTS PID: $($localTtsProcess.Id)"
+} else {
+  Write-Host "Local TTS PID: skipped ($ttsProvider)"
+}
 Write-Host "Site logs: $stdoutLog"
 Write-Host "           $stderrLog"
 Write-Host "GPUPixel logs: $gpupixelStdoutLog"
 Write-Host "               $gpupixelStderrLog"
 Write-Host "Local ASR logs: $localAsrStdoutLog"
 Write-Host "                $localAsrStderrLog"
-Write-Host "Local TTS logs: $localTtsStdoutLog"
-Write-Host "                $localTtsStderrLog"
+if ($useLocalTts) {
+  Write-Host "Local TTS logs: $localTtsStdoutLog"
+  Write-Host "                $localTtsStderrLog"
+}
 
 if (-not $NoBrowser) {
   Start-Process $siteUrl

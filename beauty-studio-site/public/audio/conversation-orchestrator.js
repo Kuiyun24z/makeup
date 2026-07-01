@@ -36,6 +36,8 @@ export class RealtimeConversationOrchestrator {
     this.pendingCommitTimer = 0;
     this.pendingCommitTurnId = 0;
     this.commitConfirmDelayMs = 180;
+    this.maxCaptureMs = 6500;
+    this.captureTimeoutTimer = 0;
     this.extremeEchoSuppressUntil = 0;
     this.metrics = this.createEmptyMetrics();
 
@@ -81,6 +83,24 @@ export class RealtimeConversationOrchestrator {
     this.pendingCommitTurnId = 0;
   }
 
+  clearCaptureTimeout() {
+    if (this.captureTimeoutTimer) {
+      window.clearTimeout(this.captureTimeoutTimer);
+      this.captureTimeoutTimer = 0;
+    }
+  }
+
+  scheduleCaptureTimeout() {
+    this.clearCaptureTimeout();
+    this.captureTimeoutTimer = window.setTimeout(() => {
+      this.captureTimeoutTimer = 0;
+      if (!this.enabled || this.status !== "capturing") {
+        return;
+      }
+      void this.finishTurnCapture("realtime-max-capture");
+    }, this.maxCaptureMs);
+  }
+
   enterExtremeEchoSuppression(durationMs = 350) {
     this.extremeEchoSuppressUntil = performance.now() + durationMs;
     this.clearPendingCommit();
@@ -99,6 +119,76 @@ export class RealtimeConversationOrchestrator {
   getBestTranscriptCandidate() {
     const promoted = this.asrAdapter?.promotePartialToFinal?.() || "";
     return String(promoted || this.finalTranscript || this.partialTranscript || "").trim();
+  }
+
+  async finishTurnCapture(reason = "speechend") {
+    if (!this.enabled || this.isExtremelySuppressed()) {
+      return;
+    }
+
+    this.clearCaptureTimeout();
+    this.metrics.vadEndAt = performance.now();
+    this.onMetrics({ ...this.metrics });
+
+    if (this.usesTurnBasedAsr()) {
+      try {
+        await this.asrAdapter?.stop?.();
+      } catch (error) {
+        this.setStatus("error", "本地语音转写结束失败");
+        this.onError(error);
+        return;
+      }
+    }
+
+    const transcript = this.getBestTranscriptCandidate();
+    if (!transcript) {
+      this.activeTurnId = 0;
+      this.setStatus("listening", reason === "realtime-max-capture" ? "这段没听清，等你再说一遍" : "等待你开口");
+      return;
+    }
+
+    const turnId = this.activeTurnId || this.nextTurnId();
+    this.clearPendingCommit();
+    this.pendingCommitTurnId = turnId;
+    this.setStatus("listening", "检测到停顿，准备提交");
+
+    this.pendingCommitTimer = window.setTimeout(async () => {
+      this.pendingCommitTimer = 0;
+
+      if (!this.enabled || this.isExtremelySuppressed()) {
+        this.pendingCommitTurnId = 0;
+        return;
+      }
+
+      const latestTranscript = this.getBestTranscriptCandidate();
+      if (!latestTranscript) {
+        this.pendingCommitTurnId = 0;
+        this.setStatus("listening", "等待你开口");
+        return;
+      }
+
+      const commitTurnId = this.pendingCommitTurnId || turnId;
+      this.pendingCommitTurnId = 0;
+      this.metrics.committedAt = performance.now();
+      this.onMetrics({ ...this.metrics });
+      this.setStatus("thinking", "正在思考");
+      this.onCommittedTranscript(latestTranscript);
+      this.activeTurnId = 0;
+
+      try {
+        await this.onSubmitTranscript({
+          text: latestTranscript,
+          turnId: commitTurnId,
+          metrics: { ...this.metrics },
+        });
+      } catch (error) {
+        if (this.turnCounter !== commitTurnId) {
+          return;
+        }
+        this.setStatus("error", "语音请求失败");
+        this.onError(error);
+      }
+    }, this.commitConfirmDelayMs);
   }
 
   bindEvents() {
@@ -139,6 +229,7 @@ export class RealtimeConversationOrchestrator {
             sessionId: this.sessionId,
             turnId: this.activeTurnId,
           });
+          this.scheduleCaptureTimeout();
         } catch (error) {
           this.setStatus("error", "本地语音录制启动失败");
           this.onError(error);
@@ -147,71 +238,7 @@ export class RealtimeConversationOrchestrator {
     });
 
     this.vadManager?.addEventListener("speechend", async () => {
-      if (!this.enabled || this.isExtremelySuppressed()) {
-        return;
-      }
-
-      this.metrics.vadEndAt = performance.now();
-      this.onMetrics({ ...this.metrics });
-
-      if (this.usesTurnBasedAsr()) {
-        try {
-          await this.asrAdapter?.stop?.();
-        } catch (error) {
-          this.setStatus("error", "本地语音转写结束失败");
-          this.onError(error);
-          return;
-        }
-      }
-
-      const transcript = this.getBestTranscriptCandidate();
-      if (!transcript) {
-        this.setStatus("listening", "等待你开口");
-        return;
-      }
-
-      const turnId = this.activeTurnId || this.nextTurnId();
-      this.clearPendingCommit();
-      this.pendingCommitTurnId = turnId;
-      this.setStatus("listening", "检测到停顿，准备提交");
-
-      this.pendingCommitTimer = window.setTimeout(async () => {
-        this.pendingCommitTimer = 0;
-
-        if (!this.enabled || this.isExtremelySuppressed()) {
-          this.pendingCommitTurnId = 0;
-          return;
-        }
-
-        const latestTranscript = this.getBestTranscriptCandidate();
-        if (!latestTranscript) {
-          this.pendingCommitTurnId = 0;
-          this.setStatus("listening", "等待你开口");
-          return;
-        }
-
-        const commitTurnId = this.pendingCommitTurnId || turnId;
-        this.pendingCommitTurnId = 0;
-        this.metrics.committedAt = performance.now();
-        this.onMetrics({ ...this.metrics });
-        this.setStatus("thinking", "正在思考");
-        this.onCommittedTranscript(latestTranscript);
-        this.activeTurnId = 0;
-
-        try {
-          await this.onSubmitTranscript({
-            text: latestTranscript,
-            turnId: commitTurnId,
-            metrics: { ...this.metrics },
-          });
-        } catch (error) {
-          if (this.turnCounter !== commitTurnId) {
-            return;
-          }
-          this.setStatus("error", "语音请求失败");
-          this.onError(error);
-        }
-      }, this.commitConfirmDelayMs);
+      await this.finishTurnCapture("speechend");
     });
 
     this.asrAdapter?.addEventListener("partial", (event) => {
@@ -316,6 +343,7 @@ export class RealtimeConversationOrchestrator {
     this.enabled = true;
     this.extremeEchoSuppressUntil = 0;
     this.clearPendingCommit();
+    this.clearCaptureTimeout();
     this.resetTranscriptBuffers();
     this.metrics = this.createEmptyMetrics();
     this.setStatus("listening", "实时语音已开启，等待你开口");
@@ -327,6 +355,7 @@ export class RealtimeConversationOrchestrator {
     this.activeTurnId = 0;
     this.extremeEchoSuppressUntil = 0;
     this.clearPendingCommit();
+    this.clearCaptureTimeout();
     this.resetTranscriptBuffers();
     this.ttsAdapter?.stopNow();
     if (this.usesTurnBasedAsr()) {
@@ -343,6 +372,7 @@ export class RealtimeConversationOrchestrator {
     this.turnCounter += 1;
     this.activeTurnId = 0;
     this.clearPendingCommit();
+    this.clearCaptureTimeout();
     this.metrics.interruptedAt = performance.now();
     this.onMetrics({ ...this.metrics });
     this.ttsAdapter?.stopNow();

@@ -1,3 +1,10 @@
+export function sanitizeTtsSpeechText(text) {
+  return String(text || "")
+    .replace(/[\p{Extended_Pictographic}\uFE0F\u200D]+/gu, " ")
+    .replace(/\s+/gu, " ")
+    .trim();
+}
+
 export class BrowserTtsAdapter extends EventTarget {
   constructor(options = {}) {
     super();
@@ -8,6 +15,7 @@ export class BrowserTtsAdapter extends EventTarget {
       ...options,
     };
     this.audio = null;
+    this.fallbackUtterance = null;
     this.activeObjectUrl = "";
     this.isPlayingFlag = false;
     this.lastError = "";
@@ -18,6 +26,14 @@ export class BrowserTtsAdapter extends EventTarget {
 
   isSupported() {
     return typeof window !== "undefined" && typeof window.fetch === "function" && typeof Audio !== "undefined";
+  }
+
+  canUseSpeechSynthesis() {
+    return (
+      typeof window !== "undefined" &&
+      typeof window.speechSynthesis !== "undefined" &&
+      typeof window.SpeechSynthesisUtterance !== "undefined"
+    );
   }
 
   isSpeaking() {
@@ -98,8 +114,87 @@ export class BrowserTtsAdapter extends EventTarget {
     return result;
   }
 
+  speakWithBrowserFallback(content) {
+    if (!this.canUseSpeechSynthesis()) {
+      return Promise.resolve(false);
+    }
+
+    return new Promise((resolve) => {
+      const utterance = new window.SpeechSynthesisUtterance(content);
+      utterance.lang = "zh-CN";
+      utterance.rate = 1;
+      utterance.pitch = 1;
+      utterance.volume = 1;
+
+      const voices = window.speechSynthesis.getVoices?.() || [];
+      const preferredVoice =
+        voices.find((voice) => voice.name === this.voiceName) ||
+        voices.find((voice) => String(voice.lang || "").toLowerCase().startsWith("zh")) ||
+        null;
+      if (preferredVoice) {
+        utterance.voice = preferredVoice;
+      }
+
+      let started = false;
+      let failedBeforeStart = false;
+      const markStarted = () => {
+        if (started || failedBeforeStart) {
+          return;
+        }
+        started = true;
+        this.isPlayingFlag = true;
+        this.dispatchEvent(
+          new CustomEvent("start", {
+            detail: {
+              text: content,
+              voiceName: preferredVoice?.name || "browser-speechSynthesis",
+              voiceLang: preferredVoice?.lang || "zh-CN",
+              fallback: true,
+            },
+          })
+        );
+        this.dispatchDiagnostics("fallback-start");
+        resolve(true);
+      };
+
+      utterance.onstart = markStarted;
+
+      utterance.onend = () => {
+        markStarted();
+        this.isPlayingFlag = false;
+        this.fallbackUtterance = null;
+        this.dispatchEvent(
+          new CustomEvent("end", {
+            detail: {
+              text: content,
+              voiceName: preferredVoice?.name || "browser-speechSynthesis",
+              fallback: true,
+            },
+          })
+        );
+        this.dispatchDiagnostics("fallback-end");
+      };
+
+      utterance.onerror = (event) => {
+        this.isPlayingFlag = false;
+        this.fallbackUtterance = null;
+        this.lastErrorDetail = String(event?.error || "browser-speechSynthesis-error");
+        if (!started) {
+          failedBeforeStart = true;
+          resolve(false);
+        }
+        this.dispatchDiagnostics("fallback-error");
+      };
+
+      this.fallbackUtterance = utterance;
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utterance);
+      window.setTimeout(markStarted, 0);
+    });
+  }
+
   async speak(text) {
-    const content = String(text || "").trim();
+    const content = sanitizeTtsSpeechText(text);
     if (!this.isSupported() || !content) {
       return false;
     }
@@ -190,6 +285,11 @@ export class BrowserTtsAdapter extends EventTarget {
       this.lastError = String(error?.message || error || "tts-error");
       this.lastErrorDetail = String(error?.detail || "");
       this.lastErrorDiagnostics = error?.diagnostics || null;
+      const fallbackStarted = await this.speakWithBrowserFallback(content);
+      if (fallbackStarted) {
+        this.dispatchDiagnostics("cloud-error-browser-fallback");
+        return true;
+      }
       this.dispatchEvent(
         new CustomEvent("error", {
           detail: {
@@ -216,6 +316,14 @@ export class BrowserTtsAdapter extends EventTarget {
       }
     }
     this.audio = null;
+    if (this.canUseSpeechSynthesis()) {
+      try {
+        window.speechSynthesis.cancel();
+      } catch (_error) {
+        // Ignore browser TTS stop failures.
+      }
+    }
+    this.fallbackUtterance = null;
     this.isPlayingFlag = false;
     this.revokeObjectUrl();
     void this.postJson(this.options.stopEndpoint, {}).catch(() => {});
